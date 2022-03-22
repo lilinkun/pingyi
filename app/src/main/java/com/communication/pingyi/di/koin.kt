@@ -1,0 +1,31 @@
+package com.communication.pingyi.di
+
+import com.communication.lib_http.api.httpModule
+import com.communication.pingyi.ui.login.account.LoginRepository
+import com.communication.pingyi.ui.login.account.LoginViewModel
+import com.communication.pingyi.ui.me.MeRepository
+import com.communication.pingyi.ui.me.MeViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.dsl.module
+
+/**
+ * Created by LG
+ * on 2022/3/4  11:39
+ * Description：
+ */
+
+val viewModelModule = module {
+
+    viewModel{LoginViewModel(get())}
+    viewModel{MeViewModel(get())}
+
+
+}
+
+val repositoryModule = module {
+    single { LoginRepository(get()) }
+    single { MeRepository(get()) }
+
+}
+
+val allModule = listOf(viewModelModule,repositoryModule,httpModule)

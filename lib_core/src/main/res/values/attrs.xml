@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PyButton">
+        <attr name="py_button_name" format="string" />
+        <attr name="py_bg_color" format="reference" />
+    </declare-styleable>
+</resources>

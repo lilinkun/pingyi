@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/icon_home"
+        android:title="@string/main_home" />
+
+
+    <item
+        android:id="@+id/nav_contacts"
+        android:icon="@drawable/icon_waring"
+        android:title="@string/main_contacts" />
+
+    <item
+        android:id="@+id/nav_message"
+        android:icon="@drawable/icon_waring"
+        android:title="@string/main_message" />
+
+<!--    <item-->
+<!--        android:id="@+id/nav_train"-->
+<!--        android:icon="@drawable/icon_picture"-->
+<!--        android:title="@string/main_train" />-->
+
+    <item
+        android:id="@+id/nav_me"
+        android:icon="@drawable/icon_me"
+        android:title="@string/main_me" />
+
+</menu>
