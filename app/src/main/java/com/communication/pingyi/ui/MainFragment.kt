@@ -1,8 +1,18 @@
 package com.communication.pingyi.ui
 
+import android.os.Bundle
+import androidx.core.view.children
+import androidx.core.view.forEach
+import androidx.core.view.forEachIndexed
+import com.communication.lib_core.PyMessageRed
+import com.communication.lib_core.tools.EVENTBUS_APP_CLICK
+import com.communication.lib_http.httpdata.message.EventMessageBean
 import com.communication.pingyi.R
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView
+import com.jeremyliao.liveeventbus.LiveEventBus
 
 /**
  * Created by LG
@@ -12,6 +22,20 @@ import com.communication.pingyi.databinding.FragmentMainBinding
 class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     override fun getLayoutResId(): Int = R.layout.fragment_main
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        LiveEventBus.get(
+            EVENTBUS_APP_CLICK,
+            String::class.java
+        ).observe(this,{ key->
+            key?.let {
+
+            }
+        })
+
+    }
 
     override fun initView() {
         val viewPager = binding.viewPager
@@ -25,8 +49,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             var index = ITEM_HOME
             index = when (it.itemId) {
                 R.id.nav_home -> ITEM_HOME
+                R.id.nav_contacts -> ITEM_CONTACTS
                 R.id.nav_message -> ITEM_MESSAGE
-//                R.id.nav_train -> ITEM_TRAIN
                 R.id.nav_me -> ITEM_ME
                 else -> ITEM_HOME
             }
@@ -37,5 +61,47 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     }
 
     override fun observeViewModels() {
+    }
+
+    private fun initMessage(list: MutableList<EventMessageBean>?) {
+        var isRead = true
+        var count = 0
+        list?.forEach { item ->
+            if (!item.isRead) {
+                isRead = false
+                count += 1
+            }
+        }
+
+        binding.bottomNavBar.children.forEach { menuView ->
+            if (menuView is BottomNavigationMenuView) {
+                menuView.forEachIndexed { index, itemView ->
+                    if (index == 1) {
+                        if (itemView is BottomNavigationItemView) {
+                            itemView.forEach { v ->
+                                if (v is PyMessageRed) {
+                                    itemView.removeView(v)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (count != 0) {
+            binding.bottomNavBar.children.forEach { menuView ->
+                if (menuView is BottomNavigationMenuView) {
+                    menuView.forEachIndexed { index, itemView ->
+                        if (index == 1) {
+                            if (itemView is BottomNavigationItemView) {
+                                val t = PyMessageRed(requireContext())
+                                t.setCount(count.toString())
+                                itemView.addView(t)
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

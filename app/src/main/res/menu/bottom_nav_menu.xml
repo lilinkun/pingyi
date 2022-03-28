@@ -17,11 +17,6 @@
         android:icon="@drawable/icon_waring"
         android:title="@string/main_message" />
 
-<!--    <item-->
-<!--        android:id="@+id/nav_train"-->
-<!--        android:icon="@drawable/icon_picture"-->
-<!--        android:title="@string/main_train" />-->
-
     <item
         android:id="@+id/nav_me"
         android:icon="@drawable/icon_me"

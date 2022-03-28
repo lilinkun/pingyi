@@ -1,8 +1,13 @@
 package com.communication.pingyi.ui.home
 
+import android.os.Bundle
+import com.communication.lib_core.tools.EVENTBUS_HOME_APPS_SUCCESS
 import com.communication.pingyi.R
+import com.communication.pingyi.adapter.HomeAppListAdapter
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentHomeBinding
+import com.jeremyliao.liveeventbus.LiveEventBus
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * Created by LG
@@ -11,13 +16,56 @@ import com.communication.pingyi.databinding.FragmentHomeBinding
  */
 class HomeFragment : BaseFragment<FragmentHomeBinding>(){
 
+    private val mViewModel by viewModel<AppsViewModel>()
+
+
+    private val mAppListAdapter = HomeAppListAdapter()
+
+
     override fun getLayoutResId(): Int = R.layout.fragment_home
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        LiveEventBus.get(
+            EVENTBUS_HOME_APPS_SUCCESS,
+            String::class.java
+        ).observe(this,{
+
+            initHomeAppComplete()
+
+        })
+
+    }
     override fun initView() {
 
+        binding.apply {
+            appList.adapter = mAppListAdapter
+        }
     }
 
     override fun observeViewModels() {
+        with(mViewModel){
+            appsLiveData.observe(viewLifecycleOwner){
+                mAppListAdapter.submitList(appsLiveData.value)
+                mAppListAdapter.notifyDataSetChanged()
+            }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        mViewModel.getHomeAppsList()
+    }
+
+
+
+    private fun initHomeAppComplete() {
+
+//        mAppListAdapter
 
     }
+
+
 }

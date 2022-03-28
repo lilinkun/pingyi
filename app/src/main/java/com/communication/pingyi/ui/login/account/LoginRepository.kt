@@ -13,8 +13,8 @@ import com.communication.lib_http.httpdata.login.LoginInfo
  */
 class LoginRepository(private val api : LoginApi) : BaseRepository(){
 
-    suspend fun login(info : LoginInfo) : NetResult<String>{
-        return callRequest ( call = { handleResponse1(api.login(info)) })
+    suspend fun login(info : LoginInfo) : NetResult<TokenData>{
+        return callRequest ( call = { handleResponse(api.login(info)) })
     }
 
 }

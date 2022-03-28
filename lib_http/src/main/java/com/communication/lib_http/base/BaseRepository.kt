@@ -40,31 +40,6 @@ open class BaseRepository {
                 NetResult.Error(
                     ResultException(
                         response.code.toString(),
-                        response.message
-                    )
-                )
-            }
-
-        }
-
-    }
-
-    suspend fun <T : Any> handleResponse1(
-        response : TokenModel<T>,
-        successBlock : (suspend CoroutineScope.() -> Unit)? = null,
-        errorBlock : (suspend CoroutineScope.() -> Unit)? = null
-    ):NetResult<T> {
-
-        return coroutineScope {
-
-            if (response.code == 200 || response.code == 0){
-                successBlock?.let { it() }
-                NetResult.Success(response.token)
-            }else{
-                errorBlock?.let { it() }
-                NetResult.Error(
-                    ResultException(
-                        response.code.toString(),
                         response.msg
                     )
                 )
@@ -73,6 +48,5 @@ open class BaseRepository {
         }
 
     }
-
 
 }

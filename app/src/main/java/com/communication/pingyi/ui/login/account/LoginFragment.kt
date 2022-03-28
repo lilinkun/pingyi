@@ -1,14 +1,14 @@
 package com.communication.pingyi.ui.login.account
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Base64
 import android.util.Base64.NO_WRAP
 import android.view.View
 import androidx.lifecycle.Lifecycle
 import com.bumptech.glide.Glide
+import com.communication.lib_core.EditTextYH
+import com.communication.lib_core.SomeMonitorEditText
 import com.communication.lib_core.checkDoubleClick
 import com.communication.lib_core.tools.EVENTBUS_LOGIN_SUCCESS
 import com.communication.lib_core.tools.EVENTBUS_TOKEN_SUCCESS
@@ -25,6 +25,7 @@ import com.jeremyliao.liveeventbus.LiveEventBus
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.util.*
 
+
 /**
  * Created by LG
  * on 2022/3/10  16:14
@@ -36,6 +37,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     lateinit var mLoginInfo : LoginInfo;
     lateinit var sign : String;
+
+    lateinit var someMonitor : SomeMonitorEditText
 
     override fun getLayoutResId(): Int = R.layout.fragment_login
 
@@ -98,6 +101,13 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 }
             }
 
+            val edits = LinkedList<EditTextYH>()
+
+            edits.add(it.etUsername)
+            edits.add(it.etPassword)
+
+            someMonitor = SomeMonitorEditText(it.btnLogin,edits)
+
         }
 
     }
@@ -138,12 +148,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             if (etPassword.text!!.isBlank()) {
                 return
             }
-            if (etVerificationCode.text!!.isBlank()) {
-                return
-            }
+
             val uname = etUsername.text.toString().trim()
             val pwd = etPassword.text.toString().trim()
-            val code = etVerificationCode.text.toString().trim()
 
             val psd = Base64.encodeToString(
                 RSAUtils.encryptByPublicKey(pwd, PUBLICKEY),
@@ -154,11 +161,17 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             val uuid = ""
             val clientType = "1"
 
+            val currentVersionCode = context?.let { Utils.getVersionCode(it).toString() }
 
-            mLoginInfo = LoginInfo(code, uname,psd,clientType,uuid)
+            val brand = Utils.deviceBrand + Utils.systemModel
+
+            mLoginInfo = LoginInfo(
+                brand, uname,psd,
+                context?.let { Utils.getDeviceId(it) }, currentVersionCode)
 
             LiveEventBus.get(EVENTBUS_TOKEN_SUCCESS).post(true)
         }
     }
+
 
 }

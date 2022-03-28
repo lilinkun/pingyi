@@ -1,10 +1,8 @@
 package com.communication.lib_http.interceptor
 
-import android.util.Log
 import com.btismart.lib_okhttps.token.TokenService
 import com.communication.lib_http.api.SERVER_BASE_URL
 import com.communication.lib_http.base.MMKVTool
-import com.communication.lib_http.httpdata.login.LoginInfo
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
@@ -22,7 +20,7 @@ class AuthorizationInterceptor : Interceptor{
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
-        if (request.url.toString().contains("/login")) {
+        if (request.url.toString().contains("/app/login")) {
             return chain.proceed(request)
         }
         var response = chain.proceed(addTokenHeaders(request.newBuilder()))
@@ -81,7 +79,7 @@ class AuthorizationInterceptor : Interceptor{
                 MMKVTool.getPassword()
             )
         ).execute()*/
-        var isSuccess = false
+        val isSuccess = false
         /*response.body()?.code?.let { code ->
             if (code == "SUCCESS") {
                 response.body()?.data?.let {

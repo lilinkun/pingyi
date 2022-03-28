@@ -14,9 +14,9 @@ import retrofit2.http.POST
  */
 interface LoginApi {
 
-    @POST("$SERVER_BASE_URL/login")
+    @POST("$SERVER_BASE_URL/auth/app/login")
     suspend fun login(
         @Body info : LoginInfo
-    ) : TokenModel<String>
+    ) : BaseModel<TokenData>
 
 }

@@ -1,9 +1,7 @@
 package com.communication.pingyi.ui.login.account
 
-import android.util.Base64
 import com.communication.lib_core.tools.EVENTBUS_LOGIN_SUCCESS
 import com.communication.lib_core.tools.EVENTBUS_TOAST_STRING
-import com.communication.lib_core.tools.EVENTBUS_TOKEN_SUCCESS
 import com.communication.lib_http.base.MMKVTool
 import com.communication.lib_http.base.NetResult
 import com.communication.lib_http.httpdata.login.LoginInfo
@@ -26,7 +24,7 @@ class LoginViewModel(private val repository : LoginRepository) : BaseViewModel()
                 result.data?.let {
 
                     if (it != null){
-                        MMKVTool.saveToken(it ?: "")
+                        MMKVTool.saveToken(it.access_token ?: "")
                         MMKVTool.saveUsername(loginInfo.username)
                         MMKVTool.savePassword(loginInfo.password)
                         LiveEventBus.get(EVENTBUS_LOGIN_SUCCESS).post(true)

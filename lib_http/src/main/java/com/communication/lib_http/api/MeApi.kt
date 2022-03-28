@@ -1,6 +1,7 @@
 package com.communication.lib_http.api
 
 import com.communication.lib_http.base.BaseModel
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 
 /**
@@ -10,7 +11,7 @@ import retrofit2.http.GET
  */
 interface MeApi {
 
-    @GET("$SERVER_BASE_URL/logout")
+    @DELETE("$SERVER_BASE_URL/app/logout")
     suspend fun logout() : BaseModel<String>
 
 }

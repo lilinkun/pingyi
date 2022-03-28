@@ -44,5 +44,9 @@ class PyButton : MaterialCardView {
         txt.text = str
     }
 
+    fun setBGColor(bgColor: Int) {
+        txt.setBackgroundColor(bgColor)
+    }
+
 
 }

@@ -8,6 +8,8 @@
     <color name="divider">#F1F1F1</color>
     <color name="divider_dark">#E0E0E0</color>
 
+    <color name="black_main_text">#0D1726</color>
+
     <color name="green">#68BB08</color>
     <color name="green_checkin">#7EE96B</color>
     <color name="green_selected">#36C626</color>
@@ -58,5 +60,7 @@
     <color name="illegalLevel3">#FFF81F00</color>
 
     <color name="main_color">#1B55E2</color>
+
+    <color name="black_msg">#242B3A</color>
 
 </resources>

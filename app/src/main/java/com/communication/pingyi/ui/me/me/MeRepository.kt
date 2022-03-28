@@ -1,4 +1,4 @@
-package com.communication.pingyi.ui.me
+package com.communication.pingyi.ui.me.me
 
 import com.communication.lib_http.api.MeApi
 import com.communication.lib_http.base.BaseRepository

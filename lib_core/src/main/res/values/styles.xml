@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="Py.AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/blue</item>
+        <item name="colorAccent">@color/white</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    </style>
 
 
     <style name="Py.Card.Button" parent="ShapeAppearance.MaterialComponents">
@@ -19,6 +27,15 @@
         <item name="cornerSizeBottomLeft">@dimen/dp8</item>
     </style>
 
+
+    <style name="Py.Card.Apps" parent="ShapeAppearance.MaterialComponents">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">@dimen/dp14</item>
+        <item name="cornerSizeTopRight">@dimen/dp14</item>
+        <item name="cornerSizeBottomRight">@dimen/dp14</item>
+        <item name="cornerSizeBottomLeft">@dimen/dp14</item>
+    </style>
+
     <style name="Py.Dialog" parent="Theme.MaterialComponents.DayNight.Dialog">
         <!--背景颜色及和透明程度-->
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -30,6 +47,15 @@
         <item name="android:windowIsFloating">true</item>
         <!--是否模糊-->
         <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+
+    <style name="Py.Avatar" parent="ShapeAppearance.MaterialComponents">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">@dimen/dp45</item>
+        <item name="cornerSizeTopRight">@dimen/dp45</item>
+        <item name="cornerSizeBottomRight">@dimen/dp45</item>
+        <item name="cornerSizeBottomLeft">@dimen/dp45</item>
     </style>
 
 

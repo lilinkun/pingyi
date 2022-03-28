@@ -5,4 +5,4 @@ package com.communication.lib_http.base
  * on 2022/2/28  17:09
  * Description：
  */
-data class BaseModel<out T>(val code: Int,val message : String,val data : T)
+data class BaseModel<out T>(val code: Int,val msg : String,val data : T)

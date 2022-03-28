@@ -1,4 +1,4 @@
-package com.communication.pingyi.ui.me
+package com.communication.pingyi.ui.me.me
 
 import com.communication.lib_core.tools.EVENTBUS_LOGOUT_SUCCESS
 import com.communication.lib_core.tools.EVENTBUS_TOAST_STRING

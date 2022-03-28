@@ -9,10 +9,12 @@
     <!--通用-->
     <string name="sure">确定</string>
     <string name="exit">退出</string>
+    <string name="uncomplete">未完成</string>
+    <string name="complete">已完成</string>
 
 
-    <!--    首页-->
-    <string name="main_home">主页</string>
+    <!--首页-->
+    <string name="main_home">首页</string>
     <string name="main_contacts">通讯录</string>
     <string name="main_message">消息</string>
     <string name="main_me">我</string>
@@ -21,5 +23,13 @@
     <!-- 我的-->
     <string name="me_logout">退出登录</string>
     <string name="me_logout_confirm">确定退出登录？</string>
+    <string name="me_info">个人信息</string>
+    <string name="me_info_avatar">头像</string>
+    <string name="me_info_name">姓名</string>
+    <string name="me_info_phone">手机号</string>
+    <string name="me_info_sex">性别</string>
+    <string name="me_info_organization">部门</string>
+    <string name="me_info_job">职务</string>
+    <string name="me_info_job_number">工号</string>
 
 </resources>

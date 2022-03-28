@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.communication.pingyi.ui.contact.ContactFragment
 import com.communication.pingyi.ui.home.HomeFragment
-import com.communication.pingyi.ui.me.MeFragment
+import com.communication.pingyi.ui.me.me.MeFragment
 import com.communication.pingyi.ui.message.MessageFragment
 
 /**

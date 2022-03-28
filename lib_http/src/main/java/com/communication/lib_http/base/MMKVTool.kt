@@ -20,6 +20,7 @@ object MMKVTool {
     private val case_hy = "case_hy"
     private val inspection_zf = "inspection_zf"
     private val inspection_hy = "inspection_hy"
+    private val sysCacheMap = "sysCacheMap"
 
     fun initializeMMKV(context: Context) {
         MMKV.initialize(context)
@@ -111,6 +112,10 @@ object MMKVTool {
 
     fun getInspectionHY(): String {
         return MMKV.defaultMMKV().decodeString(inspection_hy, "")
+    }
+
+    fun saveSysCacheMap(str : String){
+        MMKV.defaultMMKV().encode(sysCacheMap,str)
     }
 
 }

@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="智能抗冰控制系统"
+                android:text="平益智慧高速"
                 android:textColor="@color/main_color"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -47,7 +47,7 @@
                 android:padding="10dp" />
 
 
-            <EditText
+            <com.communication.lib_core.EditTextYH
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -68,6 +68,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="32dp"
                 android:gravity="center_vertical"
+                android:visibility="gone"
                 android:orientation="horizontal">
 
                 <EditText
@@ -100,6 +101,7 @@
                 android:layout_marginEnd="@dimen/dp20"
                 android:layout_marginBottom="@dimen/dp70"
                 android:layout_marginTop="@dimen/dp50"
+                android:alpha="0.5"
                 app:py_button_name="@string/login" />
 
         </LinearLayout>

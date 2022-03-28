@@ -9,7 +9,16 @@
         android:orientation="horizontal">
 
         <com.communication.lib_core.PyButton
-            android:id="@+id/logout"
+            android:id="@+id/me_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp15"
+            android:layout_marginEnd="@dimen/dp15"
+            app:py_button_name="@string/me_info" />
+
+
+        <com.communication.lib_core.PyButton
+            android:id="@+id/me_logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

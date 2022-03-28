@@ -2,6 +2,7 @@ package com.communication.lib_http.exception
 
 object ApiResultCode {
 
+    const val NO_CONTENT = 204
     const val UNAUTHORIZED = 401
     const val FORBIDDEN = 403
     const val NOT_FOUND = 404

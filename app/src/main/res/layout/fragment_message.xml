@@ -4,20 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     >
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
         >
 
-        <com.communication.lib_core.TextViewYH
+
+        <com.communication.lib_core.PyMainTitle
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="asdasd"
-            android:textColor="@color/black"
+            app:py_title_main_name="@string/main_message"
+            app:py_title_main_text_size="24"
             />
 
 
-    </RelativeLayout>
+        <!--<androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />-->
+
+
+    </LinearLayout>
 
 </layout>
