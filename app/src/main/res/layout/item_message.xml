@@ -7,6 +7,10 @@
     <data>
 
         <variable
+            name="message_item"
+            type="com.communication.lib_http.httpdata.message.EventMessageBean" />
+
+        <variable
             name="clickListener"
             type="android.view.View.OnClickListener" />
     </data>
@@ -53,14 +57,27 @@
 
 
         <com.communication.lib_core.TextViewYH
+            android:id="@+id/tv_createdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="@+id/cardView"
             app:layout_constraintStart_toEndOf="@+id/cardView"
             android:layout_marginStart="@dimen/dp15"
+            android:text="@{message_item.createTime}"
+            android:textColor="@color/black_msg"
             />
 
 
+
+        <com.communication.lib_core.TextViewYH
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tv_createdate"
+            app:layout_constraintStart_toStartOf="@+id/tv_createdate"
+            android:layout_marginTop="@dimen/dp10"
+            android:text="@{message_item.eventContent}"
+            android:textColor="@color/black_msg"
+            />
 
 
 

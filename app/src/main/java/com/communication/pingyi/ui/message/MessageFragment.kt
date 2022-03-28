@@ -1,6 +1,7 @@
 package com.communication.pingyi.ui.message
 
 import com.communication.pingyi.R
+import com.communication.pingyi.adapter.MessageAdapter
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentMessageBinding
 
@@ -11,10 +12,18 @@ import com.communication.pingyi.databinding.FragmentMessageBinding
  */
 class MessageFragment : BaseFragment<FragmentMessageBinding>(){
 
+
+    val messageAdapter = MessageAdapter()
+
     override fun getLayoutResId(): Int = R.layout.fragment_message
 
     override fun initView() {
-//        binding.
+        binding.apply {
+
+            rvMessage.adapter = messageAdapter
+
+
+        }
 
     }
 

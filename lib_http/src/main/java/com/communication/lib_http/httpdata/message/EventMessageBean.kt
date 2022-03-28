@@ -8,4 +8,6 @@ package com.communication.lib_http.httpdata.message
 data class EventMessageBean(
     val isRead : Boolean,
     val createTime : String,
+    val eventContent : String,
+    val eventId : String,
 )

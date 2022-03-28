@@ -2,25 +2,20 @@ package com.communication.pingyi.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.adapters.ViewBindingAdapter.setClickListener
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.communication.lib_core.checkDoubleClick
-import com.communication.lib_core.tools.EVENTBUS_APP_CLICK
-import com.communication.lib_http.httpdata.home.AppsItem
-import com.communication.pingyi.databinding.ItemHomeAppsBinding
+import com.communication.lib_core.tools.EVENTBUS_MESSAGE_ITEM_CLICK
+import com.communication.lib_http.httpdata.message.EventMessageBean
+import com.communication.pingyi.databinding.ItemMessageBinding
 import com.jeremyliao.liveeventbus.LiveEventBus
 
-/**
- * Created by LG
- * on 2022/3/24  14:33
- * Description：
- */
-class HomeAppListAdapter : ListAdapter<AppsItem, RecyclerView.ViewHolder>(AppItemDiffCallback()) {
+class MessageAdapter : ListAdapter<EventMessageBean,RecyclerView.ViewHolder>(MessageDiffCallback()) {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return PyViewHolder(
-            ItemHomeAppsBinding.inflate(
+            ItemMessageBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -34,14 +29,14 @@ class HomeAppListAdapter : ListAdapter<AppsItem, RecyclerView.ViewHolder>(AppIte
     }
 
     class PyViewHolder(
-        private val binding: ItemHomeAppsBinding
+        private val binding: ItemMessageBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: AppsItem, position: Int) {
+        fun bind(item: EventMessageBean, position: Int) {
             binding.apply {
-                appItem = item
+                messageItem = item
                 setClickListener {
                     if (checkDoubleClick()) {
-                        LiveEventBus.get(EVENTBUS_APP_CLICK).post(item.key)
+                        LiveEventBus.get(EVENTBUS_MESSAGE_ITEM_CLICK).post(item.eventId)
                     }
                 }
                 executePendingBindings()
@@ -50,13 +45,16 @@ class HomeAppListAdapter : ListAdapter<AppsItem, RecyclerView.ViewHolder>(AppIte
     }
 }
 
-private class AppItemDiffCallback : DiffUtil.ItemCallback<AppsItem>() {
 
-    override fun areItemsTheSame(oldItem: AppsItem, newItem: AppsItem): Boolean {
-        return oldItem.key == newItem.key
+private class MessageDiffCallback : DiffUtil.ItemCallback<EventMessageBean>() {
+    override fun areItemsTheSame(oldItem: EventMessageBean, newItem: EventMessageBean): Boolean {
+        return oldItem.eventId == newItem.eventId
     }
 
-    override fun areContentsTheSame(oldItem: AppsItem, newItem: AppsItem): Boolean {
+    override fun areContentsTheSame(
+        oldItem: EventMessageBean,
+        newItem: EventMessageBean
+    ): Boolean {
         return oldItem == newItem
     }
 }
