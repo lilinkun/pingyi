@@ -2,10 +2,10 @@ package com.communication.lib_http.httpdata.home
 
 /**
  * Created by LG
- * on 2022/3/24  14:16
+ * on 2022/3/30  10:00
  * Description：
  */
-data class AppsItem(
-    val name: String,
-    val meta: AppsItemTitle
+data class AppsItemTitle(
+    val title:String,
+    val icon : String
 )

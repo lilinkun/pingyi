@@ -16,7 +16,8 @@ import java.util.concurrent.TimeUnit
  * Description：
  */
 
-const val SERVER_BASE_URL = "http://192.168.1.227:8080"
+const val SERVER_BASE_URL = "http://192.168.40.92:8888"
+//const val SERVER_BASE_URL = "http://192.168.1.227:8080"
 //const val SERVER_BASE_URL = "http://192.168.1.227:9200"
 //const val SERVER_BASE_URL = "http://192.168.1.236:8098"
 
@@ -68,5 +69,13 @@ val httpModule = module {
 
     single<HomeApi> {
         get <Retrofit>().create(HomeApi::class.java)
+    }
+
+    single<MessageApi> {
+        get <Retrofit>().create(MessageApi::class.java)
+    }
+
+    single<ContactApi> {
+        get <Retrofit>().create(ContactApi::class.java)
     }
 }

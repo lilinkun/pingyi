@@ -1,6 +1,7 @@
 package com.communication.lib_http.api
 
 import com.communication.lib_http.base.BaseModel
+import com.communication.lib_http.httpdata.me.PersonInfoBean
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 
@@ -13,5 +14,8 @@ interface MeApi {
 
     @DELETE("$SERVER_BASE_URL/app/logout")
     suspend fun logout() : BaseModel<String>
+
+    @GET("$SERVER_BASE_URL/system/user/profile")
+    suspend fun getinfo() : BaseModel<PersonInfoBean>
 
 }

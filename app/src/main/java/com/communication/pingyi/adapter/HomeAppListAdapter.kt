@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.communication.lib_core.checkDoubleClick
 import com.communication.lib_core.tools.EVENTBUS_APP_CLICK
 import com.communication.lib_http.httpdata.home.AppsItem
+import com.communication.lib_http.httpdata.home.AppsItemTitle
 import com.communication.pingyi.databinding.ItemHomeAppsBinding
 import com.jeremyliao.liveeventbus.LiveEventBus
 
@@ -38,10 +39,10 @@ class HomeAppListAdapter : ListAdapter<AppsItem, RecyclerView.ViewHolder>(AppIte
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: AppsItem, position: Int) {
             binding.apply {
-                appItem = item
+                appItem = item.meta
                 setClickListener {
                     if (checkDoubleClick()) {
-                        LiveEventBus.get(EVENTBUS_APP_CLICK).post(item.key)
+                        LiveEventBus.get(EVENTBUS_APP_CLICK).post(item.meta.title)
                     }
                 }
                 executePendingBindings()
@@ -53,7 +54,7 @@ class HomeAppListAdapter : ListAdapter<AppsItem, RecyclerView.ViewHolder>(AppIte
 private class AppItemDiffCallback : DiffUtil.ItemCallback<AppsItem>() {
 
     override fun areItemsTheSame(oldItem: AppsItem, newItem: AppsItem): Boolean {
-        return oldItem.key == newItem.key
+        return oldItem.meta.title == newItem.meta.title
     }
 
     override fun areContentsTheSame(oldItem: AppsItem, newItem: AppsItem): Boolean {

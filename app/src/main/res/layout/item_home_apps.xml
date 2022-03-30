@@ -10,7 +10,7 @@
 
         <variable
             name="appItem"
-            type="com.communication.lib_http.httpdata.home.AppsItem" />
+            type="com.communication.lib_http.httpdata.home.AppsItemTitle" />
 
 
     </data>
@@ -40,7 +40,7 @@
                     android:id="@+id/icon"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:imageFromUrl="@{appItem.icon}"/>
+                    />
             </com.google.android.material.card.MaterialCardView>
 
             <com.communication.lib_core.TextViewYH
@@ -50,7 +50,7 @@
                 android:layout_below="@+id/cardView"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/dp5"
-                android:text="@{appItem.name}"
+                android:text="@{appItem.title}"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
         </RelativeLayout>

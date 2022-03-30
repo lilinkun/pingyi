@@ -17,7 +17,7 @@
     <string name="main_home">首页</string>
     <string name="main_contacts">通讯录</string>
     <string name="main_message">消息</string>
-    <string name="main_me">我</string>
+    <string name="main_me">我的</string>
 
 
     <!-- 我的-->
@@ -31,5 +31,7 @@
     <string name="me_info_organization">部门</string>
     <string name="me_info_job">职务</string>
     <string name="me_info_job_number">工号</string>
+    <string name="me_change_pwd">修改密码</string>
+    <string name="me_about">关于我们</string>
 
 </resources>

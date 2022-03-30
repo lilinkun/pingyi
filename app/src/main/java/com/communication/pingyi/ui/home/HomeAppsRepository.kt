@@ -4,6 +4,7 @@ import com.communication.lib_http.api.HomeApi
 import com.communication.lib_http.base.BaseRepository
 import com.communication.lib_http.base.NetResult
 import com.communication.lib_http.httpdata.home.AppsItem
+import com.communication.lib_http.httpdata.home.HomeItem
 
 /**
  * Created by LG
@@ -13,7 +14,7 @@ import com.communication.lib_http.httpdata.home.AppsItem
 class HomeAppsRepository(private val api : HomeApi) : BaseRepository(){
 
 
-    suspend fun getHomeAppsList() : NetResult<MutableList<AppsItem>> {
+    suspend fun getHomeAppsList() : NetResult<MutableList<HomeItem<MutableList<AppsItem>>>> {
         return callRequest { handleResponse(api.getHomeAppsList()) }
     }
 

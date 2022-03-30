@@ -3,4 +3,6 @@
     package="com.communication.lib_core">
 
     <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
+
+
 </manifest>

@@ -15,5 +15,7 @@
     </declare-styleable>
     <declare-styleable name="PyTextViewRight">
         <attr name="py_text_view_right_name" format="string" />
+        <attr name="py_text_view_right_content" format="string" />
+        <attr name="py_text_view_left_image" format="reference" />
     </declare-styleable>
 </resources>

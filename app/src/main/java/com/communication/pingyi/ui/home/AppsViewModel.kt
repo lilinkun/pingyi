@@ -3,6 +3,7 @@ package com.communication.pingyi.ui.home
 import androidx.lifecycle.MutableLiveData
 import com.communication.lib_http.base.NetResult
 import com.communication.lib_http.httpdata.home.AppsItem
+import com.communication.lib_http.httpdata.home.HomeItem
 import com.communication.pingyi.base.BaseViewModel
 
 /**
@@ -12,7 +13,7 @@ import com.communication.pingyi.base.BaseViewModel
  */
 class AppsViewModel(private val repository: HomeAppsRepository) : BaseViewModel(){
 
-    val appsLiveData = MutableLiveData<MutableList<AppsItem>>()
+    val appsLiveData = MutableLiveData<HomeItem<MutableList<AppsItem>>>()
 
     fun getHomeAppsList(){
         launch {
@@ -22,7 +23,7 @@ class AppsViewModel(private val repository: HomeAppsRepository) : BaseViewModel(
             if (result is NetResult.Success){
                 result.data?.let {
 
-                    appsLiveData.postValue(it)
+                    appsLiveData.postValue(it[0])
 
                 }
             }else if (result is NetResult.Error){

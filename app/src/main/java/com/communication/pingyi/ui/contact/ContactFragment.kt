@@ -1,8 +1,10 @@
 package com.communication.pingyi.ui.contact
 
+import android.os.Bundle
 import com.communication.pingyi.R
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentContactsBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * Created by LG
@@ -11,7 +13,16 @@ import com.communication.pingyi.databinding.FragmentContactsBinding
  */
 class ContactFragment : BaseFragment<FragmentContactsBinding>(){
 
+    val mViewModel : ContactViewModel by viewModel<ContactViewModel>()
+
     override fun getLayoutResId(): Int = R.layout.fragment_contacts
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        mViewModel.getContactList()
+
+    }
 
     override fun initView() {
 

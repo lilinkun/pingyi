@@ -1,5 +1,6 @@
 package com.communication.pingyi.ui.me.me
 
+import com.communication.lib_core.tools.EVENTBUS_INFO_SUCCESS
 import com.communication.lib_core.tools.EVENTBUS_LOGOUT_SUCCESS
 import com.communication.lib_core.tools.EVENTBUS_TOAST_STRING
 import com.communication.lib_http.base.NetResult
@@ -27,6 +28,22 @@ class MeViewModel(private val repo : MeRepository) : BaseViewModel(){
             isLoading.postValue(false)
 
         }
+    }
+
+    fun getInfo(){
+        launch {
+
+            val result = repo.getInfo()
+            if (result is NetResult.Success){
+                LiveEventBus.get(EVENTBUS_INFO_SUCCESS).post(result)
+            }else if (result is NetResult.Error){
+                LiveEventBus.get(EVENTBUS_TOAST_STRING).post(result.exception.message)
+            }
+
+        }
+
+
+
     }
 
 }

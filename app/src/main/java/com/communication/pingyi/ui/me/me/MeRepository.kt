@@ -3,6 +3,7 @@ package com.communication.pingyi.ui.me.me
 import com.communication.lib_http.api.MeApi
 import com.communication.lib_http.base.BaseRepository
 import com.communication.lib_http.base.NetResult
+import com.communication.lib_http.httpdata.me.PersonInfoBean
 
 /**
  * Created by LG
@@ -15,5 +16,8 @@ class MeRepository(private val meApi : MeApi) : BaseRepository() {
         return callRequest { handleResponse(meApi.logout()) }
     }
 
+    suspend fun getInfo() : NetResult<PersonInfoBean>{
+        return callRequest { handleResponse(meApi.getinfo()) }
+    }
 
 }

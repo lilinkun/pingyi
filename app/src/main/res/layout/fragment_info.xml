@@ -9,7 +9,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg_grey"
     android:orientation="vertical">
-    
+
     <com.communication.lib_core.PyTitle
         android:id="@+id/title"
         android:layout_width="match_parent"

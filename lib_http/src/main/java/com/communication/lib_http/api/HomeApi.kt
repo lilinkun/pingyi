@@ -3,6 +3,7 @@ package com.communication.lib_http.api
 import com.btismart.lib_okhttps.httpdata.token.TokenData
 import com.communication.lib_http.base.BaseModel
 import com.communication.lib_http.httpdata.home.AppsItem
+import com.communication.lib_http.httpdata.home.HomeItem
 import retrofit2.http.GET
 import retrofit2.http.POST
 
@@ -14,7 +15,7 @@ import retrofit2.http.POST
 interface HomeApi {
 
     @GET("$SERVER_BASE_URL/system/menu/app/getRouters")
-    suspend fun getHomeAppsList() : BaseModel<MutableList<AppsItem>>
+    suspend fun getHomeAppsList() : BaseModel<MutableList<HomeItem<MutableList<AppsItem>>>>
 
 
 }
