@@ -1,7 +1,7 @@
 package com.communication.lib_http.api
 
 import com.communication.lib_http.base.BaseModel
-import com.communication.lib_http.httpdata.contact.ContactItem
+import com.communication.lib_http.httpdata.contact.ContactBean
 import retrofit2.http.GET
 
 /**
@@ -11,8 +11,8 @@ import retrofit2.http.GET
  */
 interface ContactApi {
 
-    @GET("$SERVER_BASE_URL/system/address/dept/treeselect")
-    suspend fun getContact() : BaseModel<MutableList<ContactItem>>
+    @GET("$SERVER_BASE_URL/system/address/dept/appTreeSelect")
+    suspend fun getContact() : BaseModel<ContactBean<Any>>
 
 
 }

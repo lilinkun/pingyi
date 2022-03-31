@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -16,6 +16,7 @@
             android:textColor="@color/black_main_text"/>-->
 
         <com.communication.lib_core.PyMainTitle
+            android:id="@+id/title_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:py_title_main_name="@string/main_home"
@@ -27,11 +28,20 @@
             android:id="@+id/app_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/title_home"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="3"
             tools:listitem="@layout/item_home_apps"
             />
 
-    </LinearLayout>
+
+        <com.communication.lib_core.PyLoad
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
+    </RelativeLayout>
 
 </layout>

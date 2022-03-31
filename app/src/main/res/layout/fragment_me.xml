@@ -40,16 +40,64 @@
             app:py_title_main_text_size="24" />
 
 
-        <ImageView
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            android:paddingStart="@dimen/dp16"
+            android:paddingEnd="@dimen/dp16"
+            android:orientation="horizontal">
+
+
+        <LinearLayout
             android:id="@+id/ic_me_bg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:scaleType="fitXY"
-            android:src="@mipmap/ic_me_bg"
-            />
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@mipmap/ic_me_bg"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                >
+
+
+                <com.communication.lib_core.TextViewYH
+                    android:id="@+id/tv_personal"
+                    android:layout_width="84dp"
+                    android:layout_height="84dp"
+                    android:scaleType="fitXY"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="32sp"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:background="@drawable/shape_bg_personal"/>
+
+                <com.communication.lib_core.TextViewYH
+                    android:id="@+id/tv_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    />
+
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
 
 
         <include
@@ -57,6 +105,7 @@
             layout="@layout/include_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/shape_circle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ic_me_bg"
@@ -107,14 +156,16 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp45"
             android:gravity="center"
-            android:background="@color/white"
+            android:background="@drawable/shape_circle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_me_about"
-            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp20"
             android:text="@string/me_logout"
             android:textColor="@color/blue_dark"/>
 
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.communication.lib_core.PyLoad
             android:id="@+id/progressBar"

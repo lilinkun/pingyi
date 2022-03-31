@@ -10,7 +10,7 @@ import retrofit2.http.POST
  */
 interface MessageApi {
 
-    @POST
-    suspend fun getMessage() : BaseModel<String>
+//    @POST
+//    suspend fun getMessage() : BaseModel<String>
 
 }

@@ -11,6 +11,7 @@
     <string name="exit">退出</string>
     <string name="uncomplete">未完成</string>
     <string name="complete">已完成</string>
+    <string name="save">保存</string>
 
 
     <!--首页-->
@@ -18,6 +19,9 @@
     <string name="main_contacts">通讯录</string>
     <string name="main_message">消息</string>
     <string name="main_me">我的</string>
+
+    <!--通讯录-->
+    <string name="contact_org">组织架构</string>
 
 
     <!-- 我的-->
@@ -33,5 +37,10 @@
     <string name="me_info_job_number">工号</string>
     <string name="me_change_pwd">修改密码</string>
     <string name="me_about">关于我们</string>
+
+    <!--修改密码-->
+    <string name="psd_old">旧密码</string>
+    <string name="psd_new">新密码</string>
+    <string name="psd_sure_new">确认密码</string>
 
 </resources>

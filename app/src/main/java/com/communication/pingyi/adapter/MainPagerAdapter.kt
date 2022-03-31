@@ -1,4 +1,4 @@
-package com.communication.pingyi.ui
+package com.communication.pingyi.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter

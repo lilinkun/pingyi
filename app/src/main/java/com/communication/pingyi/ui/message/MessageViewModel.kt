@@ -12,13 +12,13 @@ class MessageViewModel(private val repo : MessageRepository) : BaseViewModel() {
 
     fun getMessage(){
         launch {
-            val result = repo.getMessage()
+            /*val result = repo.getMessage()
 
             if (result is NetResult.Success){
 
             }else if (result is NetResult.Error){
 
-            }
+            }*/
 
 
         }

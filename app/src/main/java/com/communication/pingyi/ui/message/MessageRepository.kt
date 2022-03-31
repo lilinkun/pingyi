@@ -12,8 +12,8 @@ import com.communication.lib_http.base.NetResult
  */
 class MessageRepository(private val mApi : MessageApi) : BaseRepository() {
 
-    suspend fun getMessage() : NetResult<String>{
+    /*suspend fun getMessage() : NetResult<String>{
         return callRequest { handleResponse(mApi.getMessage()) }
-    }
+    }*/
 
 }

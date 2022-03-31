@@ -6,7 +6,7 @@
     android:id="@+id/nav">
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.communication.pingyi.ui.MainFragment"
+        android:name="com.communication.pingyi.ui.main.MainFragment"
         android:label="MainFragment"
         tools:layout="@layout/fragment_main">
         <action
@@ -16,6 +16,16 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_mainFragment_to_changePwdFragment"
+            app:destination="@id/changePwdFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+
     </fragment>
 
     <fragment
@@ -23,6 +33,13 @@
         android:name="com.communication.pingyi.ui.me.info.PersonInfoFragment"
         android:label="PersonInfoFragment"
         tools:layout="@layout/fragment_info"
+        />
+
+    <fragment
+        android:id="@+id/changePwdFragment"
+        android:name="com.communication.pingyi.ui.me.changepwd.ChangePwdFragment"
+        android:label="ChangePwdFragment"
+        tools:layout="@layout/fragment_changepwd"
         />
 
 </navigation>

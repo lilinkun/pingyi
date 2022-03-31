@@ -1,5 +1,6 @@
-package com.communication.pingyi.ui
+package com.communication.pingyi.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.core.view.children
 import androidx.core.view.forEach
@@ -8,6 +9,8 @@ import com.communication.lib_core.PyMessageRed
 import com.communication.lib_core.tools.EVENTBUS_APP_CLICK
 import com.communication.lib_http.httpdata.message.EventMessageBean
 import com.communication.pingyi.R
+import com.communication.pingyi.activity.WebviewActivity
+import com.communication.pingyi.adapter.*
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
@@ -31,9 +34,11 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             String::class.java
         ).observe(this,{ key->
             key?.let {
-
+                goToWebActivity()
             }
         })
+
+
 
     }
 
@@ -104,4 +109,12 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             }
         }
     }
+
+
+    private fun goToWebActivity() {
+        val intent = Intent(requireContext(), WebviewActivity::class.java)
+        startActivity(intent)
+        requireActivity().finish()
+    }
+
 }

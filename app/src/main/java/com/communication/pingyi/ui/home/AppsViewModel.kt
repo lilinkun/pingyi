@@ -17,18 +17,22 @@ class AppsViewModel(private val repository: HomeAppsRepository) : BaseViewModel(
 
     fun getHomeAppsList(){
         launch {
-
+            isLoading.postValue(true)
             val result = repository.getHomeAppsList()
 
             if (result is NetResult.Success){
                 result.data?.let {
 
-                    appsLiveData.postValue(it[0])
+                    if(it.size > 0) {
+                        appsLiveData.postValue(it[0])
+                    }
 
                 }
             }else if (result is NetResult.Error){
 
             }
+
+            isLoading.postValue(false)
 
 
         }

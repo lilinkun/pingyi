@@ -14,7 +14,7 @@ import retrofit2.http.POST
  */
 interface HomeApi {
 
-    @GET("$SERVER_BASE_URL/system/menu/app/getRouters")
+    @GET("$SERVER_BASE_URL/system/menu/getAppRouters")
     suspend fun getHomeAppsList() : BaseModel<MutableList<HomeItem<MutableList<AppsItem>>>>
 
 

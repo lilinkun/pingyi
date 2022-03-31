@@ -5,6 +5,7 @@ import android.content.ContextWrapper
 import com.communication.lib_http.base.MMKVTool.initializeMMKV
 import com.communication.pingyi.di.allModule
 import com.communication.pingyi.ext.initTimber
+import com.jeremyliao.liveeventbus.LiveEventBus
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -21,7 +22,7 @@ open class BaseApplication : Application(){
         mApplication = this
         initTimber()
         initKoin()
-
+        initLiveEventBus()
         initMMKV()
 
     }
@@ -40,6 +41,11 @@ open class BaseApplication : Application(){
 
     private fun initMMKV(){
         initializeMMKV(this)
+    }
+
+
+    private fun initLiveEventBus() {
+        LiveEventBus.config().lifecycleObserverAlwaysActive(true).autoClear(true);
     }
 
 }

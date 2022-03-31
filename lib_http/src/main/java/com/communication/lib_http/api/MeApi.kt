@@ -12,7 +12,7 @@ import retrofit2.http.GET
  */
 interface MeApi {
 
-    @DELETE("$SERVER_BASE_URL/app/logout")
+    @DELETE("$SERVER_BASE_URL/auth/app/logout")
     suspend fun logout() : BaseModel<String>
 
     @GET("$SERVER_BASE_URL/system/user/profile")

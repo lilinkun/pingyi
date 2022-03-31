@@ -1,7 +1,10 @@
 package com.communication.pingyi.ui.home
 
 import android.os.Bundle
+import android.view.View
+import com.communication.lib_core.tools.EVENTBUS_CONTACT_SUCCESS
 import com.communication.lib_core.tools.EVENTBUS_HOME_APPS_SUCCESS
+import com.communication.lib_core.tools.EVENTBUS_HOME_SUCCESS
 import com.communication.lib_http.httpdata.home.AppsItem
 import com.communication.pingyi.R
 import com.communication.pingyi.adapter.HomeAppListAdapter
@@ -42,6 +45,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(){
     override fun initView() {
 
         binding.apply {
+            lifecycleOwner = viewLifecycleOwner
             appList.adapter = mAppListAdapter
         }
     }
@@ -52,6 +56,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(){
                 val appsItem : MutableList<AppsItem>? = appsLiveData.value?.children
                 mAppListAdapter.submitList(appsItem)
                 mAppListAdapter.notifyDataSetChanged()
+                LiveEventBus.get(EVENTBUS_HOME_SUCCESS).post(true)
+            }
+
+            isLoading.observe(viewLifecycleOwner){
+                if (it) {
+                    binding.progressBar.visibility = View.VISIBLE
+                } else {
+                    binding.progressBar.visibility = View.GONE
+                }
             }
         }
     }

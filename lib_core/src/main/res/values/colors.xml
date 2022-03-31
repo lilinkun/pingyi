@@ -64,5 +64,8 @@
     <color name="black_msg">#242B3A</color>
 
     <color name="blue_dark">#0051E8</color>
+    <color name="bg_line">#d7d7d7</color>
+
+    <color name="text_grey">#575d6c</color>
 
 </resources>

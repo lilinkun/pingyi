@@ -7,7 +7,7 @@ package com.communication.lib_http.httpdata.me
  */
 data class PersonInfoBean(
     val dept : DeptBean,
-    val roles : RolesBean,
+    val roles : MutableList<RolesBean>,
     val phonenumber : String,
     val userName : String
 )

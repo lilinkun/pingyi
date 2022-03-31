@@ -5,4 +5,4 @@ package com.communication.lib_http.httpdata.contact
  * on 2022/3/30  9:20
  * Description：
  */
-data class ContactItem(val id : Int,val label : String ,val children : Any)
+data class ContactItem(val id : Int,val label : String ,val size : Int)

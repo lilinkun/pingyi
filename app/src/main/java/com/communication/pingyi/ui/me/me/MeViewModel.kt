@@ -1,9 +1,10 @@
 package com.communication.pingyi.ui.me.me
 
-import com.communication.lib_core.tools.EVENTBUS_INFO_SUCCESS
+import androidx.lifecycle.MutableLiveData
 import com.communication.lib_core.tools.EVENTBUS_LOGOUT_SUCCESS
 import com.communication.lib_core.tools.EVENTBUS_TOAST_STRING
 import com.communication.lib_http.base.NetResult
+import com.communication.lib_http.httpdata.me.PersonInfoBean
 import com.communication.pingyi.base.BaseViewModel
 import com.jeremyliao.liveeventbus.LiveEventBus
 
@@ -13,6 +14,8 @@ import com.jeremyliao.liveeventbus.LiveEventBus
  * Description：
  */
 class MeViewModel(private val repo : MeRepository) : BaseViewModel(){
+
+    val personInfo = MutableLiveData<PersonInfoBean>()
 
     fun logout(){
         launch {
@@ -35,7 +38,7 @@ class MeViewModel(private val repo : MeRepository) : BaseViewModel(){
 
             val result = repo.getInfo()
             if (result is NetResult.Success){
-                LiveEventBus.get(EVENTBUS_INFO_SUCCESS).post(result)
+                personInfo.postValue(result.data)
             }else if (result is NetResult.Error){
                 LiveEventBus.get(EVENTBUS_TOAST_STRING).post(result.exception.message)
             }

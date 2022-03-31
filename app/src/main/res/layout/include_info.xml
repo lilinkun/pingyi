@@ -25,22 +25,26 @@
             android:id="@+id/infoJobNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:py_text_view_right_name="@string/me_info_job_number" />
 
         <com.communication.lib_core.PyDividerAll
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_marginStart="@dimen/dp15" />
 
         <com.communication.lib_core.PyTextViewRight
             android:id="@+id/infoSex"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:py_text_view_right_name="@string/me_info_sex" />
+            android:visibility="gone"
+            app:py_text_view_right_name="@string/me_info_sex"/>
 
         <com.communication.lib_core.PyDividerAll
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_marginStart="@dimen/dp15" />
 
         <com.communication.lib_core.PyTextViewRight

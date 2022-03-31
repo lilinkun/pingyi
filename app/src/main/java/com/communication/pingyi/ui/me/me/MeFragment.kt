@@ -6,19 +6,15 @@ import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.communication.lib_core.PyAppDialog
 import com.communication.lib_core.checkDoubleClick
-import com.communication.lib_core.tools.EVENTBUS_INFO_SUCCESS
+import com.communication.lib_core.tools.EVENTBUS_HOME_SUCCESS
 import com.communication.lib_core.tools.EVENTBUS_LOGOUT_SUCCESS
 import com.communication.lib_http.base.MMKVTool
-import com.communication.lib_http.httpdata.me.PersonInfoBean
 import com.communication.pingyi.R
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentMeBinding
-import com.communication.pingyi.ext.pyLog
-import com.communication.pingyi.ui.MainFragmentDirections
+import com.communication.pingyi.ui.main.MainFragmentDirections
 import com.jeremyliao.liveeventbus.LiveEventBus
-import org.koin.android.ext.android.bind
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.*
 
 /**
  * Created by LG
@@ -46,24 +42,20 @@ class MeFragment : BaseFragment<FragmentMeBinding>(){
         })
 
         LiveEventBus.get(
-            EVENTBUS_INFO_SUCCESS,
-            PersonInfoBean :: class.java
+            EVENTBUS_HOME_SUCCESS,
+            Boolean::class.java
         ).observe(this,{
-            if (lifecycle.currentState == Lifecycle.State.RESUMED){
-                pyLog(it.phonenumber)
+            if (it){
+                meViewModel.getInfo()
             }
         })
-
-
-        meViewModel.getInfo()
 
     }
 
 
+
+
     override fun initView() {
-
-
-
 
         binding.apply {
 
@@ -73,6 +65,13 @@ class MeFragment : BaseFragment<FragmentMeBinding>(){
                     logout()
                 }
 
+            }
+
+            tvMeChangePwd.setOnClickListener {
+                if (checkDoubleClick()){
+                    val dir = MainFragmentDirections.actionMainFragmentToChangePwdFragment()
+                    findNavController().navigate(dir)
+                }
             }
 
 
@@ -99,6 +98,21 @@ class MeFragment : BaseFragment<FragmentMeBinding>(){
                     binding.progressBar.visibility = View.GONE
                 }
             }
+
+            personInfo.observe(viewLifecycleOwner){
+                it?.let {
+                    binding.apply {
+                        includeInfo.infoPhone.setContent(it.phonenumber)
+                        includeInfo.infoOrganization.setContent(it.dept.deptName)
+                        if(it.roles.size > 0) {
+                            includeInfo.infoJob.setContent(it.roles[0].roleName)
+                        }
+                        tvUsername.setText(it.userName)
+                        tvPersonal.setText(it.userName.substring(0, 1))
+                    }
+                }
+            }
+
         }
 
     }

@@ -27,7 +27,7 @@ class MessageFragment : BaseFragment<FragmentMessageBinding>(){
         super.onCreate(savedInstanceState)
 
         LiveEventBus.get(EVENTBUS_CONTACT_SUCCESS).observe(this,{
-
+//            mViewModel.getMessage()
         })
 
     }
@@ -45,7 +45,6 @@ class MessageFragment : BaseFragment<FragmentMessageBinding>(){
 
     override fun observeViewModels() {
 
-        mViewModel.getMessage()
 
     }
 }

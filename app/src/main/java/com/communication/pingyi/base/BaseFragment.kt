@@ -8,9 +8,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
 import com.communication.lib_core.tools.EVENTBUS_TOAST_STRING
-import com.communication.pingyi.ext.btiToast
+import com.communication.pingyi.ext.pyToast
 import com.jeremyliao.liveeventbus.LiveEventBus
 
 /**
@@ -31,7 +30,7 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
             String::class.java).observe(this,{
                 str->if (isActive() && showSuccessToast){
                     str?.let {
-                        btiToast(it)
+                        pyToast(it)
                     }
         }
         })
