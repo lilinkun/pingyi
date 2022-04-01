@@ -4,9 +4,11 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.os.Build
+import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import androidx.appcompat.app.AppCompatActivity
+import com.communication.lib_core.tools.StatusBarUtil
 import java.util.ArrayList
 
 /**
@@ -15,6 +17,12 @@ import java.util.ArrayList
  * Description：
  */
 open class BaseActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        StatusBarUtil.transparencyBar(this); //设置状态栏全透明
+        StatusBarUtil.StatusBarLightMode(this); //设置白底黑字
+    }
 
     override fun onStart() {
         super.onStart()

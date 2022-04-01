@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <RelativeLayout
+        android:id="@+id/rl_welcome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/ic_launch_bg"
+        >
+
+        <ImageView
+            android:layout_width="@dimen/dp80"
+            android:layout_height="@dimen/dp80"
+            android:src="@drawable/ic_logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp165"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_welcome_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="智慧平益"
+            android:textColor="@color/main_color"
+            android:textSize="24sp"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/tv_welcome_small"
+            android:layout_marginBottom="@dimen/dp3"
+            />
+
+        <TextView
+            android:id="@+id/tv_welcome_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="综合管理平台"
+            android:textColor="#ff1b55e2"
+            android:textSize="16sp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/dp40"
+            />
+
+
+    </RelativeLayout>
+
+</layout>

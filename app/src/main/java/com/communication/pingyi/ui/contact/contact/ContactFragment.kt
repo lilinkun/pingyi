@@ -43,10 +43,10 @@ class ContactFragment : BaseFragment<FragmentContactsBinding>(){
 
         LiveEventBus.get(
             EVENTBUS_CONTACT_CLICK,
-            Int::class.java
+            ContactItem::class.java
         ).observe(this,{
             if (isActive()) {
-                val dir = MainFragmentDirections.actionMainFragmentToOrgListFragment(it.toString())
+                val dir = MainFragmentDirections.actionMainFragmentToOrgListFragment(it.id.toString(),it.label)
                 findNavController().navigate(dir)
             }
         })

@@ -14,11 +14,11 @@ import com.communication.lib_http.httpdata.contact.ContactUserBean
 class ContactRepository(private val contactApi : ContactApi) : BaseRepository() {
 
 
-    suspend fun getContact() : NetResult<ContactBean<Any>> {
+    suspend fun getContact() : NetResult<ContactBean> {
         return callRequest { handleResponse(contactApi.getContact()) }
     }
 
-    suspend fun getContact(id : String?) : NetResult<ContactBean<MutableList<ContactUserBean>>> {
+    suspend fun getContact(id : String?) : NetResult<ContactBean> {
         return callRequest { handleResponse(contactApi.getContact(id)) }
     }
 

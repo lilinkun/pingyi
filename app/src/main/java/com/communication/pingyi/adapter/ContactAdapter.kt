@@ -44,7 +44,7 @@ class ContactAdapter : ListAdapter<ContactItem, RecyclerView.ViewHolder>(Contact
                 contact = item
                 setClickListener {
                     if (checkDoubleClick()) {
-                        LiveEventBus.get(EVENTBUS_CONTACT_CLICK).post(item.id)
+                        LiveEventBus.get(EVENTBUS_CONTACT_CLICK).post(item)
                     }
                 }
                 executePendingBindings()

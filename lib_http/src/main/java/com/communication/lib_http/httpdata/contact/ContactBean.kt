@@ -5,4 +5,4 @@ package com.communication.lib_http.httpdata.contact
  * on 2022/3/31  9:34
  * Description：
  */
-data class ContactBean<out T>(val trees : MutableList<ContactItem>,val users : T)
+data class ContactBean(val trees : MutableList<ContactItem>,val users : MutableList<ContactUserBean>)

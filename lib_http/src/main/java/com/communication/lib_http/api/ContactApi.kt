@@ -17,12 +17,12 @@ interface ContactApi {
 
     @GET("$SERVER_BASE_URL/system/address/dept/appTreeSelect")
     suspend fun getContact(
-    ) : BaseModel<ContactBean<Any>>
+    ) : BaseModel<ContactBean>
 
     @GET("$SERVER_BASE_URL/system/address/dept/appTreeSelect")
     suspend fun getContact(
         @Query("parentId") parentId: String?,
-    ) : BaseModel<ContactBean<MutableList<ContactUserBean>>>
+    ) : BaseModel<ContactBean>
 
 
 }

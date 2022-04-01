@@ -16,7 +16,7 @@ class ContactViewModel(private val repos : ContactRepository) : BaseViewModel(){
 
     var org_list = MutableLiveData<MutableList<ContactItem>>()
 
-    val org_user = MutableLiveData<ContactBean<MutableList<ContactUserBean>>>()
+    val org_user = MutableLiveData<ContactBean>()
 
     fun getContactList(){
 

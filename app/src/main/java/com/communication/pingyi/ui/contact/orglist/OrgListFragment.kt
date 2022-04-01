@@ -6,6 +6,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.communication.lib_core.IClickOnlyCallBack
+import com.communication.lib_core.tools.EVENTBUS_CONTACT_CLICK
 import com.communication.lib_core.tools.EVENTBUS_CONTACT_USER_CLICK
 import com.communication.lib_http.httpdata.contact.ContactItem
 import com.communication.lib_http.httpdata.contact.ContactUserBean
@@ -15,7 +16,9 @@ import com.communication.pingyi.adapter.ContactAdapter
 import com.communication.pingyi.adapter.ContactUserAdapter
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentOrglistBinding
+import com.communication.pingyi.ext.pyToast
 import com.communication.pingyi.ui.contact.contact.ContactViewModel
+import com.communication.pingyi.ui.main.MainFragmentDirections
 import com.jeremyliao.liveeventbus.LiveEventBus
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -50,19 +53,29 @@ class OrgListFragment : BaseFragment<FragmentOrglistBinding>(){
         })
 
 
+        LiveEventBus.get(
+            EVENTBUS_CONTACT_CLICK,
+            Int::class.java
+        ).observe(this,{
+            if (isActive()) {
+                pyToast("底下没有人了")
+            }
+        })
+
+
     }
 
     override fun initView() {
 
         binding.apply{
-            rvOrglist.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
 
             rvContactItem.adapter = mContactItemAdapter
             rvContactUserItem.adapter = mContactUserAdapter
 
-            backTitle.setBackOnClick(IClickOnlyCallBack {
+            tvContactTitle.setText(args.title)
+            tvContactTitle.setOnClickListener {
                 findNavController().navigateUp()
-            })
+            }
 
         }
 
@@ -73,14 +86,14 @@ class OrgListFragment : BaseFragment<FragmentOrglistBinding>(){
         with(mViewModel){
             org_user.observe(viewLifecycleOwner){
 
-                it.trees?.apply {
+                org_user.value?.trees?.apply {
                     orgList = it.trees
                     mContactItemAdapter.submitList(orgList)
                     mContactItemAdapter.notifyDataSetChanged()
                 }
 
-                it.users?.apply {
-                    userList = it.users
+                org_user.value?.users?.apply {
+                    userList = this
                     userList?.let {
                         mContactUserAdapter.submitList(it)
                         mContactUserAdapter.notifyDataSetChanged()
