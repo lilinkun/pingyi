@@ -22,27 +22,27 @@ object DealException {
         } else if (t is HttpException) {
             ex = when (t.code()) {
                 ApiResultCode.UNAUTHORIZED -> ResultException(
-                    t.code().toString(),
+                    t.code(),
                     "账号或密码错误"
                 )
                 ApiResultCode.FORBIDDEN,
                     //权限错误，需要实现
                 ApiResultCode.NOT_FOUND -> ResultException(
-                    t.code().toString(),
+                    t.code(),
                     "网络错误"
                 )
                 ApiResultCode.REQUEST_TIMEOUT,
                 ApiResultCode.GATEWAY_TIMEOUT -> ResultException(
-                    t.code().toString(),
+                    t.code(),
                     "网络连接超时"
                 )
                 ApiResultCode.INTERNAL_SERVER_ERROR,
                 ApiResultCode.BAD_GATEWAY,
                 ApiResultCode.SERVICE_UNAVAILABLE -> ResultException(
-                    t.code().toString(),
+                    t.code(),
                     "服务器错误"
                 )
-                else -> ResultException(t.code().toString(), "网络错误")
+                else -> ResultException(t.code(), "网络错误")
             }
         } else if (t is JsonParseException
             || t is JSONException
@@ -54,12 +54,12 @@ object DealException {
             )
         } else if (t is SocketException) {
             ex = ResultException(
-                ApiResultCode.REQUEST_TIMEOUT.toString(),
+                ApiResultCode.REQUEST_TIMEOUT,
                 "网络连接错误，请重试"
             )
         } else if (t is SocketTimeoutException) {
             ex = ResultException(
-                ApiResultCode.REQUEST_TIMEOUT.toString(),
+                ApiResultCode.REQUEST_TIMEOUT,
                 "网络连接超时"
             )
         } else if (t is SSLHandshakeException) {

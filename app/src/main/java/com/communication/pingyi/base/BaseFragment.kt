@@ -1,5 +1,6 @@
 package com.communication.pingyi.base
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,9 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import com.communication.lib_core.tools.EVENTBUS_TOAST_STRING
+import com.communication.lib_core.tools.EVENTBUS_TOKEN_INVALID
+import com.communication.lib_http.base.MMKVTool
+import com.communication.pingyi.activity.LoginActivity
 import com.communication.pingyi.ext.pyToast
 import com.jeremyliao.liveeventbus.LiveEventBus
 
@@ -32,6 +36,19 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
                     str?.let {
                         pyToast(it)
                     }
+        }
+        })
+
+        LiveEventBus.get(
+            EVENTBUS_TOKEN_INVALID,
+            Boolean::class.java).observe(this,{
+                str->if (isActive()){
+            if (str) {
+                MMKVTool.clearAll()
+                val intent = Intent(activity,LoginActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
+            }
         }
         })
     }

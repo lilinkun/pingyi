@@ -39,7 +39,7 @@ open class BaseRepository {
                 errorBlock?.let { it() }
                 NetResult.Error(
                     ResultException(
-                        response.code.toString(),
+                        response.code,
                         response.msg
                     )
                 )

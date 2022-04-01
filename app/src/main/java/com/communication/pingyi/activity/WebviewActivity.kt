@@ -22,7 +22,7 @@ class WebviewActivity : BaseActivity() {
 
         setContentView(R.layout.activity_webview)
 
-        val url = "http://localhost:8088/"
+        val url = "http://192.168.1.204:8088/"
 
         webView = findViewById(R.id.wv)
 

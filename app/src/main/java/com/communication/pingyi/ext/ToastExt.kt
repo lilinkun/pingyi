@@ -12,6 +12,6 @@ import com.communication.pingyi.base.AppContext
 
 fun pyToast(str : String){
     val toast = Toast.makeText(AppContext, str, Toast.LENGTH_LONG)
-//    toast.setGravity(Gravity.BOTTOM, 0, 2340 / 9)
+    toast.setGravity(Gravity.BOTTOM, 0, 2340 / 9)
     toast.show()
 }

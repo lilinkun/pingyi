@@ -6,6 +6,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.communication.lib_core.PyAppDialog
 import com.communication.lib_core.checkDoubleClick
+import com.communication.lib_core.tools.EVENTBUS_CONTACT_SUCCESS
 import com.communication.lib_core.tools.EVENTBUS_HOME_SUCCESS
 import com.communication.lib_core.tools.EVENTBUS_LOGOUT_SUCCESS
 import com.communication.lib_http.base.MMKVTool
@@ -42,7 +43,7 @@ class MeFragment : BaseFragment<FragmentMeBinding>(){
         })
 
         LiveEventBus.get(
-            EVENTBUS_HOME_SUCCESS,
+            EVENTBUS_CONTACT_SUCCESS,
             Boolean::class.java
         ).observe(this,{
             if (it){

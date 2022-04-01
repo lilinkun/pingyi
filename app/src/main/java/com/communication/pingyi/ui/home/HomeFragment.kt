@@ -44,6 +44,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(){
     }
     override fun initView() {
 
+        mViewModel.getHomeAppsList()
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
             appList.adapter = mAppListAdapter
@@ -71,7 +72,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(){
 
     override fun onStart() {
         super.onStart()
-        mViewModel.getHomeAppsList()
     }
 
 

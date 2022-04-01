@@ -114,7 +114,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     private fun goToWebActivity() {
         val intent = Intent(requireContext(), WebviewActivity::class.java)
         startActivity(intent)
-        requireActivity().finish()
     }
 
 }

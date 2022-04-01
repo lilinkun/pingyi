@@ -1,9 +1,10 @@
-package com.communication.pingyi.ui.contact
+package com.communication.pingyi.ui.contact.contact
 
 import com.communication.lib_http.api.ContactApi
 import com.communication.lib_http.base.BaseRepository
 import com.communication.lib_http.base.NetResult
 import com.communication.lib_http.httpdata.contact.ContactBean
+import com.communication.lib_http.httpdata.contact.ContactUserBean
 
 /**
  * Created by LG
@@ -15,6 +16,10 @@ class ContactRepository(private val contactApi : ContactApi) : BaseRepository() 
 
     suspend fun getContact() : NetResult<ContactBean<Any>> {
         return callRequest { handleResponse(contactApi.getContact()) }
+    }
+
+    suspend fun getContact(id : String?) : NetResult<ContactBean<MutableList<ContactUserBean>>> {
+        return callRequest { handleResponse(contactApi.getContact(id)) }
     }
 
 }

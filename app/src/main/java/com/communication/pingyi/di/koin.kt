@@ -1,8 +1,8 @@
 package com.communication.pingyi.di
 
 import com.communication.lib_http.api.httpModule
-import com.communication.pingyi.ui.contact.ContactRepository
-import com.communication.pingyi.ui.contact.ContactViewModel
+import com.communication.pingyi.ui.contact.contact.ContactRepository
+import com.communication.pingyi.ui.contact.contact.ContactViewModel
 import com.communication.pingyi.ui.home.AppsViewModel
 import com.communication.pingyi.ui.home.HomeAppsRepository
 import com.communication.pingyi.ui.login.account.LoginRepository

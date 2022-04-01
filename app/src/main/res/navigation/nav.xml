@@ -25,6 +25,15 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
 
+        <action
+            android:id="@+id/action_mainFragment_to_orgListFragment"
+            app:destination="@id/orgListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+
 
     </fragment>
 
@@ -41,5 +50,17 @@
         android:label="ChangePwdFragment"
         tools:layout="@layout/fragment_changepwd"
         />
+
+    <fragment
+        android:id="@+id/orgListFragment"
+        android:name="com.communication.pingyi.ui.contact.orglist.OrgListFragment"
+        android:label="OrgListFragment"
+        tools:layout="@layout/fragment_orglist"
+        >
+        <argument
+            android:name="id"
+            app:argType="string"/>
+
+    </fragment>
 
 </navigation>
