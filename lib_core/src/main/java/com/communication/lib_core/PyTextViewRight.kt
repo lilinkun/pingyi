@@ -36,6 +36,9 @@ class PyTextViewRight : RelativeLayout {
         text_right?.apply {
             content.text = this
         }
+
+        content.setWillNotDraw(false)
+
     }
 
     constructor(context: Context) : super(context) {

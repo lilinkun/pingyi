@@ -24,6 +24,7 @@
             app:drawableStartCompat="@drawable/ic_back"
             android:textSize="18sp"
             android:textColor="@color/black_main_text"
+            android:drawablePadding="@dimen/dp20"
             android:paddingStart="@dimen/dp15"
             />
 

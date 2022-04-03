@@ -32,6 +32,6 @@
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:textColor="@color/grey_light"
-        app:drawableEndCompat="@drawable/ic_more"
-        android:textSize="13sp" />
+        android:textSize="13sp"
+        app:drawableEndCompat="@drawable/ic_more" />
 </RelativeLayout>
