@@ -25,6 +25,7 @@ class PyTextViewRight : RelativeLayout {
         val text = ta.getString(R.styleable.PyTextViewRight_py_text_view_right_name)
         val image = ta.getDrawable(R.styleable.PyTextViewRight_py_text_view_left_image)
         val text_right = ta.getString(R.styleable.PyTextViewRight_py_text_view_right_content)
+        val show_icon = ta.getBoolean(R.styleable.PyTextViewRight_py_right_icon_show,true)
         ta.recycle()
         text?.apply {
             name.text = this
@@ -37,7 +38,9 @@ class PyTextViewRight : RelativeLayout {
             content.text = this
         }
 
-        content.setWillNotDraw(false)
+        if (!show_icon) {
+            content.setCompoundDrawables(null, null, null, null)
+        }
 
     }
 
@@ -68,4 +71,9 @@ class PyTextViewRight : RelativeLayout {
         return content.text.toString()
     }
 
+    fun setShowIcon(isShow : Boolean) {
+        if(isShow){
+            content.setCompoundDrawables(null, null, null, null)
+        }
+    }
 }

@@ -35,6 +35,7 @@
 
 
 
+
     </fragment>
 
     <fragment
@@ -63,6 +64,42 @@
         <argument
             android:name="title"
             app:argType="string"/>
+        <action
+                android:id="@+id/action_orgListFragment_to_contactDetailFragment"
+                app:destination="@id/contactDetailFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right" >
+        </action>
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/contactDetailFragment"
+        android:name="com.communication.pingyi.ui.contact.ContactDetail.ContactDetailFragment"
+        android:label="ContactDetailFragment"
+        tools:layout="@layout/fragment_contact_detail"
+        >
+        <argument
+            android:name="username"
+            app:argType="string"
+            />
+        <argument
+            android:name="phone"
+            app:argType="string"
+            />
+
+        <argument
+            android:name="role"
+            app:argType="string"
+            />
+
+        <argument
+            android:name="dept"
+            app:argType="string"
+            />
 
     </fragment>
 

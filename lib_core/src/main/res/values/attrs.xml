@@ -17,5 +17,6 @@
         <attr name="py_text_view_right_name" format="string" />
         <attr name="py_text_view_right_content" format="string" />
         <attr name="py_text_view_left_image" format="reference" />
+        <attr name="py_right_icon_show" format="boolean" />
     </declare-styleable>
 </resources>

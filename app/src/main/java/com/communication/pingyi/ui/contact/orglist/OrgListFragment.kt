@@ -47,9 +47,10 @@ class OrgListFragment : BaseFragment<FragmentOrglistBinding>(){
 
         LiveEventBus.get(
             EVENTBUS_CONTACT_USER_CLICK,
-            PersonInfoBean::class.java
+            ContactUserBean::class.java
         ).observe(this,{
-
+            val dir = OrgListFragmentDirections.actionOrgListFragmentToContactDetailFragment(it.userName,it.phoneNumber,it.postJob,it.dept.deptName)
+            findNavController().navigate(dir)
         })
 
 
