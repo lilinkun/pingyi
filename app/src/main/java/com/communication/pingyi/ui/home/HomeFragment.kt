@@ -44,7 +44,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(){
     }
     override fun initView() {
 
-        mViewModel.getHomeAppsList()
+        mViewModel.getHomeFlow()
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
             appList.adapter = mAppListAdapter
@@ -58,6 +58,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(){
                 mAppListAdapter.submitList(appsItem)
                 mAppListAdapter.notifyDataSetChanged()
                 LiveEventBus.get(EVENTBUS_HOME_SUCCESS).post(true)
+            }
+
+            homeFlow.observe(viewLifecycleOwner){
+                val homeFlowBean = homeFlow.value
+                binding.homeFlow = homeFlowBean
             }
 
             isLoading.observe(viewLifecycleOwner){

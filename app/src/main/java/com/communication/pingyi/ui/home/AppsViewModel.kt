@@ -5,9 +5,9 @@ import com.communication.lib_core.tools.EVENTBUS_TOKEN_INVALID
 import com.communication.lib_http.base.NetResult
 import com.communication.lib_http.exception.ApiResultCode.INTERNAL_SERVER_ERROR
 import com.communication.lib_http.httpdata.home.AppsItem
+import com.communication.lib_http.httpdata.home.HomeFlowBean
 import com.communication.lib_http.httpdata.home.HomeItem
 import com.communication.pingyi.base.BaseViewModel
-import com.communication.pingyi.ext.pyLog
 import com.jeremyliao.liveeventbus.LiveEventBus
 
 /**
@@ -18,6 +18,7 @@ import com.jeremyliao.liveeventbus.LiveEventBus
 class AppsViewModel(private val repository: HomeAppsRepository) : BaseViewModel(){
 
     val appsLiveData = MutableLiveData<HomeItem<MutableList<AppsItem>>>()
+    val homeFlow = MutableLiveData<HomeFlowBean>()
 
     fun getHomeAppsList(){
         launch {
@@ -43,4 +44,26 @@ class AppsViewModel(private val repository: HomeAppsRepository) : BaseViewModel(
 
         }
     }
+
+    fun getHomeFlow(){
+        launch {
+
+            val result = repository.getHomeFlow()
+            if (result is NetResult.Success){
+                result.data?.let {
+
+                    homeFlow.postValue(it)
+
+                }
+            }else if (result is NetResult.Error){
+                if (result.exception.errorCode == INTERNAL_SERVER_ERROR){
+                    LiveEventBus.get(EVENTBUS_TOKEN_INVALID).post(true)
+                }
+            }
+
+            getHomeAppsList()
+        }
+    }
+
+
 }

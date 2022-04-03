@@ -39,8 +39,11 @@
     <string name="me_about">关于我们</string>
 
     <!--修改密码-->
-    <string name="psd_old">旧密码</string>
+    <string name="psd_old">原密码</string>
     <string name="psd_new">新密码</string>
     <string name="psd_sure_new">确认密码</string>
+    <string name="hint_input_psd_old">请输入旧密码</string>
+    <string name="hint_input_psd_new">请输入新密码</string>
+    <string name="hint_input_psd_sure_new">请再次输入新密码</string>
 
 </resources>

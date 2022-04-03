@@ -14,6 +14,7 @@ import com.communication.lib_core.tools.EVENTBUS_LOGIN_SUCCESS
 import com.communication.lib_core.tools.EVENTBUS_TOKEN_SUCCESS
 import com.communication.lib_core.tools.Utils
 import com.communication.lib_http.api.SERVER_BASE_URL
+import com.communication.lib_http.base.MMKVTool
 import com.communication.lib_http.httpdata.login.LoginInfo
 import com.communication.pingyi.R
 import com.communication.pingyi.activity.MainActivity
@@ -85,6 +86,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         binding.let {
 
 //            showVcode()
+
+            MMKVTool.getUsername()?.apply {
+                it.etUsername.setText(MMKVTool.getUsername())
+            }
 
             it.btnLogin.setOnClickListener{
 

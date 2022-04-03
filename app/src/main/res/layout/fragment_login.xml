@@ -44,6 +44,7 @@
                 android:drawableStart="@drawable/ic_login_account"
                 android:drawablePadding="10dp"
                 android:hint="@string/login_account_hint"
+                android:theme="@style/Py.Blue"
                 android:padding="10dp" />
 
 
@@ -58,6 +59,7 @@
                 android:drawablePadding="10dp"
                 android:hint="@string/login_password_hint"
                 android:inputType="textPassword"
+                android:theme="@style/Py.Blue"
                 android:padding="10dp" />
 
 

@@ -7,6 +7,8 @@ import com.communication.pingyi.ui.home.AppsViewModel
 import com.communication.pingyi.ui.home.HomeAppsRepository
 import com.communication.pingyi.ui.login.account.LoginRepository
 import com.communication.pingyi.ui.login.account.LoginViewModel
+import com.communication.pingyi.ui.me.changepwd.ChangePwdRepository
+import com.communication.pingyi.ui.me.changepwd.ChangePwdViewModel
 import com.communication.pingyi.ui.me.me.MeRepository
 import com.communication.pingyi.ui.me.me.MeViewModel
 import com.communication.pingyi.ui.message.MessageRepository
@@ -27,6 +29,7 @@ val viewModelModule = module {
     viewModel { AppsViewModel(get()) }
     viewModel { MessageViewModel(get()) }
     viewModel { ContactViewModel(get()) }
+    viewModel { ChangePwdViewModel(get()) }
 
 }
 
@@ -36,6 +39,7 @@ val repositoryModule = module {
     single { HomeAppsRepository(get()) }
     single { MessageRepository(get()) }
     single { ContactRepository(get()) }
+    single { ChangePwdRepository(get()) }
 }
 
 val allModule = listOf(viewModelModule,repositoryModule,httpModule)

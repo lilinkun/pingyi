@@ -78,4 +78,8 @@ val httpModule = module {
     single<ContactApi> {
         get <Retrofit>().create(ContactApi::class.java)
     }
+
+    single<ChangePwdApi> {
+        get <Retrofit>().create(ChangePwdApi::class.java)
+    }
 }

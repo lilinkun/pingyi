@@ -28,9 +28,6 @@
         tools:layout="@layout/fragment_login"
         >
 
-
-
-
     </fragment>
 
 

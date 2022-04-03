@@ -10,6 +10,7 @@ import com.communication.lib_core.checkDoubleClick
 import com.communication.lib_core.tools.EVENTBUS_APP_CLICK
 import com.communication.lib_http.httpdata.home.AppsItem
 import com.communication.lib_http.httpdata.home.AppsItemTitle
+import com.communication.pingyi.R
 import com.communication.pingyi.databinding.ItemHomeAppsBinding
 import com.jeremyliao.liveeventbus.LiveEventBus
 
@@ -45,6 +46,16 @@ class HomeAppListAdapter : ListAdapter<AppsItem, RecyclerView.ViewHolder>(AppIte
                         LiveEventBus.get(EVENTBUS_APP_CLICK).post(item.meta.title)
                     }
                 }
+                when(item.meta.title){
+                    "运行驾驶舱" -> icon.setImageResource(R.drawable.ic_operation_cockpit)
+                    "事件监测" -> icon.setImageResource(R.drawable.ic_event_monitoring)
+                    "视频监控" -> icon.setImageResource(R.drawable.ic_video_surveillance)
+                    "基础设施监测" -> icon.setImageResource(R.drawable.ic_infrastructure_monitoring)
+                    "机电运维" -> icon.setImageResource(R.drawable.ic_electromechanical_maintenance)
+                    "公路养护" -> icon.setImageResource(R.drawable.ic_highway_maintenance)
+                    else -> icon.setImageResource(R.drawable.ic_highway_maintenance)
+                }
+
                 executePendingBindings()
             }
         }
