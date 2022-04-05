@@ -21,14 +21,14 @@ class PyMainTitle : RelativeLayout {
         init(context)
         val ta = context.obtainStyledAttributes(attrs, R.styleable.PyMainTitle)
         val text = ta.getString(R.styleable.PyMainTitle_py_title_main_name)
-        val rightIcon = ta.getInteger(R.styleable.PyMainTitle_py_title_main_right_icon,0)
+        val rightIcon = ta.getDrawable(R.styleable.PyMainTitle_py_title_main_right_icon)
         val textSize = ta.getFloat(R.styleable.PyMainTitle_py_title_main_text_size,0f)
         ta.recycle()
         text?.apply {
             titleName.text = this
         }
         rightIcon?.apply {
-            ivRight.setBackgroundResource(rightIcon)
+            ivRight.setBackgroundDrawable(rightIcon)
         }
         textSize?.let {
             titleName.textSize = textSize

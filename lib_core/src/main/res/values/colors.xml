@@ -5,7 +5,7 @@
     <color name="colorAccent">@color/white</color>
 
     <color name="bg_grey">#F3F4F5</color>
-    <color name="divider">#F1F1F1</color>
+    <color name="divider">#E0E1E6</color>
     <color name="divider_dark">#E0E0E0</color>
 
     <color name="black_main_text">#0D1726</color>
@@ -33,7 +33,7 @@
 
     <color name="black">#101010</color>
     <color name="grey_dark">#333333</color>
-    <color name="grey_normal">#666666</color>
+    <color name="grey_normal">#525366</color>
     <color name="grey_light">#888888</color>
     <color name="grey_light2">#a9a9a9</color>
     <color name="grey_dialog_divider">#EAE9E9</color>

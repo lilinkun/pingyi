@@ -50,6 +50,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         viewPager.offscreenPageLimit = 4
         viewPager.isUserInputEnabled = false//禁止滑动
 
+        bottomNavBar.itemIconTintList=null
         bottomNavBar.setOnNavigationItemSelectedListener {
             var index = ITEM_HOME
             index = when (it.itemId) {

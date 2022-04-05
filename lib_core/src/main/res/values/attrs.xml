@@ -10,7 +10,7 @@
     </declare-styleable>
     <declare-styleable name="PyMainTitle">
         <attr name="py_title_main_name" format="string" />
-        <attr name="py_title_main_right_icon" format="integer" />
+        <attr name="py_title_main_right_icon" format="reference" />
         <attr name="py_title_main_text_size" format="integer" />
     </declare-styleable>
     <declare-styleable name="PyTextViewRight">
