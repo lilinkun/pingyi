@@ -20,6 +20,7 @@ import com.communication.pingyi.R
 import com.communication.pingyi.activity.MainActivity
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentLoginBinding
+import com.communication.pingyi.ext.pyToast
 import com.communication.pingyi.tools.PUBLICKEY
 import com.communication.pingyi.tools.RSAUtils
 import com.jeremyliao.liveeventbus.LiveEventBus
@@ -148,9 +149,15 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     private fun checkLogin() {
         binding.apply {
             if (etUsername.text!!.isBlank()) {
+                pyToast("请输入手机号")
+                return
+            }
+            if (etUsername.text!!.length != 11) {
+                pyToast("请检查手机号是否正确")
                 return
             }
             if (etPassword.text!!.isBlank()) {
+                pyToast("请输入密码")
                 return
             }
 

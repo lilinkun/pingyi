@@ -34,6 +34,13 @@
             app:popExitAnim="@anim/slide_out_right" />
 
 
+        <action
+            android:id="@+id/action_mainFragment_to_contactSearchFragment"
+            app:destination="@id/contactSearchFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
 
 
     </fragment>
@@ -74,6 +81,15 @@
         </action>
 
 
+        <action
+            android:id="@+id/action_orgListFragment_to_contactSearchFragment"
+            app:destination="@id/contactSearchFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+
     </fragment>
 
     <fragment
@@ -101,6 +117,18 @@
             app:argType="string"
             />
 
+
+
     </fragment>
+
+    <fragment
+        android:id="@+id/contactSearchFragment"
+        android:name="com.communication.pingyi.ui.contact.search.ContactSearchFragment"
+        android:label="ContactSearchFragment"
+        tools:layout="@layout/fragment_search"
+        >
+
+    </fragment>
+
 
 </navigation>

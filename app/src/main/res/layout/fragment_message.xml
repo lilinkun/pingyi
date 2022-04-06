@@ -12,10 +12,12 @@
 
 
         <com.communication.lib_core.PyMainTitle
+            android:id="@+id/pt_message_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:py_title_main_name="@string/main_message"
             app:py_title_main_text_size="24"
+            app:py_title_main_right_icon="@drawable/ic_message_main"
             />
 
 

@@ -2,7 +2,7 @@
 <resources>
 
     <string name="login">登录</string>
-    <string name="login_account_hint">请输入用户名</string>
+    <string name="login_account_hint">请输入手机号</string>
     <string name="login_password_hint">请输入密码</string>
     <string name="login_verify_hint">请输入验证码</string>
 
@@ -12,6 +12,7 @@
     <string name="uncomplete">未完成</string>
     <string name="complete">已完成</string>
     <string name="save">保存</string>
+    <string name="contact_search">搜索联系人</string>
 
 
     <!--首页-->
@@ -46,8 +47,11 @@
     <string name="psd_old">原密码</string>
     <string name="psd_new">新密码</string>
     <string name="psd_sure_new">确认密码</string>
-    <string name="hint_input_psd_old">请输入旧密码</string>
+    <string name="hint_input_psd_old">请输入原密码</string>
     <string name="hint_input_psd_new">请输入新密码</string>
     <string name="hint_input_psd_sure_new">请再次输入新密码</string>
+
+
+    <string name="digits">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@_.#</string>
 
 </resources>

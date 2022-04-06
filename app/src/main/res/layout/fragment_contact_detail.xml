@@ -24,7 +24,7 @@
                 android:textSize="18sp"
                 android:textColor="@color/black_main_text"
                 android:paddingStart="@dimen/dp15"
-                android:drawablePadding="@dimen/dp20"
+                android:drawablePadding="@dimen/dp10"
                 android:text="@string/contact_detail"
                 />
 
@@ -68,9 +68,9 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:textSize="32sp"
-                    android:textColor="@color/white"
+                    android:textColor="@color/blue_dark"
                     android:gravity="center"
-                    android:background="@drawable/shape_bg_personal"/>
+                    android:background="@drawable/shape_bg_user"/>
 
                 <com.communication.lib_core.TextViewYH
                     android:id="@+id/tv_username"

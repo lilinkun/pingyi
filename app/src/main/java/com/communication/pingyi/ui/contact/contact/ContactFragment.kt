@@ -10,6 +10,7 @@ import com.communication.pingyi.R
 import com.communication.pingyi.adapter.ContactAdapter
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentContactsBinding
+import com.communication.pingyi.ui.contact.orglist.OrgListFragmentDirections
 import com.communication.pingyi.ui.main.MainFragmentDirections
 import com.jeremyliao.liveeventbus.LiveEventBus
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -59,6 +60,10 @@ class ContactFragment : BaseFragment<FragmentContactsBinding>(){
 
             rvContact.adapter = mContactAdapter
 
+            tvContactSearch.setOnClickListener {
+                val dir = MainFragmentDirections.actionMainFragmentToContactSearchFragment()
+                findNavController().navigate(dir)
+            }
 
         }
 

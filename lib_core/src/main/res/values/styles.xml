@@ -57,6 +57,16 @@
         <item name="colorAccent">@color/blue</item>
     </style>
 
+    <style name="search">
+        <item name="drawableStartCompat">@drawable/ic_search</item>
+        <item name="android:drawablePadding">@dimen/dp10</item>
+        <item name="android:paddingStart">@dimen/dp10</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:hint">@string/contact_search</item>
+        <item name="android:background">@drawable/shape_search_bg</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
 
     <style name="Py.Avatar" parent="ShapeAppearance.MaterialComponents">
         <item name="cornerFamily">rounded</item>

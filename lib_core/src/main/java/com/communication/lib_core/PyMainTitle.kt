@@ -3,7 +3,6 @@ package com.communication.lib_core
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -28,10 +27,14 @@ class PyMainTitle : RelativeLayout {
             titleName.text = this
         }
         rightIcon?.apply {
-            ivRight.setBackgroundDrawable(rightIcon)
+            ivRight.setImageDrawable(rightIcon)
         }
         textSize?.let {
             titleName.textSize = textSize
+        }
+
+        ivRight.setOnClickListener {
+            onIconClickListener?.callback()
         }
 
     }
@@ -50,5 +53,9 @@ class PyMainTitle : RelativeLayout {
 
     }
 
+    private var onIconClickListener: IClickOnlyCallBack? = null
+    fun setIconOnClick(onIconClickListener: IClickOnlyCallBack?) {
+        this.onIconClickListener = onIconClickListener
+    }
 
 }

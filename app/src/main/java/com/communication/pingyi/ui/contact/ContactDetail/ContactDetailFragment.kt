@@ -36,6 +36,10 @@ class ContactDetailFragment : BaseFragment<FragmentContactDetailBinding>(){
             if (role != null) {
                 includeInfo.infoJob.setContent(role)
             }
+            includeInfo.infoPhone.setShowIcon(true)
+            includeInfo.infoOrganization.setShowIcon(true)
+            includeInfo.infoJob.setShowIcon(true)
+
             tvUsername.setText(username)
             tvPersonal.setText(username?.substring(0, 1))
 

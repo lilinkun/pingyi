@@ -1,12 +1,13 @@
 package com.communication.pingyi.ui.message
 
 import android.os.Bundle
-import com.communication.lib_core.tools.EVENTBUS_CONTACT_SUCCESS
+import com.communication.lib_core.checkDoubleClick
 import com.communication.pingyi.R
 import com.communication.pingyi.adapter.MessageAdapter
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.base.BaseViewModel
 import com.communication.pingyi.databinding.FragmentMessageBinding
+import com.communication.pingyi.ext.pyToast
 import com.jeremyliao.liveeventbus.LiveEventBus
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -37,7 +38,11 @@ class MessageFragment : BaseFragment<FragmentMessageBinding>(){
         binding.apply {
 
             rvMessage.adapter = messageAdapter
-
+            ptMessageMain.setIconOnClick {
+                if (checkDoubleClick()) {
+                    pyToast("asfdasf")
+                }
+            }
 
         }
 

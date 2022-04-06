@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="平益智慧高速"
+                android:text="平益高速综合运营"
                 android:textColor="@color/main_color"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -43,6 +43,7 @@
                 android:layout_marginEnd="32dp"
                 android:drawableStart="@drawable/ic_login_account"
                 android:drawablePadding="10dp"
+                android:inputType="number"
                 android:hint="@string/login_account_hint"
                 android:theme="@style/Py.Blue"
                 android:padding="10dp" />

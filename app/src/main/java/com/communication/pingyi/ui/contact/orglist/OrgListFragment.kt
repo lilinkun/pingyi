@@ -56,10 +56,14 @@ class OrgListFragment : BaseFragment<FragmentOrglistBinding>(){
 
         LiveEventBus.get(
             EVENTBUS_CONTACT_CLICK,
-            Int::class.java
+            ContactItem::class.java
         ).observe(this,{
             if (isActive()) {
-                pyToast("底下没有人了")
+                if (it.size > 0) {
+                    mViewModel.getContactUser(it.id.toString())
+                }else{
+                    pyToast("部门暂未开通")
+                }
             }
         })
 
@@ -76,6 +80,11 @@ class OrgListFragment : BaseFragment<FragmentOrglistBinding>(){
             tvContactTitle.setText(args.title)
             tvContactTitle.setOnClickListener {
                 findNavController().navigateUp()
+            }
+
+            tvContactSearch.setOnClickListener {
+                val dir = OrgListFragmentDirections.actionOrgListFragmentToContactSearchFragment()
+                findNavController().navigate(dir)
             }
 
         }

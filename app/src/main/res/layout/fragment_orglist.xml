@@ -13,7 +13,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp50"
-            android:background="@color/white"
             android:orientation="vertical">
 
         <com.communication.lib_core.TextViewYH
@@ -24,7 +23,7 @@
             app:drawableStartCompat="@drawable/ic_back"
             android:textSize="18sp"
             android:textColor="@color/black_main_text"
-            android:drawablePadding="@dimen/dp20"
+            android:drawablePadding="@dimen/dp10"
             android:paddingStart="@dimen/dp15"
             />
 
@@ -38,6 +37,15 @@
             android:paddingStart="@dimen/dp16"
             android:paddingEnd="@dimen/dp16"
             >
+
+
+        <com.communication.lib_core.TextViewYH
+            android:id="@+id/tv_contact_search"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/search"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_contact_item"
