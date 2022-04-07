@@ -7,12 +7,14 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.communication.lib_core.RecycleViewDivider
 import com.communication.lib_core.tools.EVENTBUS_CONTACT_CLICK
+import com.communication.lib_core.tools.EVENTBUS_CONTACT_ORG_CLICK
 import com.communication.lib_core.tools.EVENTBUS_CONTACT_USER_CLICK
 import com.communication.lib_http.httpdata.contact.ContactItem
 import com.communication.lib_http.httpdata.contact.ContactUserBean
 import com.communication.pingyi.R
 import com.communication.pingyi.adapter.ContactAdapter
 import com.communication.pingyi.adapter.ContactUserAdapter
+import com.communication.pingyi.adapter.OrgListAdapter
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentOrglistBinding
 import com.communication.pingyi.ext.pyToast
@@ -32,9 +34,11 @@ class OrgListFragment : BaseFragment<FragmentOrglistBinding>(){
 
     lateinit var orgList : MutableList<ContactItem>
     lateinit var userList : MutableList<ContactUserBean>
+    val contactItems : MutableList<ContactItem> = mutableListOf()
 
     val mContactItemAdapter = ContactAdapter()
     val mContactUserAdapter = ContactUserAdapter()
+    val mContactOrgAdapter = OrgListAdapter()
 
     override fun getLayoutResId(): Int = R.layout.fragment_orglist
 
@@ -51,6 +55,15 @@ class OrgListFragment : BaseFragment<FragmentOrglistBinding>(){
             findNavController().navigate(dir)
         })
 
+        LiveEventBus.get(
+            EVENTBUS_CONTACT_ORG_CLICK,
+            ContactItem::class.java
+        ).observe(this,{
+            pyToast(it.label)
+            contactItems.removeAt(contactItems.indexOf(it))
+            notice(null)
+        })
+
 
         LiveEventBus.get(
             EVENTBUS_CONTACT_CLICK,
@@ -58,6 +71,7 @@ class OrgListFragment : BaseFragment<FragmentOrglistBinding>(){
         ).observe(this,{
             if (isActive()) {
                 if (it.size > 0) {
+                    notice(it)
                     mViewModel.getContactUser(it.id.toString())
                 }else{
                     pyToast("部门暂未开通")
@@ -75,6 +89,12 @@ class OrgListFragment : BaseFragment<FragmentOrglistBinding>(){
             rvContactItem.adapter = mContactItemAdapter
             rvContactUserItem.adapter = mContactUserAdapter
 
+            rvContactOrg.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+            rvContactOrg.adapter = mContactOrgAdapter
+
+            val contactItem = ContactItem(args.id.toInt(),args.title,args.id.toInt())
+
+            notice(contactItem)
 
             context?.let { rvContactItem.addItemDecoration(
                 RecycleViewDivider(it,
@@ -105,8 +125,6 @@ class OrgListFragment : BaseFragment<FragmentOrglistBinding>(){
     override fun observeViewModels() {
         with(mViewModel){
             org_user.observe(viewLifecycleOwner){
-
-
 
                 org_user.value?.apply {
                     if (it.trees != null){
@@ -139,5 +157,13 @@ class OrgListFragment : BaseFragment<FragmentOrglistBinding>(){
                 }
             }
         }
+    }
+
+    fun notice(contact: ContactItem?){
+        contact?.let {
+            contactItems.add(contact)
+        }
+        mContactOrgAdapter.submitList(contactItems)
+        mContactItemAdapter.notifyDataSetChanged()
     }
 }
