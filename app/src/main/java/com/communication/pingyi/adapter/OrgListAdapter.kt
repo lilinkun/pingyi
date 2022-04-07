@@ -55,6 +55,7 @@ class OrgListAdapter : ListAdapter<ContactItem, RecyclerView.ViewHolder>(OrgDiff
                     }
                     tvIcon.visibility = View.VISIBLE
                 }else {
+                    tvTitle.setTextColor(ContextCompat.getColor(root.context, R.color.grey_normal))
                     tvIcon.visibility = View.INVISIBLE
                 }
                 executePendingBindings()

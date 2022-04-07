@@ -35,6 +35,7 @@ class OrgListFragment : BaseFragment<FragmentOrglistBinding>(){
     lateinit var orgList : MutableList<ContactItem>
     lateinit var userList : MutableList<ContactUserBean>
     val contactItems : MutableList<ContactItem> = mutableListOf()
+    var contactItem : ContactItem? = null
 
     val mContactItemAdapter = ContactAdapter()
     val mContactUserAdapter = ContactUserAdapter()
@@ -46,6 +47,11 @@ class OrgListFragment : BaseFragment<FragmentOrglistBinding>(){
         super.onCreate(savedInstanceState)
 
         mViewModel.getContactUser(args.id)
+
+
+        contactItem = ContactItem(args.id.toInt(),args.title,args.id.toInt())
+
+        notice(contactItem)
 
         LiveEventBus.get(
             EVENTBUS_CONTACT_USER_CLICK,
@@ -59,9 +65,9 @@ class OrgListFragment : BaseFragment<FragmentOrglistBinding>(){
             EVENTBUS_CONTACT_ORG_CLICK,
             ContactItem::class.java
         ).observe(this,{
-            pyToast(it.label)
-            contactItems.removeAt(contactItems.indexOf(it))
-            notice(null)
+            mViewModel.getContactUser(it.id.toString())
+            contactItems.removeAt(contactItems.indexOf(it)+1)
+            mContactOrgAdapter.notifyDataSetChanged()
         })
 
 
@@ -71,7 +77,8 @@ class OrgListFragment : BaseFragment<FragmentOrglistBinding>(){
         ).observe(this,{
             if (isActive()) {
                 if (it.size > 0) {
-                    notice(it)
+                    contactItems.add(it)
+                    mContactOrgAdapter.notifyDataSetChanged()
                     mViewModel.getContactUser(it.id.toString())
                 }else{
                     pyToast("部门暂未开通")
@@ -92,9 +99,8 @@ class OrgListFragment : BaseFragment<FragmentOrglistBinding>(){
             rvContactOrg.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
             rvContactOrg.adapter = mContactOrgAdapter
 
-            val contactItem = ContactItem(args.id.toInt(),args.title,args.id.toInt())
 
-            notice(contactItem)
+            mContactItemAdapter.notifyDataSetChanged()
 
             context?.let { rvContactItem.addItemDecoration(
                 RecycleViewDivider(it,
@@ -164,6 +170,5 @@ class OrgListFragment : BaseFragment<FragmentOrglistBinding>(){
             contactItems.add(contact)
         }
         mContactOrgAdapter.submitList(contactItems)
-        mContactItemAdapter.notifyDataSetChanged()
     }
 }
