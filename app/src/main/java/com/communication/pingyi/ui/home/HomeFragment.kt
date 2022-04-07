@@ -32,6 +32,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        mViewModel.getHomeFlow()
+
         LiveEventBus.get(
             EVENTBUS_HOME_APPS_SUCCESS,
             String::class.java
@@ -44,7 +46,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(){
     }
     override fun initView() {
 
-        mViewModel.getHomeFlow()
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
             appList.adapter = mAppListAdapter

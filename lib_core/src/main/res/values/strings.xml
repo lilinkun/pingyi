@@ -27,6 +27,7 @@
     <string name="contact_phone">拨打电话</string>
     <string name="contact_message">发送短信</string>
     <string name="contact_copy">复制号码</string>
+    <string name="contact_unuser">部门暂未开通</string>
 
 
     <!-- 我的-->

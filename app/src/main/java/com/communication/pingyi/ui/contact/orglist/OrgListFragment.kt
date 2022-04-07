@@ -1,16 +1,15 @@
 package com.communication.pingyi.ui.contact.orglist
 
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.communication.lib_core.IClickOnlyCallBack
+import com.communication.lib_core.RecycleViewDivider
 import com.communication.lib_core.tools.EVENTBUS_CONTACT_CLICK
 import com.communication.lib_core.tools.EVENTBUS_CONTACT_USER_CLICK
 import com.communication.lib_http.httpdata.contact.ContactItem
 import com.communication.lib_http.httpdata.contact.ContactUserBean
-import com.communication.lib_http.httpdata.me.PersonInfoBean
 import com.communication.pingyi.R
 import com.communication.pingyi.adapter.ContactAdapter
 import com.communication.pingyi.adapter.ContactUserAdapter
@@ -18,7 +17,6 @@ import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentOrglistBinding
 import com.communication.pingyi.ext.pyToast
 import com.communication.pingyi.ui.contact.contact.ContactViewModel
-import com.communication.pingyi.ui.main.MainFragmentDirections
 import com.jeremyliao.liveeventbus.LiveEventBus
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -77,6 +75,18 @@ class OrgListFragment : BaseFragment<FragmentOrglistBinding>(){
             rvContactItem.adapter = mContactItemAdapter
             rvContactUserItem.adapter = mContactUserAdapter
 
+
+            context?.let { rvContactItem.addItemDecoration(
+                RecycleViewDivider(it,
+                    LinearLayoutManager.VERTICAL)
+            ) }
+
+
+            context?.let { rvContactUserItem.addItemDecoration(
+                RecycleViewDivider(it,
+                    LinearLayoutManager.VERTICAL)
+            ) }
+
             tvContactTitle.setText(args.title)
             tvContactTitle.setOnClickListener {
                 findNavController().navigateUp()
@@ -96,17 +106,35 @@ class OrgListFragment : BaseFragment<FragmentOrglistBinding>(){
         with(mViewModel){
             org_user.observe(viewLifecycleOwner){
 
-                org_user.value?.trees?.apply {
-                    orgList = it.trees
-                    mContactItemAdapter.submitList(orgList)
-                    mContactItemAdapter.notifyDataSetChanged()
+
+
+                org_user.value?.apply {
+                    if (it.trees != null){
+                        orgList = it.trees
+                        binding.rvContactItem.visibility = View.VISIBLE
+                        mContactItemAdapter.submitList(orgList)
+                        mContactItemAdapter.notifyDataSetChanged()
+                    }else{
+                        binding.rvContactItem.visibility = View.GONE
+                    }
+
+                    if (it.users != null) {
+                        userList = it.users
+                        binding.rvContactUserItem.visibility = View.VISIBLE
+                        mContactUserAdapter.submitList(userList)
+                        mContactUserAdapter.notifyDataSetChanged()
+                    }else{
+                        binding.rvContactUserItem.visibility = View.GONE
+                    }
                 }
 
-                org_user.value?.users?.apply {
-                    userList = this
-                    userList?.let {
-                        mContactUserAdapter.submitList(it)
-                        mContactUserAdapter.notifyDataSetChanged()
+
+
+                isLoading.observe(viewLifecycleOwner) {
+                    if (it) {
+                        binding.progressBar.visibility = View.VISIBLE
+                    } else {
+                        binding.progressBar.visibility = View.GONE
                     }
                 }
             }

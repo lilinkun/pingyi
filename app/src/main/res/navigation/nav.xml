@@ -128,6 +128,16 @@
         tools:layout="@layout/fragment_search"
         >
 
+        <action
+            android:id="@+id/action_contactSearchFragment_to_contactDetailFragment"
+            app:destination="@id/contactDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" >
+        </action>
+
+
     </fragment>
 
 

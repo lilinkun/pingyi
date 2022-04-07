@@ -2,6 +2,8 @@ package com.communication.pingyi.ui.contact.contact
 
 import android.os.Bundle
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.communication.lib_core.RecycleViewDivider
 import com.communication.lib_core.tools.EVENTBUS_CONTACT_CLICK
 import com.communication.lib_core.tools.EVENTBUS_CONTACT_SUCCESS
 import com.communication.lib_core.tools.EVENTBUS_HOME_SUCCESS
@@ -59,6 +61,11 @@ class ContactFragment : BaseFragment<FragmentContactsBinding>(){
         binding.apply {
 
             rvContact.adapter = mContactAdapter
+            
+            context?.let { rvContact.addItemDecoration(
+                RecycleViewDivider(it,
+                    LinearLayoutManager.VERTICAL)
+            ) }
 
             tvContactSearch.setOnClickListener {
                 val dir = MainFragmentDirections.actionMainFragmentToContactSearchFragment()

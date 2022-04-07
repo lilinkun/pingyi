@@ -3,6 +3,7 @@ package com.communication.lib_http.api
 import com.communication.lib_http.base.BaseModel
 import com.communication.lib_http.httpdata.contact.ContactBean
 import com.communication.lib_http.httpdata.contact.ContactUserBean
+import com.communication.lib_http.httpdata.contact.SearchUserBean
 import com.communication.lib_http.httpdata.login.LoginInfo
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -23,6 +24,11 @@ interface ContactApi {
     suspend fun getContact(
         @Query("parentId") parentId: String?,
     ) : BaseModel<ContactBean>
+
+    @GET("$SERVER_BASE_URL/system/address/dept/search")
+    suspend fun searchUser(
+        @Query("userName") userName: String?,
+    ) : BaseModel<MutableList<SearchUserBean>>
 
 
 }

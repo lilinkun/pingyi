@@ -5,6 +5,7 @@ import com.communication.lib_http.base.BaseRepository
 import com.communication.lib_http.base.NetResult
 import com.communication.lib_http.httpdata.contact.ContactBean
 import com.communication.lib_http.httpdata.contact.ContactUserBean
+import com.communication.lib_http.httpdata.contact.SearchUserBean
 
 /**
  * Created by LG
@@ -20,6 +21,10 @@ class ContactRepository(private val contactApi : ContactApi) : BaseRepository() 
 
     suspend fun getContact(id : String?) : NetResult<ContactBean> {
         return callRequest { handleResponse(contactApi.getContact(id)) }
+    }
+
+    suspend fun searchUser(userName : String) : NetResult<MutableList<SearchUserBean>> {
+        return callRequest { handleResponse(contactApi.searchUser(userName)) }
     }
 
 }

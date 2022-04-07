@@ -5,6 +5,7 @@ import com.communication.lib_http.base.NetResult
 import com.communication.lib_http.httpdata.contact.ContactBean
 import com.communication.lib_http.httpdata.contact.ContactItem
 import com.communication.lib_http.httpdata.contact.ContactUserBean
+import com.communication.lib_http.httpdata.contact.SearchUserBean
 import com.communication.pingyi.base.BaseViewModel
 
 /**
@@ -18,9 +19,12 @@ class ContactViewModel(private val repos : ContactRepository) : BaseViewModel(){
 
     val org_user = MutableLiveData<ContactBean>()
 
+    val user_info = MutableLiveData<MutableList<SearchUserBean>>()
+
     fun getContactList(){
 
         launch {
+            isLoading.postValue(true)
             val result = repos.getContact()
             if (result is NetResult.Success){
                 result.data?.let {
@@ -28,12 +32,15 @@ class ContactViewModel(private val repos : ContactRepository) : BaseViewModel(){
                 }
             }else if(result is NetResult.Error){
             }
+
+            isLoading.postValue(false)
         }
     }
 
     fun getContactUser(id : String){
 
         launch {
+            isLoading.postValue(true)
             val result = repos.getContact(id)
             if (result is NetResult.Success){
                 result.data?.let {
@@ -41,7 +48,24 @@ class ContactViewModel(private val repos : ContactRepository) : BaseViewModel(){
                 }
             }else if(result is NetResult.Error){
             }
+            isLoading.postValue(false)
         }
+    }
+
+    fun searchUser(userName : String){
+
+        launch {
+            isLoading.postValue(true)
+            val result = repos.searchUser(userName)
+            if (result is NetResult.Success){
+                result.data?.let {
+                    user_info.postValue(it)
+                }
+            }else if(result is NetResult.Error){
+            }
+            isLoading.postValue(false)
+        }
+
     }
 
 
