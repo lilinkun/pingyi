@@ -61,7 +61,6 @@ class AppsViewModel(private val repository: HomeAppsRepository) : BaseViewModel(
                 }
             }
 
-            getHomeAppsList()
         }
     }
 

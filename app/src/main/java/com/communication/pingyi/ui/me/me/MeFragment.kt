@@ -6,8 +6,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.communication.lib_core.PyAppDialog
 import com.communication.lib_core.checkDoubleClick
-import com.communication.lib_core.tools.EVENTBUS_CONTACT_SUCCESS
-import com.communication.lib_core.tools.EVENTBUS_HOME_SUCCESS
 import com.communication.lib_core.tools.EVENTBUS_LOGOUT_SUCCESS
 import com.communication.lib_http.base.MMKVTool
 import com.communication.pingyi.R
@@ -15,6 +13,8 @@ import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentMeBinding
 import com.communication.pingyi.ui.main.MainFragmentDirections
 import com.jeremyliao.liveeventbus.LiveEventBus
+import com.scwang.smart.refresh.layout.api.RefreshLayout
+import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -22,7 +22,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  * on 2022/3/17  11:22
  * Description：
  */
-class MeFragment : BaseFragment<FragmentMeBinding>(){
+class MeFragment : BaseFragment<FragmentMeBinding>(), OnRefreshListener {
 
     private val meViewModel by viewModel<MeViewModel>()
 
@@ -42,14 +42,8 @@ class MeFragment : BaseFragment<FragmentMeBinding>(){
             }
         })
 
-        LiveEventBus.get(
-            EVENTBUS_CONTACT_SUCCESS,
-            Boolean::class.java
-        ).observe(this,{
-            if (it){
-                meViewModel.getInfo()
-            }
-        })
+        meViewModel.getInfo()
+
 
     }
 
@@ -86,6 +80,8 @@ class MeFragment : BaseFragment<FragmentMeBinding>(){
             }*/
 
         }
+        binding.refreshLayout.setEnableRefresh(true)
+        binding.refreshLayout.setOnRefreshListener(this)
 
     }
 
@@ -116,6 +112,11 @@ class MeFragment : BaseFragment<FragmentMeBinding>(){
 
         }
 
+    }
+
+    override fun onRefresh(refreshLayout: RefreshLayout) {
+        refreshLayout.finishRefresh(200)
+        meViewModel.getInfo()
     }
 
 

@@ -2,15 +2,15 @@ package com.communication.pingyi.ui.home
 
 import android.os.Bundle
 import android.view.View
-import com.communication.lib_core.tools.EVENTBUS_CONTACT_SUCCESS
 import com.communication.lib_core.tools.EVENTBUS_HOME_APPS_SUCCESS
-import com.communication.lib_core.tools.EVENTBUS_HOME_SUCCESS
 import com.communication.lib_http.httpdata.home.AppsItem
 import com.communication.pingyi.R
 import com.communication.pingyi.adapter.HomeAppListAdapter
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentHomeBinding
 import com.jeremyliao.liveeventbus.LiveEventBus
+import com.scwang.smart.refresh.layout.api.RefreshLayout
+import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -18,7 +18,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  * on 2022/3/16  17:23
  * Description：
  */
-class HomeFragment : BaseFragment<FragmentHomeBinding>(){
+class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnRefreshListener {
 
     private val mViewModel by viewModel<AppsViewModel>()
 
@@ -33,6 +33,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(){
         super.onCreate(savedInstanceState)
 
         mViewModel.getHomeFlow()
+        mViewModel.getHomeAppsList()
 
         LiveEventBus.get(
             EVENTBUS_HOME_APPS_SUCCESS,
@@ -49,7 +50,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(){
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
             appList.adapter = mAppListAdapter
+
         }
+        binding.refreshLayout.setEnableRefresh(true)
+        binding.refreshLayout.setOnRefreshListener(this)
     }
 
     override fun observeViewModels() {
@@ -58,7 +62,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(){
                 val appsItem : MutableList<AppsItem>? = appsLiveData.value?.children
                 mAppListAdapter.submitList(appsItem)
                 mAppListAdapter.notifyDataSetChanged()
-                LiveEventBus.get(EVENTBUS_HOME_SUCCESS).post(true)
             }
 
             homeFlow.observe(viewLifecycleOwner){
@@ -85,6 +88,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(){
     private fun initHomeAppComplete() {
 
 //        mAppListAdapter
+
+    }
+
+    override fun onRefresh(refreshLayout: RefreshLayout) {
+        refreshLayout.finishRefresh(200)
+        mViewModel.getHomeFlow()
+        mViewModel.getHomeAppsList()
 
     }
 

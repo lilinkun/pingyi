@@ -1,20 +1,20 @@
 package com.communication.pingyi.ui.contact.contact
 
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.communication.lib_core.RecycleViewDivider
 import com.communication.lib_core.tools.EVENTBUS_CONTACT_CLICK
-import com.communication.lib_core.tools.EVENTBUS_CONTACT_SUCCESS
-import com.communication.lib_core.tools.EVENTBUS_HOME_SUCCESS
 import com.communication.lib_http.httpdata.contact.ContactItem
 import com.communication.pingyi.R
 import com.communication.pingyi.adapter.ContactAdapter
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentContactsBinding
-import com.communication.pingyi.ui.contact.orglist.OrgListFragmentDirections
 import com.communication.pingyi.ui.main.MainFragmentDirections
 import com.jeremyliao.liveeventbus.LiveEventBus
+import com.scwang.smart.refresh.layout.api.RefreshLayout
+import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -22,7 +22,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  * on 2022/3/17  14:11
  * Description：
  */
-class ContactFragment : BaseFragment<FragmentContactsBinding>(){
+class ContactFragment : BaseFragment<FragmentContactsBinding>(), OnRefreshListener {
 
     val mViewModel : ContactViewModel by viewModel<ContactViewModel>()
     lateinit var orgList : MutableList<ContactItem>
@@ -35,14 +35,7 @@ class ContactFragment : BaseFragment<FragmentContactsBinding>(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        LiveEventBus.get(
-            EVENTBUS_HOME_SUCCESS,
-            Boolean::class.java
-        ).observe(this,{
-            if(it) {
-                mViewModel.getContactList()
-            }
-        })
+        mViewModel.getContactList()
 
         LiveEventBus.get(
             EVENTBUS_CONTACT_CLICK,
@@ -74,6 +67,8 @@ class ContactFragment : BaseFragment<FragmentContactsBinding>(){
 
         }
 
+        binding.refreshLayout.setEnableRefresh(true)
+        binding.refreshLayout.setOnRefreshListener(this)
     }
 
     override fun observeViewModels() {
@@ -83,9 +78,21 @@ class ContactFragment : BaseFragment<FragmentContactsBinding>(){
                 mContactAdapter.submitList(orgList)
                 mContactAdapter.notifyDataSetChanged()
 
-                LiveEventBus.get(EVENTBUS_CONTACT_SUCCESS).post(true)
+            }
+
+            isLoading.observe(viewLifecycleOwner){
+                if (it) {
+                    binding.progressBar.visibility = View.VISIBLE
+                } else {
+                    binding.progressBar.visibility = View.GONE
+                }
             }
         }
+    }
+
+    override fun onRefresh(refreshLayout: RefreshLayout) {
+        refreshLayout.finishRefresh(200)
+        mViewModel.getContactList()
     }
 
 }

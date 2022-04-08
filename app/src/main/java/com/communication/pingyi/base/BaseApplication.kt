@@ -3,9 +3,13 @@ package com.communication.pingyi.base
 import android.app.Application
 import android.content.ContextWrapper
 import com.communication.lib_http.base.MMKVTool.initializeMMKV
+import com.communication.pingyi.R
 import com.communication.pingyi.di.allModule
 import com.communication.pingyi.ext.initTimber
 import com.jeremyliao.liveeventbus.LiveEventBus
+import com.scwang.smart.refresh.header.MaterialHeader
+import com.scwang.smart.refresh.layout.SmartRefreshLayout
+import com.scwang.smart.refresh.layout.wrapper.RefreshHeaderWrapper
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -22,6 +26,7 @@ open class BaseApplication : Application(){
         mApplication = this
         initTimber()
         initKoin()
+        initRefreshLayout()
         initLiveEventBus()
         initMMKV()
 
@@ -37,6 +42,17 @@ open class BaseApplication : Application(){
 
         }
 
+    }
+
+
+    private fun initRefreshLayout() {
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, layout ->
+            layout.setPrimaryColorsId(R.color.white, R.color.white)
+            RefreshHeaderWrapper(
+                MaterialHeader(context)
+                    .setColorSchemeResources(R.color.blue)
+            )
+        }
     }
 
     private fun initMMKV(){

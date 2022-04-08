@@ -15,10 +15,10 @@ import retrofit2.http.POST
  */
 interface HomeApi {
 
-    @GET("$SERVER_BASE_URL/system/menu/getAppRouters")
+    @GET("$SERVER_BASE_URL/system/app/getAppRouters")
     suspend fun getHomeAppsList() : BaseModel<MutableList<HomeItem<MutableList<AppsItem>>>>
 
-    @GET("http://192.168.40.94:8080/operation/appOperationSituation/appNetworkCarTraffic")
+    @GET("http://192.168.40.94:8080/operation/app/appOperationSituation/appNetworkCarTraffic")
     suspend fun getHomeFlow() : BaseModel<HomeFlowBean>
 
 }

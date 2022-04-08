@@ -16,16 +16,16 @@ import retrofit2.http.Query
  */
 interface ContactApi {
 
-    @GET("$SERVER_BASE_URL/system/address/dept/appTreeSelect")
+    @GET("$SERVER_BASE_URL/system/app/dept/appTreeSelect")
     suspend fun getContact(
     ) : BaseModel<ContactBean>
 
-    @GET("$SERVER_BASE_URL/system/address/dept/appTreeSelect")
+    @GET("$SERVER_BASE_URL/system/app/dept/appTreeSelect")
     suspend fun getContact(
         @Query("parentId") parentId: String?,
     ) : BaseModel<ContactBean>
 
-    @GET("$SERVER_BASE_URL/system/address/dept/search")
+    @GET("$SERVER_BASE_URL/system/app/dept/search")
     suspend fun searchUser(
         @Query("userName") userName: String?,
     ) : BaseModel<MutableList<SearchUserBean>>

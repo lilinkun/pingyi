@@ -35,13 +35,14 @@ class MeViewModel(private val repo : MeRepository) : BaseViewModel(){
 
     fun getInfo(){
         launch {
-
+            isLoading.postValue(true)
             val result = repo.getInfo()
             if (result is NetResult.Success){
                 personInfo.postValue(result.data)
             }else if (result is NetResult.Error){
                 LiveEventBus.get(EVENTBUS_TOAST_STRING).post(result.exception.message)
             }
+            isLoading.postValue(false)
 
         }
 
