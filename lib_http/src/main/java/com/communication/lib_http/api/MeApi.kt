@@ -18,4 +18,6 @@ interface MeApi {
     @GET("$SERVER_BASE_URL/system/user/profile")
     suspend fun getinfo() : BaseModel<PersonInfoBean>
 
+
+
 }

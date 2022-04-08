@@ -67,5 +67,6 @@
     <color name="bg_line">#d7d7d7</color>
 
     <color name="text_grey">#575d6c</color>
+    <color name="event_grey">#AEB0B9</color>
 
 </resources>

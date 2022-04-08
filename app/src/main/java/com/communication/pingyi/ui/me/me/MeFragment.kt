@@ -69,6 +69,9 @@ class MeFragment : BaseFragment<FragmentMeBinding>(), OnRefreshListener {
                 }
             }
 
+            includeInfo.infoPhone.setShowIcon(true)
+            includeInfo.infoOrganization.setShowIcon(true)
+            includeInfo.infoJob.setShowIcon(true)
 
             /*meInfo.setOnClickListener {
 

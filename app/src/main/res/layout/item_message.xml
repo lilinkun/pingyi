@@ -53,11 +53,12 @@
 
 
 
+
 <!--        </RelativeLayout>-->
 
 
         <com.communication.lib_core.TextViewYH
-            android:id="@+id/tv_createdate"
+            android:id="@+id/tv_stakeno"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="@+id/cardView"
@@ -68,15 +69,41 @@
             />
 
 
-
         <com.communication.lib_core.TextViewYH
+            android:id="@+id/tv_event_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/tv_createdate"
-            app:layout_constraintStart_toStartOf="@+id/tv_createdate"
+            app:layout_constraintTop_toBottomOf="@+id/tv_stakeno"
+            app:layout_constraintStart_toStartOf="@+id/tv_stakeno"
+            android:layout_marginStart="@dimen/dp15"
+            android:text="@string/event_style"
+            android:textColor="@color/event_grey"
+            />
+
+
+
+        <com.communication.lib_core.TextViewYH
+            android:id="@+id/tv_event_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/tv_event_style"
+            app:layout_constraintStart_toEndOf="@+id/tv_event_style"
             android:layout_marginTop="@dimen/dp10"
             android:text="@{message_item.eventContent}"
-            android:textColor="@color/black_msg"
+            android:textColor="@color/text_grey"
+            />
+
+
+
+        <com.communication.lib_core.TextViewYH
+            android:id="@+id/tv_createdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/tv_event_content"
+            app:layout_constraintStart_toEndOf="@+id/tv_event_content"
+            android:layout_marginStart="@dimen/dp15"
+            android:text="@{message_item.createTime}"
+            android:textColor="@color/text_grey"
             />
 
 
