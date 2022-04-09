@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="app_name">智慧平益</string>
+
     <string name="login">登录</string>
     <string name="login_account_hint">请输入手机号</string>
     <string name="login_password_hint">请输入密码</string>
@@ -46,6 +48,10 @@
     <string name="me_info_job_number">工号</string>
     <string name="me_change_pwd">修改密码</string>
     <string name="me_about">关于我们</string>
+
+    <!--关于我们-->
+    <string name="about_inspect_version">检查新版本</string>
+    <string name="about_copyright">Copyright © 2022-2032 湖南交通科学研究院有限公司</string>
 
     <!--修改密码-->
     <string name="psd_old">原密码</string>

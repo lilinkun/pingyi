@@ -69,6 +69,14 @@ class MeFragment : BaseFragment<FragmentMeBinding>(), OnRefreshListener {
                 }
             }
 
+            tvMeAbout.setOnClickListener {
+                if (checkDoubleClick()){
+                    val dir = MainFragmentDirections.actionMainFragmentToAboutFragment()
+                    findNavController().navigate(dir)
+                }
+            }
+
+
             includeInfo.infoPhone.setShowIcon(true)
             includeInfo.infoOrganization.setShowIcon(true)
             includeInfo.infoJob.setShowIcon(true)
