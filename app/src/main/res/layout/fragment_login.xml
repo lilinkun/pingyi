@@ -18,9 +18,10 @@
 
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
+                android:layout_width="65dp"
+                android:layout_height="50.5dp"
                 android:layout_marginTop="80dp"
+                android:src="@drawable/ic_login_logo"
                 android:scaleType="fitCenter" />
 
 
@@ -28,8 +29,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="平益高速综合运营"
-                android:textColor="@color/main_color"
+                android:text="@string/login"
+                android:textColor="@color/blue_dark"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -100,8 +101,8 @@
                 android:id="@+id/btn_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp20"
-                android:layout_marginEnd="@dimen/dp20"
+                android:layout_marginStart="@dimen/dp32"
+                android:layout_marginEnd="@dimen/dp32"
                 android:layout_marginBottom="@dimen/dp70"
                 android:layout_marginTop="@dimen/dp50"
                 android:alpha="0.5"

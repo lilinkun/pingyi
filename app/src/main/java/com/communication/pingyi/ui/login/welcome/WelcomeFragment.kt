@@ -42,7 +42,6 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(){
 
             val alphaObjectAnimator = ObjectAnimator.ofFloat(rlWelcome, "alpha", 1f, 0.3f)
             alphaObjectAnimator.duration = 2000
-            alphaObjectAnimator.start()
             alphaObjectAnimator.addListener(object : Animator.AnimatorListener {
                 override fun onAnimationStart(animation: Animator?) {}
                 override fun onAnimationEnd(animation: Animator?) {
@@ -56,6 +55,8 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(){
                 override fun onAnimationCancel(animation: Animator?) {}
                 override fun onAnimationRepeat(animation: Animator?) {}
             })
+
+            alphaObjectAnimator.start()
         }
 
         }

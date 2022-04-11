@@ -18,6 +18,7 @@ class PyTextViewRight : RelativeLayout {
     private lateinit var name: TextViewYH
     private lateinit var content: TextViewYH
     private lateinit var icon: ImageView
+    private lateinit var circleIcon: ImageView
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         init(context)
@@ -57,6 +58,7 @@ class PyTextViewRight : RelativeLayout {
         name = findViewById(R.id.name)
         content = findViewById(R.id.content)
         icon = findViewById(R.id.icon)
+        circleIcon = findViewById(R.id.iv_circle)
     }
 
     fun setName(str: String) {
@@ -74,6 +76,12 @@ class PyTextViewRight : RelativeLayout {
     fun setShowIcon(isShow : Boolean) {
         if(isShow){
             content.setCompoundDrawables(null, null, null, null)
+        }
+    }
+
+    fun showCircle(isShow : Boolean){
+        if (isShow){
+            circleIcon.visibility = View.VISIBLE
         }
     }
 }

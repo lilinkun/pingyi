@@ -2,6 +2,7 @@ package com.communication.pingyi.base
 
 import android.app.Application
 import android.content.ContextWrapper
+import cn.jpush.android.api.JPushInterface
 import com.communication.lib_http.base.MMKVTool.initializeMMKV
 import com.communication.pingyi.R
 import com.communication.pingyi.di.allModule
@@ -29,7 +30,13 @@ open class BaseApplication : Application(){
         initRefreshLayout()
         initLiveEventBus()
         initMMKV()
+        initJPush()
 
+    }
+
+    private fun initJPush() {
+        JPushInterface.setDebugMode(true)
+        JPushInterface.init(this)
     }
 
 

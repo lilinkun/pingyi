@@ -9,6 +9,8 @@ import com.communication.pingyi.base.BaseViewModel
  */
 class AboutViewModel(private val repo : AboutRepository) : BaseViewModel(){
 
+
+
     fun getVersion(){
 
 

@@ -52,6 +52,15 @@
             app:popExitAnim="@anim/slide_out_right" />
 
 
+        <action
+            android:id="@+id/action_mainFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+
     </fragment>
 
     <fragment
@@ -157,6 +166,16 @@
         >
 
     </fragment>
+
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.communication.pingyi.ui.webview.WebviewFragment"
+        android:label="WebViewFragment"
+        tools:layout="@layout/fragment_about"
+        >
+
+    </fragment>
+
 
 
 

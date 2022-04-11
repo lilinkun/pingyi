@@ -47,6 +47,8 @@
         <entry key="..\:/android/project1/pingyi/lib_core/src/main/res/layout/py_main_title.xml" value="0.1" />
         <entry key="..\:/android/project1/pingyi/lib_core/src/main/res/layout/py_text_view_right.xml" value="0.1" />
         <entry key="..\:/work/android/project/pingyi/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3398148148148148" />
+        <entry key="..\:/work/android/project/pingyi/app/src/main/res/layout/activity_login.xml" value="0.36614583333333334" />
+        <entry key="..\:/work/android/project/pingyi/app/src/main/res/layout/activity_webview.xml" value="0.35052083333333334" />
         <entry key="..\:/work/android/project/pingyi/app/src/main/res/layout/fragment_about.xml" value="0.3359375" />
         <entry key="..\:/work/android/project/pingyi/app/src/main/res/layout/fragment_changepwd.xml" value="0.29528985507246375" />
         <entry key="..\:/work/android/project/pingyi/app/src/main/res/layout/fragment_contact_detail.xml" value="0.2765625" />
@@ -58,6 +60,7 @@
         <entry key="..\:/work/android/project/pingyi/app/src/main/res/layout/fragment_message.xml" value="0.29981884057971014" />
         <entry key="..\:/work/android/project/pingyi/app/src/main/res/layout/fragment_orglist.xml" value="0.29528985507246375" />
         <entry key="..\:/work/android/project/pingyi/app/src/main/res/layout/fragment_search.xml" value="0.30932971014492755" />
+        <entry key="..\:/work/android/project/pingyi/app/src/main/res/layout/fragment_webview.xml" value="0.35052083333333334" />
         <entry key="..\:/work/android/project/pingyi/app/src/main/res/layout/fragment_welcome.xml" value="0.29528985507246375" />
         <entry key="..\:/work/android/project/pingyi/app/src/main/res/layout/include_info.xml" value="0.2907608695652174" />
         <entry key="..\:/work/android/project/pingyi/app/src/main/res/layout/item_contact_org.xml" value="0.2857789855072464" />
@@ -80,7 +83,9 @@
         <entry key="..\:/work/android/project/pingyi/lib_core/src/main/res/drawable/navigation_item.xml" value="0.25277777777777777" />
         <entry key="..\:/work/android/project/pingyi/lib_core/src/main/res/drawable/shape_bg_personal.xml" value="0.29583333333333334" />
         <entry key="..\:/work/android/project/pingyi/lib_core/src/main/res/drawable/shape_circle.xml" value="0.29583333333333334" />
+        <entry key="..\:/work/android/project/pingyi/lib_core/src/main/res/drawable/shape_circular_bg_red.xml" value="0.3490740740740741" />
         <entry key="..\:/work/android/project/pingyi/lib_core/src/main/res/drawable/shape_contact_user_bg.xml" value="0.35572916666666665" />
+        <entry key="..\:/work/android/project/pingyi/lib_core/src/main/res/drawable/shape_rectangular_red.xml" value="0.3490740740740741" />
         <entry key="..\:/work/android/project/pingyi/lib_core/src/main/res/layout/py_divider_all.xml" value="0.253125" />
         <entry key="..\:/work/android/project/pingyi/lib_core/src/main/res/layout/py_main_title.xml" value="0.2765625" />
         <entry key="..\:/work/android/project/pingyi/lib_core/src/main/res/layout/py_text_view_right.xml" value="0.2765625" />

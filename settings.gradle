@@ -3,3 +3,4 @@ include ':app'
 include ':lib_http'
 include ':lib_core'
 rootProject.name = "pingyi"
+include ':jiguang'

@@ -20,6 +20,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:networkSecurityConfig="@xml/network_security_config"
+        android:usesCleartextTraffic="true"
         android:requestLegacyExternalStorage="true"
         android:name=".base.BaseApplication"
         android:theme="@style/Py.AppTheme"
@@ -36,8 +37,26 @@
 
 
         <activity android:name=".activity.MainActivity"
-            />
+            android:exported="true"/>
         <activity android:name=".activity.WebviewActivity"/>
+
+        <receiver android:name=".jpush.PushReceiver"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />
+                <category android:name="com.communication.pingyi" />
+            </intent-filter>
+        </receiver>
+
+
+        <service android:name=".jpush.PushService"
+            android:process=":pushcore"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="cn.jiguang.user.service.action" />
+            </intent-filter>
+        </service>
+
 
     </application>
 

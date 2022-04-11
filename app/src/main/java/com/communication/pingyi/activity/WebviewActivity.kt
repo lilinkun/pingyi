@@ -1,6 +1,5 @@
 package com.communication.pingyi.activity
 
-import android.app.Activity
 import android.os.Bundle
 import android.webkit.WebSettings
 import android.webkit.WebView
@@ -22,6 +21,7 @@ class WebviewActivity : BaseActivity() {
 
         setContentView(R.layout.activity_webview)
 
+//        val url = "http://www.baidu.com"
         val url = "http://192.168.1.204:8088/"
 
         webView = findViewById(R.id.wv)
@@ -44,9 +44,10 @@ class WebviewActivity : BaseActivity() {
 
 
 
-            addJavascriptInterface(AndroidJavascriptInterface(this@WebviewActivity), "Android")
+//            addJavascriptInterface(AndroidJavascriptInterface(this@WebviewActivity), "Android")
 
             loadUrl(url)
+
 
         }
 

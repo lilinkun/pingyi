@@ -1,5 +1,6 @@
 package com.communication.pingyi.ui.me.about
 
+import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.communication.lib_core.tools.Utils
@@ -18,6 +19,11 @@ class AboutFragment : BaseFragment<FragmentAboutBinding>() {
 
     override fun getLayoutResId(): Int = R.layout.fragment_about
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        aViewModel.getVersion()
+    }
+
     override fun initView() {
 
         binding.apply {
@@ -28,6 +34,8 @@ class AboutFragment : BaseFragment<FragmentAboutBinding>() {
                 findNavController().navigateUp()
 
             }
+
+//            tvMeAbout.showCircle(true)
 
         }
 

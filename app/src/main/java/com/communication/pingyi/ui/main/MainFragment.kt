@@ -5,14 +5,18 @@ import android.os.Bundle
 import androidx.core.view.children
 import androidx.core.view.forEach
 import androidx.core.view.forEachIndexed
+import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
 import com.communication.lib_core.PyMessageRed
 import com.communication.lib_core.tools.EVENTBUS_APP_CLICK
+import com.communication.lib_http.base.MMKVTool
 import com.communication.lib_http.httpdata.message.EventMessageBean
 import com.communication.pingyi.R
 import com.communication.pingyi.activity.WebviewActivity
 import com.communication.pingyi.adapter.*
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentMainBinding
+import com.communication.pingyi.ext.pyToast
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.jeremyliao.liveeventbus.LiveEventBus
@@ -23,6 +27,8 @@ import com.jeremyliao.liveeventbus.LiveEventBus
  * Description：
  */
 class MainFragment : BaseFragment<FragmentMainBinding>() {
+
+    lateinit var viewPager : ViewPager2
 
     override fun getLayoutResId(): Int = R.layout.fragment_main
 
@@ -38,12 +44,21 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             }
         })
 
+        LiveEventBus.get("message",Boolean::class.java).observe(this,{
+            /*viewPager?.let {
+                it.currentItem = 2
+                binding.viewPager.currentItem = 1
+            }*/
+
+            binding.viewPager.currentItem = 1
+        })
+
 
 
     }
 
     override fun initView() {
-        val viewPager = binding.viewPager
+        viewPager = binding.viewPager
         val bottomNavBar = binding.bottomNavBar
         viewPager.adapter = MainPagerAdapter(this)
         viewPager.currentItem = 0
@@ -113,8 +128,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
 
     private fun goToWebActivity() {
-        val intent = Intent(requireContext(), WebviewActivity::class.java)
-        startActivity(intent)
+        /*val intent = Intent(requireContext(), WebviewActivity::class.java)
+        startActivity(intent)*/
+        val dir = MainFragmentDirections.actionMainFragmentToWebViewFragment()
+        findNavController().navigate(dir)
     }
 
 }
