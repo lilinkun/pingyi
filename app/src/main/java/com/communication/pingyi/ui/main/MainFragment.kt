@@ -1,6 +1,5 @@
 package com.communication.pingyi.ui.main
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.core.view.children
 import androidx.core.view.forEach
@@ -9,14 +8,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.communication.lib_core.PyMessageRed
 import com.communication.lib_core.tools.EVENTBUS_APP_CLICK
-import com.communication.lib_http.base.MMKVTool
-import com.communication.lib_http.httpdata.message.EventMessageBean
+import com.communication.lib_core.tools.EVENTBUS_UNREAD_MESSAGE
 import com.communication.pingyi.R
-import com.communication.pingyi.activity.WebviewActivity
 import com.communication.pingyi.adapter.*
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentMainBinding
-import com.communication.pingyi.ext.pyToast
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.jeremyliao.liveeventbus.LiveEventBus
@@ -44,6 +40,19 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             }
         })
 
+        LiveEventBus.get(
+            EVENTBUS_UNREAD_MESSAGE,
+            Int::class.java
+        ).observe(this,{
+            initMessage(it)
+        })
+
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+
         LiveEventBus.get("message",Boolean::class.java).observe(this,{
             /*viewPager?.let {
                 it.currentItem = 2
@@ -52,9 +61,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
             binding.viewPager.currentItem = 1
         })
-
-
-
     }
 
     override fun initView() {
@@ -84,20 +90,15 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     override fun observeViewModels() {
     }
 
-    private fun initMessage(list: MutableList<EventMessageBean>?) {
-        var isRead = true
-        var count = 0
-        list?.forEach { item ->
-            if (!item.isRead) {
-                isRead = false
-                count += 1
-            }
-        }
+    private fun initMessage(unReadCount : Int) {
+
+        var count = unReadCount
+
 
         binding.bottomNavBar.children.forEach { menuView ->
             if (menuView is BottomNavigationMenuView) {
                 menuView.forEachIndexed { index, itemView ->
-                    if (index == 1) {
+                    if (index == 2) {
                         if (itemView is BottomNavigationItemView) {
                             itemView.forEach { v ->
                                 if (v is PyMessageRed) {
@@ -113,7 +114,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             binding.bottomNavBar.children.forEach { menuView ->
                 if (menuView is BottomNavigationMenuView) {
                     menuView.forEachIndexed { index, itemView ->
-                        if (index == 1) {
+                        if (index == 2) {
                             if (itemView is BottomNavigationItemView) {
                                 val t = PyMessageRed(requireContext())
                                 t.setCount(count.toString())

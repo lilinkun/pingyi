@@ -67,7 +67,7 @@
 
 
         <com.communication.lib_core.PyTextViewRight
-            android:id="@+id/tv_me_about"
+            android:id="@+id/tv_check_update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp40"

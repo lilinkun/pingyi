@@ -44,8 +44,11 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
             Boolean::class.java).observe(this,{
                 str->if (isActive()){
             if (str) {
+                val name = MMKVTool.getUsername()
                 MMKVTool.clearAll()
-                val intent = Intent(activity,LoginActivity::class.java)
+                val intent = Intent(activity, LoginActivity::class.java)
+                MMKVTool.saveUsername(name)
+                intent.putExtra("name",name)
                 startActivity(intent)
                 activity?.finish()
             }

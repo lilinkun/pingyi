@@ -1,8 +1,14 @@
 package com.communication.pingyi.ui.webview
 
+import android.content.Intent
+import android.provider.Settings
+import androidx.core.content.ContentProviderCompat
+import com.communication.lib_core.PyAppDialog
+import com.communication.lib_core.tools.GPSUtils
 import com.communication.pingyi.R
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentWebviewBinding
+import com.communication.pingyi.ext.pyToast
 import com.communication.pingyi.tools.AndroidJavascriptInterface
 import com.tencent.smtt.sdk.WebSettings
 
@@ -44,10 +50,43 @@ class WebviewFragment : BaseFragment<FragmentWebviewBinding>() {
                 loadUrl(url)
         }
 
+        if(!GPSUtils.isOPen(requireContext())){
+            showGPSDialog()
+        }
+
     }
 
     override fun observeViewModels() {
     }
+
+
+    private fun showGPSDialog(requestCode: Int = 888) {
+        PyAppDialog(requireContext())
+            .setSingle(false)
+            .canCancel(true)
+            .setTitle(getString(R.string.location_title))
+            .setMessage(getString(R.string.location_message))
+            .setNegative(getString(R.string.location_cancel))
+            .setPositive(getString(R.string.location_ok))
+            .setPositiveCallBack {
+                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                startActivityForResult(intent, requestCode)
+            }
+            .show()
+    }
+
+    /*override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if(requestCode == 888){
+            pyToast("asda")
+        }
+
+    }*/
 
 
 }

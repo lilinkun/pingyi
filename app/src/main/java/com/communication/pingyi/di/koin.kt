@@ -7,14 +7,14 @@ import com.communication.pingyi.ui.home.AppsViewModel
 import com.communication.pingyi.ui.home.HomeAppsRepository
 import com.communication.pingyi.ui.login.account.LoginRepository
 import com.communication.pingyi.ui.login.account.LoginViewModel
-import com.communication.pingyi.ui.me.about.AboutRepository
-import com.communication.pingyi.ui.me.about.AboutViewModel
 import com.communication.pingyi.ui.me.changepwd.ChangePwdRepository
 import com.communication.pingyi.ui.me.changepwd.ChangePwdViewModel
 import com.communication.pingyi.ui.me.me.MeRepository
 import com.communication.pingyi.ui.me.me.MeViewModel
 import com.communication.pingyi.ui.message.MessageRepository
 import com.communication.pingyi.ui.message.MessageViewModel
+import com.communication.pingyi.ui.update_version.UpdateVersionRepository
+import com.communication.pingyi.ui.update_version.UpdateVersionViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -32,7 +32,7 @@ val viewModelModule = module {
     viewModel { MessageViewModel(get()) }
     viewModel { ContactViewModel(get()) }
     viewModel { ChangePwdViewModel(get()) }
-    viewModel { AboutViewModel(get()) }
+    viewModel { UpdateVersionViewModel(get()) }
 
 }
 
@@ -43,7 +43,7 @@ val repositoryModule = module {
     single { MessageRepository(get()) }
     single { ContactRepository(get()) }
     single { ChangePwdRepository(get()) }
-    single { AboutRepository(get()) }
+    single { UpdateVersionRepository(get()) }
 }
 
 val allModule = listOf(viewModelModule,repositoryModule,httpModule)

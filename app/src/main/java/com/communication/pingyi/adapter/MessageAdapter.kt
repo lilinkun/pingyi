@@ -1,17 +1,20 @@
 package com.communication.pingyi.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.communication.lib_core.checkDoubleClick
 import com.communication.lib_core.tools.EVENTBUS_MESSAGE_ITEM_CLICK
-import com.communication.lib_http.httpdata.message.EventMessageBean
+import com.communication.lib_http.httpdata.message.MessageBean
 import com.communication.pingyi.databinding.ItemMessageBinding
 import com.jeremyliao.liveeventbus.LiveEventBus
+import com.communication.lib_core.R
 
-class MessageAdapter : ListAdapter<EventMessageBean,RecyclerView.ViewHolder>(MessageDiffCallback()) {
+class MessageAdapter : ListAdapter<MessageBean,RecyclerView.ViewHolder>(MessageDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return PyViewHolder(
@@ -31,12 +34,25 @@ class MessageAdapter : ListAdapter<EventMessageBean,RecyclerView.ViewHolder>(Mes
     class PyViewHolder(
         private val binding: ItemMessageBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: EventMessageBean, position: Int) {
+        fun bind(item: MessageBean, position: Int) {
             binding.apply {
-                messageItem = item
+                message = item
+                when(item.messageType){
+                    0 -> { tvMessageType.setText("事件")
+                        tvMessageType.setBackground(ContextCompat.getDrawable(root.context,R.mipmap.ic_message_event))}
+                    1 -> {tvMessageType.setText("工单")
+                    tvMessageType.setBackground(ContextCompat.getDrawable(root.context,R.mipmap.ic_message_orders))}
+                    2 -> {tvMessageType.setText("养护")
+                    tvMessageType.setBackground(ContextCompat.getDrawable(root.context,R.mipmap.ic_message_maintain))}
+                }
+                if(item.isRead == 0){
+                    ivCircle.visibility = View.VISIBLE
+                }else{
+                    ivCircle.visibility = View.GONE
+                }
                 setClickListener {
                     if (checkDoubleClick()) {
-                        LiveEventBus.get(EVENTBUS_MESSAGE_ITEM_CLICK).post(item.eventId)
+                        LiveEventBus.get(EVENTBUS_MESSAGE_ITEM_CLICK).post(item.messageId)
                     }
                 }
                 executePendingBindings()
@@ -46,14 +62,14 @@ class MessageAdapter : ListAdapter<EventMessageBean,RecyclerView.ViewHolder>(Mes
 }
 
 
-private class MessageDiffCallback : DiffUtil.ItemCallback<EventMessageBean>() {
-    override fun areItemsTheSame(oldItem: EventMessageBean, newItem: EventMessageBean): Boolean {
-        return oldItem.eventId == newItem.eventId
+private class MessageDiffCallback : DiffUtil.ItemCallback<MessageBean>() {
+    override fun areItemsTheSame(oldItem: MessageBean, newItem: MessageBean): Boolean {
+        return oldItem.messageId == newItem.messageId
     }
 
     override fun areContentsTheSame(
-        oldItem: EventMessageBean,
-        newItem: EventMessageBean
+        oldItem: MessageBean,
+        newItem: MessageBean
     ): Boolean {
         return oldItem == newItem
     }

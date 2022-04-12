@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/jiguang" />
             <option value="$PROJECT_DIR$/lib_core" />
+            <option value="$PROJECT_DIR$/lib_download" />
             <option value="$PROJECT_DIR$/lib_http" />
           </set>
         </option>

@@ -3,10 +3,13 @@ package com.communication.pingyi.tools
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.provider.Settings
 import android.webkit.JavascriptInterface
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.fragment.findNavController
+import com.communication.lib_core.PyAppDialog
 import com.communication.lib_http.base.MMKVTool
 import com.communication.pingyi.activity.LoginActivity
 import com.communication.pingyi.activity.WebviewActivity
@@ -30,10 +33,14 @@ class AndroidJavascriptInterface(webviewActivity: Fragment?) {
     @JavascriptInterface
     fun goToLogin() {
         if (webviewActivity != null) {
+            val name = MMKVTool.getUsername()
             MMKVTool.clearAll()
             val intent = Intent(webviewActivity.context, LoginActivity::class.java)
+            MMKVTool.saveUsername(name)
+            intent.putExtra("name",name)
             webviewActivity.startActivity(intent)
             ActivityUtil.finishAll()
+
         }
     }
 
@@ -57,6 +64,16 @@ class AndroidJavascriptInterface(webviewActivity: Fragment?) {
         pyToast(MMKVTool.getToken())
         return MMKVTool.getToken()
     }
+
+    @JavascriptInterface
+    fun getLocal(): String {
+        pyToast(MMKVTool.getToken())
+        return MMKVTool.getToken()
+    }
+
+
+
+
 
 }
 

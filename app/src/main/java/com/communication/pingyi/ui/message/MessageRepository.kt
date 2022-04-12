@@ -4,6 +4,7 @@ import com.communication.lib_http.api.MessageApi
 import com.communication.lib_http.base.BaseModel
 import com.communication.lib_http.base.BaseRepository
 import com.communication.lib_http.base.NetResult
+import com.communication.lib_http.httpdata.message.MessageBean
 
 /**
  * Created by LG
@@ -12,8 +13,17 @@ import com.communication.lib_http.base.NetResult
  */
 class MessageRepository(private val mApi : MessageApi) : BaseRepository() {
 
-    /*suspend fun getMessage() : NetResult<String>{
-        return callRequest { handleResponse(mApi.getMessage()) }
-    }*/
+    suspend fun getMessageList() : NetResult<MutableList<MessageBean>>{
+        return callRequest { handleResponse(mApi.getMessageList()) }
+    }
+
+    suspend fun readOnlyMessage(id : String) : NetResult<Any>{
+        return callRequest { handleResponse(mApi.readOnlyMessage(id)) }
+    }
+
+
+    suspend fun readAllMessage() : NetResult<Any>{
+        return callRequest { handleResponse(mApi.readAllMessage()) }
+    }
 
 }

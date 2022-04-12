@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     >
 
     <data>
 
         <variable
-            name="message_item"
-            type="com.communication.lib_http.httpdata.message.EventMessageBean" />
+            name="message"
+            type="com.communication.lib_http.httpdata.message.MessageBean" />
 
         <variable
             name="clickListener"
@@ -20,62 +19,52 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp70"
         >
-        
-        <!--<RelativeLayout
-            android:id="@+id/rl_msg_icon"
-            android:layout_width="70dp"
-            android:layout_height="0dp"
+
+
+        <com.communication.lib_core.TextViewYH
+            android:id="@+id/tv_message_type"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            >-->
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardView"
-            android:layout_width="@dimen/dp48"
-            android:layout_height="@dimen/dp48"
-            android:layout_centerVertical="true"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:onClick="@{clickListener}"
-            app:cardElevation="0dp"
-            app:cardPreventCornerOverlap="false"
-            app:shapeAppearanceOverlay="@style/Py.Card.Apps"
-            >
-
-            <ImageView
-                android:id="@+id/icon"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </com.google.android.material.card.MaterialCardView>
+            />
 
 
-
-
-
-<!--        </RelativeLayout>-->
+        <ImageView
+            android:id="@+id/iv_circle"
+            android:layout_width="@dimen/dp10"
+            android:layout_height="@dimen/dp10"
+            app:layout_constraintBottom_toTopOf="@+id/tv_message_type"
+            app:layout_constraintStart_toEndOf="@+id/tv_message_type"
+            android:layout_marginStart="-5dp"
+            android:layout_marginTop="-5dp"
+            android:src="@drawable/shape_circular_bg_red"
+            android:visibility="gone"
+            />
 
 
         <com.communication.lib_core.TextViewYH
             android:id="@+id/tv_stakeno"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@+id/cardView"
-            app:layout_constraintStart_toEndOf="@+id/cardView"
+            app:layout_constraintTop_toTopOf="@+id/tv_message_type"
+            app:layout_constraintStart_toEndOf="@+id/tv_message_type"
             android:layout_marginStart="@dimen/dp15"
-            android:text="@{message_item.createTime}"
+            android:text="@{message.acceptTime}"
             android:textColor="@color/black_msg"
             />
 
 
         <com.communication.lib_core.TextViewYH
-            android:id="@+id/tv_event_style"
+            android:id="@+id/tv_event_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/tv_stakeno"
             app:layout_constraintStart_toStartOf="@+id/tv_stakeno"
-            android:layout_marginStart="@dimen/dp15"
             android:text="@string/event_style"
             android:textColor="@color/event_grey"
             />
@@ -86,10 +75,9 @@
             android:id="@+id/tv_event_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@+id/tv_event_style"
-            app:layout_constraintStart_toEndOf="@+id/tv_event_style"
-            android:layout_marginTop="@dimen/dp10"
-            android:text="@{message_item.eventContent}"
+            app:layout_constraintTop_toTopOf="@+id/tv_event_type"
+            app:layout_constraintStart_toEndOf="@+id/tv_event_type"
+            android:text="@{message.messageContent}"
             android:textColor="@color/text_grey"
             />
 
@@ -102,7 +90,7 @@
             app:layout_constraintTop_toTopOf="@+id/tv_event_content"
             app:layout_constraintStart_toEndOf="@+id/tv_event_content"
             android:layout_marginStart="@dimen/dp15"
-            android:text="@{message_item.createTime}"
+            android:text="@{message.acceptTime}"
             android:textColor="@color/text_grey"
             />
 

@@ -63,6 +63,7 @@
         <entry key="..\:/work/android/project/pingyi/app/src/main/res/layout/fragment_webview.xml" value="0.35052083333333334" />
         <entry key="..\:/work/android/project/pingyi/app/src/main/res/layout/fragment_welcome.xml" value="0.29528985507246375" />
         <entry key="..\:/work/android/project/pingyi/app/src/main/res/layout/include_info.xml" value="0.2907608695652174" />
+        <entry key="..\:/work/android/project/pingyi/app/src/main/res/layout/item_contact.xml" value="0.29322916666666665" />
         <entry key="..\:/work/android/project/pingyi/app/src/main/res/layout/item_contact_org.xml" value="0.2857789855072464" />
         <entry key="..\:/work/android/project/pingyi/app/src/main/res/layout/item_contact_user.xml" value="0.29528985507246375" />
         <entry key="..\:/work/android/project/pingyi/app/src/main/res/layout/item_home_apps.xml" value="0.29981884057971014" />
@@ -70,6 +71,8 @@
         <entry key="..\:/work/android/project/pingyi/app/src/main/res/menu/bottom_nav_menu.xml" value="0.253125" />
         <entry key="..\:/work/android/project/pingyi/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3398148148148148" />
         <entry key="..\:/work/android/project/pingyi/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3046875" />
+        <entry key="..\:/work/android/project/pingyi/lib_core/src/main/res/drawable/download_background.xml" value="0.3490740740740741" />
+        <entry key="..\:/work/android/project/pingyi/lib_core/src/main/res/drawable/download_bg.xml" value="0.3490740740740741" />
         <entry key="..\:/work/android/project/pingyi/lib_core/src/main/res/drawable/ic_icon_contact_p.xml" value="0.10989583333333333" />
         <entry key="..\:/work/android/project/pingyi/lib_core/src/main/res/drawable/ic_message_p.xml" value="0.25555555555555554" />
         <entry key="..\:/work/android/project/pingyi/lib_core/src/main/res/drawable/ic_operation_cockpit.xml" value="0.25555555555555554" />
@@ -86,10 +89,16 @@
         <entry key="..\:/work/android/project/pingyi/lib_core/src/main/res/drawable/shape_circular_bg_red.xml" value="0.3490740740740741" />
         <entry key="..\:/work/android/project/pingyi/lib_core/src/main/res/drawable/shape_contact_user_bg.xml" value="0.35572916666666665" />
         <entry key="..\:/work/android/project/pingyi/lib_core/src/main/res/drawable/shape_rectangular_red.xml" value="0.3490740740740741" />
+        <entry key="..\:/work/android/project/pingyi/lib_core/src/main/res/drawable/shape_search_bg.xml" value="0.3490740740740741" />
         <entry key="..\:/work/android/project/pingyi/lib_core/src/main/res/layout/py_divider_all.xml" value="0.253125" />
         <entry key="..\:/work/android/project/pingyi/lib_core/src/main/res/layout/py_main_title.xml" value="0.2765625" />
         <entry key="..\:/work/android/project/pingyi/lib_core/src/main/res/layout/py_text_view_right.xml" value="0.2765625" />
+        <entry key="..\:/work/android/project/pingyi/lib_core/src/main/res/layout/py_update_dialog.xml" value="0.35052083333333334" />
         <entry key="..\:/work/android/project/pingyi/lib_core/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3398148148148148" />
+        <entry key="..\:/work/android/project/pingyi/lib_download/src/main/res/drawable/bg_update_btn.xml" value="0.2953125" />
+        <entry key="..\:/work/android/project/pingyi/lib_download/src/main/res/drawable/bg_update_dialog.xml" value="0.2953125" />
+        <entry key="..\:/work/android/project/pingyi/lib_download/src/main/res/layout/view_update_dialog_plentiful.xml" value="0.2791666666666667" />
+        <entry key="..\:/work/android/project/pingyi/lib_download/src/main/res/layout/view_update_dialog_simple.xml" value="0.2791666666666667" />
         <entry key="..\:/work/android/project/pingyi/lib_http/src/main/res/drawable/ic_launcher_background.xml" value="0.3398148148148148" />
         <entry key="..\:/work/android/project/pingyi/lib_http/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.36666666666666664" />
       </map>

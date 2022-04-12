@@ -52,6 +52,15 @@
     <!--关于我们-->
     <string name="about_inspect_version">检查新版本</string>
     <string name="about_copyright">Copyright © 2022-2032 湖南交通科学研究院有限公司</string>
+    <string name="update_version_title">发现新版本</string>
+    <string name="update_version_cancel">下次再说</string>
+    <string name="update_version_confirm">立即升级</string>
+    <string name="update_version_prepare">准备下载</string>
+    <string name="update_version_download">下载进度</string>
+    <string name="update_version_code">最新版本号：%s\n</string>
+    <string name="update_version_apk_size">安装包大小：%s\n</string>
+    <string name="update_version_content">更新内容：\n%s</string>
+    <string name="update_version_latest">已经是最新版本</string>"
 
     <!--修改密码-->
     <string name="psd_old">原密码</string>
@@ -60,6 +69,12 @@
     <string name="hint_input_psd_old">请输入原密码</string>
     <string name="hint_input_psd_new">请输入新密码</string>
     <string name="hint_input_psd_sure_new">请再次输入新密码</string>
+
+
+    <string name="location_title">开启定位</string>
+    <string name="location_message">地图需要您的位置信息，请打开定位功能</string>
+    <string name="location_ok">马上开启</string>
+    <string name="location_cancel">下次再说</string>
 
 
     <string name="digits">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@_.#</string>

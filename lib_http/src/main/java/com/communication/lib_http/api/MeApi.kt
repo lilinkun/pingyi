@@ -19,5 +19,4 @@ interface MeApi {
     suspend fun getinfo() : BaseModel<PersonInfoBean>
 
 
-
 }

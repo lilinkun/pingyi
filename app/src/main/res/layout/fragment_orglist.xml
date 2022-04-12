@@ -65,7 +65,7 @@
             android:background="@drawable/shape_circle"
             android:layout_marginTop="@dimen/dp10"
             android:paddingStart="@dimen/dp20"
-            />
+            tools:ignore="RtlSymmetry" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_contact_user_item"

@@ -1,5 +1,12 @@
 ext{
-
+    app = [
+            compileSdkVersion: 31,
+            applicationId    : "com.communication.pingyi",
+            minSdkVersion    : 21,
+            targetSdkVersion : 31,
+            versionCode      : 1,
+            versionName      : "1.0.1",
+    ]
 
     versions = [
             koin            : "2.0.1",
@@ -49,6 +56,9 @@ ext{
 
             refresh               : "com.scwang.smart:refresh-layout-kernel:${versions.refresh}",
             refreshHeader         : "com.scwang.smart:refresh-header-material:${versions.refresh}",
+
+            filedownloader        : "com.liulishuo.filedownloader:library:1.7.7",
+
     ]
 
     androidx = [
@@ -66,5 +76,15 @@ ext{
             lifecycleViewmodelKtx: "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}",
 
     ]
+
+    test = [
+            junit: "junit:junit:4.13.2",
+    ]
+
+    androidTest = [
+            junit       : "androidx.test.ext:junit:1.1.2",
+            espressoCore: "androidx.test.espresso:espresso-core:3.3.0",
+    ]
+
 
 }

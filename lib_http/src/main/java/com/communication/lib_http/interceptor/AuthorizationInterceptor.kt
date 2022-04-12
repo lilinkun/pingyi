@@ -1,8 +1,8 @@
 package com.communication.lib_http.interceptor
 
-import com.btismart.lib_okhttps.token.TokenService
 import com.communication.lib_http.api.SERVER_BASE_URL
 import com.communication.lib_http.base.MMKVTool
+import com.communication.lib_http.token.TokenService
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
@@ -20,7 +20,7 @@ class AuthorizationInterceptor : Interceptor{
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
-        if (request.url.toString().contains("/app/login")) {
+        if (request.url.toString().contains("/app/login") || request.url.toString().contains("/app/updateApp")) {
             return chain.proceed(request)
         }
         var response = chain.proceed(addTokenHeaders(request.newBuilder()))

@@ -1,10 +1,10 @@
 package com.communication.pingyi.ui.login.account
 
-import com.btismart.lib_okhttps.httpdata.token.TokenData
 import com.communication.lib_http.api.LoginApi
 import com.communication.lib_http.base.BaseRepository
 import com.communication.lib_http.base.NetResult
 import com.communication.lib_http.httpdata.login.LoginInfo
+import com.communication.lib_http.httpdata.token.TokenData
 
 /**
  * Created by LG

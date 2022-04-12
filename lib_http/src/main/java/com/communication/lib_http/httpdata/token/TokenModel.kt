@@ -1,4 +1,4 @@
-package com.btismart.lib_okhttps.httpdata.token
+package com.communication.lib_http.httpdata.token
 
 data class TokenData(
     val access_token: String?,

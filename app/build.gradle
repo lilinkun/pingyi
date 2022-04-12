@@ -113,4 +113,5 @@ dependencies {
     implementation project(":lib_http")
     implementation project(":lib_core")
     implementation project(":jiguang")
+    implementation project(":lib_download")
 }

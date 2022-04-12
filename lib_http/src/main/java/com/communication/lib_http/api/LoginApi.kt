@@ -1,6 +1,6 @@
 package com.communication.lib_http.api
 
-import com.btismart.lib_okhttps.httpdata.token.TokenData
+import com.communication.lib_http.httpdata.token.TokenData
 import com.communication.lib_http.base.BaseModel
 import com.communication.lib_http.base.TokenModel
 import com.communication.lib_http.httpdata.login.LoginInfo
