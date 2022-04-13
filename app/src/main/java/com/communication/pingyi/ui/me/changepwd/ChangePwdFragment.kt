@@ -7,13 +7,13 @@ import androidx.navigation.fragment.findNavController
 import com.communication.lib_core.checkDoubleClick
 import com.communication.lib_core.tools.EVENTBUS_CHANGE_PASSWORD_SUCCESS
 import com.communication.lib_core.tools.EVENTBUS_TOAST_STRING
+import com.communication.lib_core.tools.PUBLICKEY
 import com.communication.lib_http.base.MMKVTool
 import com.communication.lib_http.httpdata.changepwd.ChangePwdBean
 import com.communication.pingyi.R
 import com.communication.pingyi.activity.LoginActivity
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentChangepwdBinding
-import com.communication.pingyi.tools.PUBLICKEY
 import com.communication.pingyi.tools.RSAUtils
 import com.jeremyliao.liveeventbus.LiveEventBus
 import org.koin.androidx.viewmodel.ext.android.viewModel

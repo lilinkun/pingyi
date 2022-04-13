@@ -9,7 +9,7 @@ class Constance {
     companion object {
         var isRelease = true
         var checkInUseAndroidSystemTime = false
-        var appFolderName = "COMMUNICATION"
-        var appFolderApkName = "COMMUNICATIONAPK"
+        var appFolderName = "pingyi"
+        var appFolderApkName = "pingyi"
     }
 }

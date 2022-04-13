@@ -7,6 +7,7 @@
     <string name="login_account_hint">请输入手机号</string>
     <string name="login_password_hint">请输入密码</string>
     <string name="login_verify_hint">请输入验证码</string>
+    <string name="error_fun_empty">功能暂未提供</string>
 
     <!--通用-->
     <string name="sure">确定</string>

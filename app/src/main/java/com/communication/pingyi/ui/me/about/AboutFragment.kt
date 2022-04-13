@@ -1,6 +1,7 @@
 package com.communication.pingyi.ui.me.about
 
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.communication.lib_core.tools.EVENTBUS_CHECK_UPDATE_VERSION_BUTTON
@@ -72,6 +73,19 @@ class AboutFragment : BaseFragment<FragmentAboutBinding>() {
     }
 
     override fun observeViewModels() {
+
+        with(mUpdateVersionViewModel){
+
+            isLoading.observe(viewLifecycleOwner){
+                if (it) {
+                    binding.progressBar.visibility = View.VISIBLE
+                } else {
+                    binding.progressBar.visibility = View.GONE
+                }
+            }
+
+        }
+
     }
 
     private fun updateVersion(info: VersionModel?, isBtnClick: Boolean = false) {

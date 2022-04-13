@@ -1,5 +1,6 @@
 package com.communication.pingyi.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.adapters.ViewBindingAdapter.setClickListener
@@ -8,10 +9,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.communication.lib_core.checkDoubleClick
 import com.communication.lib_core.tools.EVENTBUS_APP_CLICK
+import com.communication.lib_http.api.WEB_EVENT
 import com.communication.lib_http.httpdata.home.AppsItem
 import com.communication.lib_http.httpdata.home.AppsItemTitle
 import com.communication.pingyi.R
 import com.communication.pingyi.databinding.ItemHomeAppsBinding
+import com.communication.pingyi.ext.pyToast
 import com.jeremyliao.liveeventbus.LiveEventBus
 
 /**
@@ -20,6 +23,8 @@ import com.jeremyliao.liveeventbus.LiveEventBus
  * Description：
  */
 class HomeAppListAdapter : ListAdapter<AppsItem, RecyclerView.ViewHolder>(AppItemDiffCallback()) {
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return PyViewHolder(
             ItemHomeAppsBinding.inflate(
@@ -41,19 +46,44 @@ class HomeAppListAdapter : ListAdapter<AppsItem, RecyclerView.ViewHolder>(AppIte
         fun bind(item: AppsItem, position: Int) {
             binding.apply {
                 appItem = item.meta
-                setClickListener {
-                    if (checkDoubleClick()) {
-                        LiveEventBus.get(EVENTBUS_APP_CLICK).post(item.meta.title)
+                var url = ""
+                when(item.meta.title){
+                    "运行驾驶舱" -> {
+                        icon.setImageResource(R.drawable.ic_operation_cockpit)
+                        url = WEB_EVENT
+                    }
+                    "事件监测" -> {
+                        icon.setImageResource(R.drawable.ic_event_monitoring)
+                        url = WEB_EVENT
+                    }
+                    "视频监控" -> {
+                        icon.setImageResource(R.drawable.ic_video_surveillance)
+                    }
+                    "基础设施监测" -> {
+                        icon.setImageResource(R.drawable.ic_infrastructure_monitoring)
+                    }
+                    "机电运维" -> {
+                        icon.setImageResource(R.drawable.ic_electromechanical_maintenance)
+                    }
+                    "公路养护" -> {
+                        icon.setImageResource(R.drawable.ic_highway_maintenance)
+                    }
+                    else -> {
+                        icon.setImageResource(R.drawable.ic_highway_maintenance)
+                        url = WEB_EVENT
                     }
                 }
-                when(item.meta.title){
-                    "运行驾驶舱" -> icon.setImageResource(R.drawable.ic_operation_cockpit)
-                    "事件监测" -> icon.setImageResource(R.drawable.ic_event_monitoring)
-                    "视频监控" -> icon.setImageResource(R.drawable.ic_video_surveillance)
-                    "基础设施监测" -> icon.setImageResource(R.drawable.ic_infrastructure_monitoring)
-                    "机电运维" -> icon.setImageResource(R.drawable.ic_electromechanical_maintenance)
-                    "公路养护" -> icon.setImageResource(R.drawable.ic_highway_maintenance)
-                    else -> icon.setImageResource(R.drawable.ic_highway_maintenance)
+                setClickListener {
+                    if (checkDoubleClick()) {
+                        if(url.isNullOrEmpty()) {
+                            binding.root.context?.let {
+                                pyToast(it.getString(R.string.error_fun_empty))
+                            }
+
+                        }else{
+                            LiveEventBus.get(EVENTBUS_APP_CLICK).post(url)
+                        }
+                    }
                 }
 
                 executePendingBindings()

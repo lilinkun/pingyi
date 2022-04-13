@@ -7,6 +7,7 @@ import com.communication.lib_core.RecycleViewDivider
 import com.communication.lib_core.checkDoubleClick
 import com.communication.lib_core.tools.EVENTBUS_MESSAGE_ITEM_CLICK
 import com.communication.lib_core.tools.EVENTBUS_UNREAD_MESSAGE
+import com.communication.lib_http.httpdata.message.MessageBean
 import com.communication.pingyi.R
 import com.communication.pingyi.adapter.MessageAdapter
 import com.communication.pingyi.base.BaseFragment
@@ -26,6 +27,7 @@ class MessageFragment : BaseFragment<FragmentMessageBinding>(), OnRefreshListene
     val mViewModel : MessageViewModel by viewModel<MessageViewModel>()
 
     private val messageAdapter = MessageAdapter()
+    private lateinit var userId : String;
 
     override fun getLayoutResId(): Int = R.layout.fragment_message
 
@@ -56,7 +58,10 @@ class MessageFragment : BaseFragment<FragmentMessageBinding>(), OnRefreshListene
 
             ptMessageMain.setIconOnClick {
                 if (checkDoubleClick()) {
-                    mViewModel.readAllMessage()
+                    userId?.let {
+                        mViewModel.readAllMessage(it)
+                    }
+
                 }
             }
 
@@ -73,7 +78,21 @@ class MessageFragment : BaseFragment<FragmentMessageBinding>(), OnRefreshListene
                 messageAdapter.submitList(it)
                 messageAdapter.notifyDataSetChanged()
 
-                LiveEventBus.get(EVENTBUS_UNREAD_MESSAGE).post(it.size)
+                it?.apply {
+                    userId = it.get(0).userId
+
+                    var unReadCount = 0
+
+                    for(messageBean : MessageBean in it ){
+                        if(messageBean.isRead == 0){
+                            unReadCount++
+                        }
+                    }
+
+                    LiveEventBus.get(EVENTBUS_UNREAD_MESSAGE).post(unReadCount)
+
+                }
+
 
             }
 

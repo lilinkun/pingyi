@@ -13,6 +13,7 @@ import com.communication.lib_http.httpdata.message.MessageBean
 import com.communication.pingyi.databinding.ItemMessageBinding
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.communication.lib_core.R
+import com.communication.lib_core.tools.EVENTBUS_MESSAGE_CLICK
 
 class MessageAdapter : ListAdapter<MessageBean,RecyclerView.ViewHolder>(MessageDiffCallback()) {
 
@@ -52,7 +53,8 @@ class MessageAdapter : ListAdapter<MessageBean,RecyclerView.ViewHolder>(MessageD
                 }
                 setClickListener {
                     if (checkDoubleClick()) {
-                        LiveEventBus.get(EVENTBUS_MESSAGE_ITEM_CLICK).post(item.messageId)
+                        LiveEventBus.get(EVENTBUS_MESSAGE_ITEM_CLICK).post(item.id.toString())
+                        LiveEventBus.get(EVENTBUS_MESSAGE_CLICK).post(item.serialNumber)
                     }
                 }
                 executePendingBindings()

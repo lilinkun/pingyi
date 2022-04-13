@@ -44,8 +44,7 @@ class MessageViewModel(private val repo : MessageRepository) : BaseViewModel() {
             if (result is NetResult.Success){
 
                 result.data?.let {
-
-
+                    getMessageList()
                 }
 
             }else if (result is NetResult.Error){
@@ -56,16 +55,15 @@ class MessageViewModel(private val repo : MessageRepository) : BaseViewModel() {
     }
 
 
-    fun readAllMessage(){
+    fun readAllMessage(userId : String){
         launch {
             isLoading.postValue(true)
-            val result = repo.readAllMessage()
+            val result = repo.readAllMessage(userId)
 
             if (result is NetResult.Success){
 
                 result.data?.let {
-
-
+                    getMessageList()
                 }
 
             }else if (result is NetResult.Error){

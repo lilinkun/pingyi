@@ -12,15 +12,17 @@ import retrofit2.http.Query
  */
 interface MessageApi {
 
-    @GET("http://192.168.40.94:8080/operation/app/appMessage/getInfoList")
+    @GET("$SERVER_BASE_URL/operation/app/appMessage/getInfoList")
     suspend fun getMessageList() : BaseModel<MutableList<MessageBean>>
 
-    @GET("http://192.168.40.94:8080/operation/app/appMessage/getInfoByIdt")
+    @GET("$SERVER_BASE_URL/operation/app/appMessage/getInfoById")
     suspend fun readOnlyMessage(
         @Query("id") id : String
-    ) : BaseModel<Any>
+    ) : BaseModel<String>
 
-    @GET("http://192.168.40.94:8080/operation/app/appMessage/getInfoByUserId")
-    suspend fun readAllMessage() : BaseModel<Any>
+    @GET("$SERVER_BASE_URL/operation/app/appMessage/getInfoByUserId")
+    suspend fun readAllMessage(
+        @Query("userId") userId : String
+    ) : BaseModel<String>
 
 }

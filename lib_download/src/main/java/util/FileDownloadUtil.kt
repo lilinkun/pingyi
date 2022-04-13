@@ -11,6 +11,7 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
 import java.io.OutputStream
+import java.net.HttpURLConnection
 import java.net.HttpURLConnection.HTTP_OK
 import java.net.URL
 import javax.net.ssl.HttpsURLConnection
@@ -44,12 +45,14 @@ internal object FileDownloadUtil {
         GlobalScope.launch(Dispatchers.IO) {
             log("----使用HttpURLConnection下载----")
             onStart.invoke()
-            var connection: HttpsURLConnection? = null
+            var connection: HttpURLConnection? = null
             var outputStream: FileOutputStream? = null
 
             kotlin.runCatching {
-                connection = URL(url).openConnection() as HttpsURLConnection
-                connection?.hostnameVerifier = AllowAllHostnameVerifier()
+//                val u = "https://cos.pgyer.com/67828ae71acdbcde59ca84585656078e.apk?sign=5c9c7138d261ef17237225e40b616bdb&t=1649819340&response-content-disposition=attachment%3Bfilename%3D%E6%99%BA%E6%85%A7%E5%B9%B3%E7%9B%8A_1.0.1.apk"
+
+                connection = URL(url).openConnection() as HttpURLConnection
+//                connection?.hostnameVerifier = AllowAllHostnameVerifier()
                 outputStream = FileOutputStream(File(fileSavePath, fileName))
 
                 connection?.apply {

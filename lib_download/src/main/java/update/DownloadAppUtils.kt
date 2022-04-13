@@ -3,6 +3,7 @@ package update
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Environment
 import com.liulishuo.filedownloader.BaseDownloadTask
 import com.liulishuo.filedownloader.FileDownloadLargeFileListener
@@ -89,12 +90,12 @@ internal object DownloadAppUtils {
             filePath = updateInfo.config.apkSavePath
         }.no {
             // 适配Android10
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && !Environment.isExternalStorageLegacy()){
-//                filePath = (context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)?.absolutePath ?: "") + "/apk"
-//            }else{
-            val packageName = context.packageName
-            filePath = Environment.getExternalStorageDirectory().absolutePath + "/" + packageName
-//            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && !Environment.isExternalStorageLegacy()){
+                filePath = (context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)?.absolutePath ?: "") + "/apk"
+            }else{
+                val packageName = context.packageName
+                filePath = Environment.getExternalStorageDirectory().absolutePath + "/" + packageName
+            }
         }
 
         // apk 保存名称
@@ -103,6 +104,7 @@ internal object DownloadAppUtils {
         } else {
             context.appName
         }
+
 
         val apkLocalPath = "$filePath/$apkName.apk"
         val f = File(apkLocalPath)

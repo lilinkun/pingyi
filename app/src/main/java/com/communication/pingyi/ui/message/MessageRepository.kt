@@ -17,13 +17,13 @@ class MessageRepository(private val mApi : MessageApi) : BaseRepository() {
         return callRequest { handleResponse(mApi.getMessageList()) }
     }
 
-    suspend fun readOnlyMessage(id : String) : NetResult<Any>{
+    suspend fun readOnlyMessage(id : String) : NetResult<String>{
         return callRequest { handleResponse(mApi.readOnlyMessage(id)) }
     }
 
 
-    suspend fun readAllMessage() : NetResult<Any>{
-        return callRequest { handleResponse(mApi.readAllMessage()) }
+    suspend fun readAllMessage(userId : String) : NetResult<String>{
+        return callRequest { handleResponse(mApi.readAllMessage(userId)) }
     }
 
 }

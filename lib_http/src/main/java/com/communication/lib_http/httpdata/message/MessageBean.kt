@@ -6,6 +6,7 @@ package com.communication.lib_http.httpdata.message
  * Description：
  */
 data class MessageBean(
+    val id : Int,
     val isRead : Int,
     val acceptTime : String,
     val messageContent : String,
@@ -14,5 +15,5 @@ data class MessageBean(
     val messageTitle : String,
     val messageType : Int,
     val serialNumber : String,
-    val userId : Int,
+    val userId : String,
 )

@@ -8,7 +8,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.communication.lib_core.PyMessageRed
 import com.communication.lib_core.tools.EVENTBUS_APP_CLICK
+import com.communication.lib_core.tools.EVENTBUS_MESSAGE_CLICK
 import com.communication.lib_core.tools.EVENTBUS_UNREAD_MESSAGE
+import com.communication.lib_http.api.WEB_MESSAGE
 import com.communication.pingyi.R
 import com.communication.pingyi.adapter.*
 import com.communication.pingyi.base.BaseFragment
@@ -36,7 +38,16 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             String::class.java
         ).observe(this,{ key->
             key?.let {
-                goToWebActivity()
+                goToWebActivity(it)
+            }
+        })
+
+        LiveEventBus.get(
+            EVENTBUS_MESSAGE_CLICK,
+            String::class.java
+        ).observe(this,{ key->
+            key?.let {
+                goToWebActivity(WEB_MESSAGE+it)
             }
         })
 
@@ -94,7 +105,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
         var count = unReadCount
 
-
         binding.bottomNavBar.children.forEach { menuView ->
             if (menuView is BottomNavigationMenuView) {
                 menuView.forEachIndexed { index, itemView ->
@@ -128,10 +138,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     }
 
 
-    private fun goToWebActivity() {
+    private fun goToWebActivity(url : String) {
         /*val intent = Intent(requireContext(), WebviewActivity::class.java)
         startActivity(intent)*/
-        val dir = MainFragmentDirections.actionMainFragmentToWebViewFragment()
+        val dir = MainFragmentDirections.actionMainFragmentToWebViewFragment(url = url)
         findNavController().navigate(dir)
     }
 

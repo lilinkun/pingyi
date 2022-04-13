@@ -11,6 +11,6 @@ import retrofit2.http.GET
  */
 interface VersionApi {
 
-    @GET("http://192.168.1.240:9201/app/getAppVersion")
+    @GET("$SERVER_BASE_URL/system/app/getAppVersion")
     suspend fun getVersion() : BaseModel<VersionModel>
 }

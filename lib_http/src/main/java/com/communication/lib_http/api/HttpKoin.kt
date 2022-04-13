@@ -17,10 +17,14 @@ import java.util.concurrent.TimeUnit
  */
 
 //const val SERVER_BASE_URL = "http://192.168.1.240:9201"
-const val SERVER_BASE_URL = "http://192.168.40.92:8888"
+const val SERVER_BASE_URL = "http://192.168.40.94:8080"
+//const val SERVER_BASE_URL = "http://192.168.40.92:8888"
 //const val SERVER_BASE_URL = "http://192.168.1.227:8080"
 //const val SERVER_BASE_URL = "http://192.168.1.227:9200"
 //const val SERVER_BASE_URL = "http://192.168.1.236:8098"
+
+const val WEB_EVENT = "http://192.168.1.204:8088/#/"
+const val WEB_MESSAGE = "http://192.168.1.204:8088/event/detail?id="
 
 const val TIME_OUT = 15L
 
