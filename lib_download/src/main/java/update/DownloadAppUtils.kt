@@ -112,6 +112,7 @@ internal object DownloadAppUtils {
             f.delete()
         }
 
+
         downloadUpdateApkFilePath = apkLocalPath
 
         SPUtil.putBase(KEY_OF_SP_APK_PATH, downloadUpdateApkFilePath)

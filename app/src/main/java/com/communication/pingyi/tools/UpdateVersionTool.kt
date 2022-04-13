@@ -46,8 +46,7 @@ object UpdateVersionTool {
                 alwaysShow = false
                 showDownloadingToast = false
                 thisTimeShow = false
-                apkSavePath =
-                    Environment.getExternalStorageDirectory().absolutePath + "/" + appFolderApkName
+                apkSavePath = (context.externalCacheDir?.path ?: "") + "/" + appFolderApkName
                 apkSaveName = appFolderApkName
             }
 

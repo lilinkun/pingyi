@@ -53,7 +53,12 @@ internal object FileDownloadUtil {
 
                 connection = URL(url).openConnection() as HttpURLConnection
 //                connection?.hostnameVerifier = AllowAllHostnameVerifier()
-                outputStream = FileOutputStream(File(fileSavePath, fileName))
+                val f = File(fileSavePath, fileName)
+
+                val path = File(fileSavePath)
+                if (!path.exists()){
+                    path.mkdirs()
+                }
 
                 connection?.apply {
                     requestMethod = "GET"
@@ -65,6 +70,8 @@ internal object FileDownloadUtil {
                     )
                     connect()
                 }
+
+                outputStream = FileOutputStream(f)
 
                 val responseCode = connection!!.responseCode
                 if (responseCode == HTTP_OK) {
