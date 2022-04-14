@@ -20,8 +20,8 @@ import com.communication.pingyi.ext.pyToast
  * on 2022/3/31  17:22
  * Description：
  */
-class AndroidJavascriptInterface(webviewActivity: Fragment?) {
-    lateinit var webviewActivity: Fragment
+class AndroidJavascriptInterface(webviewActivity: WebviewActivity) {
+    lateinit var webviewActivity: WebviewActivity
 
 
     init {
@@ -35,7 +35,7 @@ class AndroidJavascriptInterface(webviewActivity: Fragment?) {
         if (webviewActivity != null) {
             val name = MMKVTool.getUsername()
             MMKVTool.clearAll()
-            val intent = Intent(webviewActivity.context, LoginActivity::class.java)
+            val intent = Intent(webviewActivity, LoginActivity::class.java)
             MMKVTool.saveUsername(name)
             intent.putExtra("name",name)
             webviewActivity.startActivity(intent)
@@ -47,27 +47,24 @@ class AndroidJavascriptInterface(webviewActivity: Fragment?) {
     @JavascriptInterface
     fun goBack() {
 
-        webviewActivity?.findNavController()?.navigateUp()
 
-        /*webviewActivity?.runOnUiThread {
+        webviewActivity?.runOnUiThread {
             //                    WebView webView = webviewActivity.getWebView();
             //
             //                    if (webView != null) {
             webviewActivity.setResult(Activity.RESULT_OK)
             webviewActivity.finish()
             //                    }
-        }*/
+        }
     }
 
     @JavascriptInterface
     fun getToken(): String {
-        pyToast(MMKVTool.getToken())
         return MMKVTool.getToken()
     }
 
     @JavascriptInterface
     fun getLocal(): String {
-        pyToast(MMKVTool.getToken())
         return MMKVTool.getToken()
     }
 

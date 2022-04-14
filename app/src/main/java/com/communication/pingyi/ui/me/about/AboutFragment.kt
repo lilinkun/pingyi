@@ -2,7 +2,6 @@ package com.communication.pingyi.ui.me.about
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.communication.lib_core.tools.EVENTBUS_CHECK_UPDATE_VERSION_BUTTON
 import com.communication.lib_core.tools.Utils
@@ -11,11 +10,10 @@ import com.communication.pingyi.R
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentAboutBinding
 import com.communication.pingyi.ext.pyToast
+import com.communication.pingyi.ext.pyToastShort
 import com.communication.pingyi.tools.UpdateVersionTool
-import com.communication.pingyi.ui.login.account.LoginViewModel
 import com.communication.pingyi.ui.update_version.UpdateVersionViewModel
 import com.jeremyliao.liveeventbus.LiveEventBus
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -62,6 +60,8 @@ class AboutFragment : BaseFragment<FragmentAboutBinding>() {
                 if (isActive()) {
                     if (isUpdate) {
                         UpdateVersionTool.update(requireActivity(), versionModel)
+                    }else{
+                        pyToast(resources.getString(R.string.update_version_latest))
                     }
                 }
             }
@@ -91,7 +91,7 @@ class AboutFragment : BaseFragment<FragmentAboutBinding>() {
     private fun updateVersion(info: VersionModel?, isBtnClick: Boolean = false) {
         if (info == null) {
             if (isBtnClick) {
-                pyToast(resources.getString(R.string.update_version_latest))
+                pyToastShort(resources.getString(R.string.update_version_latest))
             }
             return
         }
@@ -99,7 +99,7 @@ class AboutFragment : BaseFragment<FragmentAboutBinding>() {
             val currentVersionCode = Utils.getVersionCode(requireContext())
             if (currentVersionCode >= it.toLong()) {
                 if (isBtnClick) {
-                    pyToast(resources.getString(R.string.update_version_latest))
+//                    pyToast(resources.getString(R.string.update_version_latest))
                 }
                 return
             }else{

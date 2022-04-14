@@ -15,3 +15,9 @@ fun pyToast(str : String){
     toast.setGravity(Gravity.BOTTOM, 0, 2340 / 9)
     toast.show()
 }
+
+fun pyToastShort(str : String){
+    val toast = Toast.makeText(AppContext, str, Toast.LENGTH_SHORT)
+    toast.setGravity(Gravity.BOTTOM, 0, 2340 / 9)
+    toast.show()
+}

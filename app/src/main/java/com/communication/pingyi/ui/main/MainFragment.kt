@@ -1,5 +1,6 @@
 package com.communication.pingyi.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.core.view.children
 import androidx.core.view.forEach
@@ -12,6 +13,7 @@ import com.communication.lib_core.tools.EVENTBUS_MESSAGE_CLICK
 import com.communication.lib_core.tools.EVENTBUS_UNREAD_MESSAGE
 import com.communication.lib_http.api.WEB_MESSAGE
 import com.communication.pingyi.R
+import com.communication.pingyi.activity.WebviewActivity
 import com.communication.pingyi.adapter.*
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentMainBinding
@@ -139,10 +141,11 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
 
     private fun goToWebActivity(url : String) {
-        /*val intent = Intent(requireContext(), WebviewActivity::class.java)
-        startActivity(intent)*/
-        val dir = MainFragmentDirections.actionMainFragmentToWebViewFragment(url = url)
-        findNavController().navigate(dir)
+        val intent = Intent(requireContext(), WebviewActivity::class.java)
+        intent.putExtra("url",url)
+        startActivity(intent)
+        /*val dir = MainFragmentDirections.actionMainFragmentToWebViewFragment(url = url)
+        findNavController().navigate(dir)*/
     }
 
 }

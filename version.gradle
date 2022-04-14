@@ -59,6 +59,11 @@ ext{
 
             filedownloader        : "com.liulishuo.filedownloader:library:1.7.7",
 
+            perm                  : "org.permissionsdispatcher:permissionsdispatcher:4.3.0",
+            permkap               : "org.permissionsdispatcher:permissionsdispatcher-processor:4.3.0",
+
+
+            luban        : "top.zibin:Luban:1.1.8"
     ]
 
     androidx = [

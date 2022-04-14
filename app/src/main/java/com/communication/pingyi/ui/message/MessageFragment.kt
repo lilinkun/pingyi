@@ -5,6 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.communication.lib_core.RecycleViewDivider
 import com.communication.lib_core.checkDoubleClick
+import com.communication.lib_core.tools.EVENTBUS_MESSAGE_CLICK
 import com.communication.lib_core.tools.EVENTBUS_MESSAGE_ITEM_CLICK
 import com.communication.lib_core.tools.EVENTBUS_UNREAD_MESSAGE
 import com.communication.lib_http.httpdata.message.MessageBean

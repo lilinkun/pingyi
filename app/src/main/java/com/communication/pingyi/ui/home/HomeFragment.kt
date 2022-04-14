@@ -3,11 +3,13 @@ package com.communication.pingyi.ui.home
 import android.os.Bundle
 import android.view.View
 import com.communication.lib_core.tools.EVENTBUS_HOME_APPS_SUCCESS
+import com.communication.lib_http.base.MMKVTool
 import com.communication.lib_http.httpdata.home.AppsItem
 import com.communication.pingyi.R
 import com.communication.pingyi.adapter.HomeAppListAdapter
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentHomeBinding
+import com.communication.pingyi.ext.pyToast
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
@@ -40,6 +42,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnRefreshListener {
             String::class.java
         ).observe(this,{
 
+
             initHomeAppComplete()
 
         })
@@ -54,6 +57,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnRefreshListener {
         }
         binding.refreshLayout.setEnableRefresh(true)
         binding.refreshLayout.setOnRefreshListener(this)
+        
     }
 
     override fun observeViewModels() {

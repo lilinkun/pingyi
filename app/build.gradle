@@ -101,6 +101,8 @@ dependencies {
 
     implementation rootProject.libs.eventBus
 
+    implementation rootProject.libs.luban
+
     //add refresh
     implementation rootProject.libs.refresh         //核心必须依赖
     implementation rootProject.libs.refreshHeader    //经典加载
@@ -108,6 +110,10 @@ dependencies {
     //add image cache
     implementation rootProject.libs.glide
     kapt rootProject.libs.glideCompiler
+
+
+    implementation rootProject.libs.perm
+    kapt rootProject.libs.permkap
 
 
     implementation project(":lib_http")

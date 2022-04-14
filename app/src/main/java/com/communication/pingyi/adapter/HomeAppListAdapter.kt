@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.communication.lib_core.checkDoubleClick
 import com.communication.lib_core.tools.EVENTBUS_APP_CLICK
 import com.communication.lib_http.api.WEB_EVENT
+import com.communication.lib_http.api.WEB_RUNTIME
 import com.communication.lib_http.httpdata.home.AppsItem
 import com.communication.lib_http.httpdata.home.AppsItemTitle
 import com.communication.pingyi.R
@@ -50,7 +51,7 @@ class HomeAppListAdapter : ListAdapter<AppsItem, RecyclerView.ViewHolder>(AppIte
                 when(item.meta.title){
                     "运行驾驶舱" -> {
                         icon.setImageResource(R.drawable.ic_operation_cockpit)
-                        url = WEB_EVENT
+                        url = WEB_RUNTIME
                     }
                     "事件监测" -> {
                         icon.setImageResource(R.drawable.ic_event_monitoring)

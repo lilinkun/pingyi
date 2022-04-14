@@ -2,6 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     >
 
+    <LinearLayout
+        android:id="@+id/ll_welcome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
     <RelativeLayout
         android:id="@+id/rl_welcome"
         android:layout_width="match_parent"
@@ -12,10 +19,9 @@
         <ImageView
             android:layout_width="@dimen/dp80"
             android:layout_height="@dimen/dp80"
-            android:src="@drawable/ic_logo"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/dp165"
-            />
+            android:src="@drawable/ic_logo" />
 
 
         <TextView
@@ -44,5 +50,5 @@
 
 
     </RelativeLayout>
-
+    </LinearLayout>
 </layout>
