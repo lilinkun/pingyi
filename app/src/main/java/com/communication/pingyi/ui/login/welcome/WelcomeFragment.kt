@@ -24,24 +24,16 @@ import com.jeremyliao.liveeventbus.LiveEventBus
  */
 class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(){
 
-    var isLogin = false
     lateinit var alphaObjectAnimator : ObjectAnimator
 
     override fun getLayoutResId(): Int = R.layout.fragment_welcome
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        LiveEventBus.get("name",String::class.java).observe(this,{
-            isLogin = true
-        })
-
     }
 
-    override fun initView() {
-        if(isLogin){
-            navigateToLogin()
-        }else{
+    override fun onStart() {
+            super.onStart()
             binding.apply {
                     alphaObjectAnimator = ObjectAnimator.ofFloat(rlWelcome, "alpha", 1f, 0.3f)
                     alphaObjectAnimator.duration = 1000
@@ -69,8 +61,6 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(){
             }
 
 
-
-        }
     }
 
     override fun observeViewModels() {
@@ -93,6 +83,10 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(){
 
     override fun onDestroy() {
         super.onDestroy()
+    }
+
+    override fun initView() {
+
     }
 
 }
