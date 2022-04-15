@@ -30,6 +30,8 @@ class MessageFragment : BaseFragment<FragmentMessageBinding>(), OnRefreshListene
     private val messageAdapter = MessageAdapter()
     private lateinit var userId : String;
 
+    var unReadCount = 0
+
     override fun getLayoutResId(): Int = R.layout.fragment_message
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,8 +61,10 @@ class MessageFragment : BaseFragment<FragmentMessageBinding>(), OnRefreshListene
 
             ptMessageMain.setIconOnClick {
                 if (checkDoubleClick()) {
-                    userId?.let {
-                        mViewModel.readAllMessage(it)
+                    if (unReadCount != 0) {
+                        userId?.let {
+                            mViewModel.readAllMessage(it)
+                        }
                     }
 
                 }
@@ -82,7 +86,6 @@ class MessageFragment : BaseFragment<FragmentMessageBinding>(), OnRefreshListene
                 it?.apply {
                     userId = it.get(0).userId
 
-                    var unReadCount = 0
 
                     for(messageBean : MessageBean in it ){
                         if(messageBean.isRead == 0){

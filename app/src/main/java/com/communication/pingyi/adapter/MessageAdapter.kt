@@ -53,7 +53,9 @@ class MessageAdapter : ListAdapter<MessageBean,RecyclerView.ViewHolder>(MessageD
                 }
                 setClickListener {
                     if (checkDoubleClick()) {
-                        LiveEventBus.get(EVENTBUS_MESSAGE_ITEM_CLICK).post(item.id.toString())
+                        if(item.isRead == 0) {
+                            LiveEventBus.get(EVENTBUS_MESSAGE_ITEM_CLICK).post(item.id.toString())
+                        }
                         LiveEventBus.get(EVENTBUS_MESSAGE_CLICK).post(item.serialNumber)
                     }
                 }
