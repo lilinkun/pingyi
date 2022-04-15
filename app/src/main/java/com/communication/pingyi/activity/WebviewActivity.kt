@@ -4,6 +4,8 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.location.Location
+import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
@@ -18,6 +20,7 @@ import com.communication.lib_core.SelectDialog
 import com.communication.lib_core.tools.GPSUtils
 import com.communication.pingyi.R
 import com.communication.pingyi.base.BaseActivity
+import com.communication.pingyi.ext.pyToastShort
 import com.communication.pingyi.tools.AndroidJavascriptInterface
 import com.communication.pingyi.tools.PhotoUtils
 import permissions.dispatcher.NeedsPermission
@@ -224,6 +227,44 @@ class WebviewActivity : BaseActivity() {
         }
         super.onDestroy()
     }
+
+    fun getLocationLL() : String{
+        val location: Location? = getLastKnownLocation()
+        if (location != null) {
+            val locationStr = """
+            纬度：${location.getLatitude().toString()}
+            经度：${location.getLongitude()}
+            """.trimIndent()
+            /*runOnUiThread {
+                val method = "javascript:gpsResult('$locationStr')"
+                webView.loadUrl(method)
+            }*/
+            return locationStr
+        } else {
+            pyToastShort("位置信息获取失败")
+            return ""
+        }
+    }
+
+
+    //得到位置对象
+    private fun getLastKnownLocation(): Location? {
+        //获取地理位置管理器
+        val mLocationManager: LocationManager =
+            getSystemService(LOCATION_SERVICE) as LocationManager
+        val providers: List<String> = mLocationManager.getProviders(true)
+        var bestLocation: Location? = null
+        for (provider in providers) {
+            @SuppressLint("MissingPermission") val l: Location =
+                mLocationManager.getLastKnownLocation(provider)
+                    ?: continue
+            if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
+                bestLocation = l
+            }
+        }
+        return bestLocation
+    }
+
 
 }
 

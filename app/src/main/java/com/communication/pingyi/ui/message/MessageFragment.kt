@@ -3,6 +3,7 @@ package com.communication.pingyi.ui.message
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.communication.lib_core.PyAppDialog
 import com.communication.lib_core.RecycleViewDivider
 import com.communication.lib_core.checkDoubleClick
 import com.communication.lib_core.tools.EVENTBUS_MESSAGE_CLICK
@@ -13,6 +14,8 @@ import com.communication.pingyi.R
 import com.communication.pingyi.adapter.MessageAdapter
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentMessageBinding
+import com.communication.pingyi.ext.pyToast
+import com.communication.pingyi.ext.pyToastShort
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
@@ -23,7 +26,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  * on 2022/3/16  16:37
  * Description：
  */
-class MessageFragment : BaseFragment<FragmentMessageBinding>(), OnRefreshListener {
+class MessageFragment : BaseFragment<FragmentMessageBinding>() , OnRefreshListener{
 
     val mViewModel : MessageViewModel by viewModel<MessageViewModel>()
 
@@ -63,8 +66,10 @@ class MessageFragment : BaseFragment<FragmentMessageBinding>(), OnRefreshListene
                 if (checkDoubleClick()) {
                     if (unReadCount != 0) {
                         userId?.let {
-                            mViewModel.readAllMessage(it)
+                            allReadMessage(it)
                         }
+                    }else{
+                        pyToastShort(resources.getString(R.string.no_read_message))
                     }
 
                 }
@@ -84,16 +89,18 @@ class MessageFragment : BaseFragment<FragmentMessageBinding>(), OnRefreshListene
                 messageAdapter.notifyDataSetChanged()
 
                 it?.apply {
-                    userId = it.get(0).userId
+                    if (it.size > 0) {
+                        userId = it.get(0).userId
+                        unReadCount = 0
 
-
-                    for(messageBean : MessageBean in it ){
-                        if(messageBean.isRead == 0){
-                            unReadCount++
+                        for (messageBean: MessageBean in it) {
+                            if (messageBean.isRead == 0) {
+                                unReadCount++
+                            }
                         }
+                        LiveEventBus.get(EVENTBUS_UNREAD_MESSAGE).post(unReadCount)
                     }
 
-                    LiveEventBus.get(EVENTBUS_UNREAD_MESSAGE).post(unReadCount)
 
                 }
 
@@ -114,5 +121,21 @@ class MessageFragment : BaseFragment<FragmentMessageBinding>(), OnRefreshListene
     override fun onRefresh(refreshLayout: RefreshLayout) {
         refreshLayout.finishRefresh(200)
         mViewModel.getMessageList()
+    }
+
+    /**
+     * 消息全设置为已读
+     */
+    private fun allReadMessage(userId : String) {
+        PyAppDialog(requireContext())
+            .setSingle(false)
+            .canCancel(true)
+            .setTitle(resources.getString(R.string.main_message))
+            .setMessage(resources.getString(R.string.all_read_hint))
+            .setPositive(resources.getString(R.string.sure))
+            .setPositiveCallBack {
+                mViewModel.readAllMessage(userId)
+            }
+            .show()
     }
 }

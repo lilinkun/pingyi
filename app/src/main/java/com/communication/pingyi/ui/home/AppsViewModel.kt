@@ -34,7 +34,7 @@ class AppsViewModel(private val repository: HomeAppsRepository) : BaseViewModel(
 
                 }
             }else if (result is NetResult.Error){
-                if (result.exception.errorCode == INTERNAL_SERVER_ERROR){
+                if (result.exception.errorCode == INTERNAL_SERVER_ERROR && result.exception.msg.contains("过期")){
                     LiveEventBus.get(EVENTBUS_TOKEN_INVALID).post(true)
                 }
             }
@@ -55,7 +55,7 @@ class AppsViewModel(private val repository: HomeAppsRepository) : BaseViewModel(
                     homeFlow.postValue(it)
 
                 }
-            }else if (result is NetResult.Error){
+            }else if (result is NetResult.Error && result.exception.msg.contains("过期")){
                 if (result.exception.errorCode == INTERNAL_SERVER_ERROR){
                     LiveEventBus.get(EVENTBUS_TOKEN_INVALID).post(true)
                 }

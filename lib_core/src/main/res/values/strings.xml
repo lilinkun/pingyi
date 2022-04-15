@@ -34,6 +34,8 @@
 
     <!--消息-->
     <string name="event_style">事件类型:</string>
+    <string name="all_read_hint">全部设置为已读</string>
+    <string name="no_read_message">没有未读信息</string>
 
 
     <!-- 我的-->

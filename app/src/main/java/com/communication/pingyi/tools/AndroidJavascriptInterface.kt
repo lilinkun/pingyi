@@ -65,11 +65,8 @@ class AndroidJavascriptInterface(webviewActivity: WebviewActivity) {
 
     @JavascriptInterface
     fun getLocal(): String {
-        return MMKVTool.getToken()
+        return webviewActivity.getLocationLL()
     }
-
-
-
 
 
 }

@@ -1,5 +1,6 @@
 package com.communication.pingyi.ui.me.me
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Lifecycle
@@ -9,6 +10,7 @@ import com.communication.lib_core.checkDoubleClick
 import com.communication.lib_core.tools.EVENTBUS_LOGOUT_SUCCESS
 import com.communication.lib_http.base.MMKVTool
 import com.communication.pingyi.R
+import com.communication.pingyi.activity.LoginActivity
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentMeBinding
 import com.communication.pingyi.ui.main.MainFragmentDirections
@@ -150,6 +152,9 @@ class MeFragment : BaseFragment<FragmentMeBinding>(), OnRefreshListener {
 
     private fun logoutConfirm() {
         MMKVTool.clearAll()
+        val intent = Intent(context,LoginActivity::class.java)
+        intent.putExtra("name","")
+        startActivity(intent)
         requireActivity().finish()
     }
 
