@@ -2,14 +2,19 @@ package com.communication.pingyi.ui.home
 
 import android.os.Bundle
 import android.view.View
+import com.communication.lib_core.tools.EVENTBUS_CHECK_UPDATE_VERSION
 import com.communication.lib_core.tools.EVENTBUS_HOME_APPS_SUCCESS
+import com.communication.lib_core.tools.Utils
 import com.communication.lib_http.base.MMKVTool
 import com.communication.lib_http.httpdata.home.AppsItem
+import com.communication.lib_http.httpdata.version.VersionModel
 import com.communication.pingyi.R
 import com.communication.pingyi.adapter.HomeAppListAdapter
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentHomeBinding
 import com.communication.pingyi.ext.pyToast
+import com.communication.pingyi.tools.UpdateVersionTool
+import com.communication.pingyi.ui.update_version.UpdateVersionViewModel
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
@@ -23,6 +28,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnRefreshListener {
 
     private val mViewModel by viewModel<AppsViewModel>()
+    private val mUpdateViewModel by viewModel<UpdateVersionViewModel>()
 
 
     private val mAppListAdapter = HomeAppListAdapter()
@@ -36,15 +42,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnRefreshListener {
 
         mViewModel.getHomeFlow()
         mViewModel.getHomeAppsList()
+        mUpdateViewModel.checkUpdate(false)
 
         LiveEventBus.get(
             EVENTBUS_HOME_APPS_SUCCESS,
             String::class.java
         ).observe(this,{
-
-
             initHomeAppComplete()
 
+        })
+
+        LiveEventBus.get(
+            EVENTBUS_CHECK_UPDATE_VERSION,
+            VersionModel::class.java
+        ).observe(this,{
+            if (isActive()) {
+                updateVersion(it)
+            }
         })
 
     }
@@ -100,6 +114,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnRefreshListener {
         mViewModel.getHomeFlow()
         mViewModel.getHomeAppsList()
 
+    }
+
+
+    private fun updateVersion(info: VersionModel?) {
+        info?.versionCode?.let {
+            val currentVersionCode = Utils.getVersionCode(requireContext())
+            if (currentVersionCode >= it.toLong()) {
+                return
+            }
+            UpdateVersionTool.update(requireActivity(), info)
+        }
     }
 
 
