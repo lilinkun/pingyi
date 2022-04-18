@@ -19,12 +19,12 @@ import java.util.concurrent.TimeUnit
  * Description：
  */
 
-//const val SERVER_BASE_URL = "http://192.168.1.240:9201"
-//const val SERVER_BASE_URL = "http://192.168.40.94:8080"
+const val SERVER_BASE_URL = "http://192.168.40.94:8080"
 //const val SERVER_BASE_URL = "http://192.168.40.92:8888"
 //const val SERVER_BASE_URL = "http://192.168.1.227:8080"
 //const val SERVER_BASE_URL = "http://192.168.1.227:9200"
-const val SERVER_BASE_URL = "http://192.168.1.236:8080"
+//const val SERVER_BASE_URL = "http://192.168.1.236:8080"
+//const val SERVER_BASE_URL = "http://192.168.1.240:9201"
 
 //const val WEB_EVENT = "http://192.168.1.204:8088/#/event/overview"
 //const val WEB_RUNTIME = "http://192.168.1.204:8088/#/runtime/overview"
