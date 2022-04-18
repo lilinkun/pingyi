@@ -23,6 +23,6 @@ interface MessageApi {
     @GET("$SERVER_BASE_URL/operation/app/appMessage/getInfoByUserId")
     suspend fun readAllMessage(
         @Query("userId") userId : String
-    ) : BaseModel<String>
+    ) : BaseModel<MessageBean>
 
 }

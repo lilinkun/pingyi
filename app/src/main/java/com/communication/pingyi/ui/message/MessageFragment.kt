@@ -107,6 +107,10 @@ class MessageFragment : BaseFragment<FragmentMessageBinding>() , OnRefreshListen
 
             }
 
+            messageError.observe(viewLifecycleOwner){
+                pyToastShort(it)
+            }
+
             isLoading.observe(viewLifecycleOwner){
                 if (it) {
                     binding.progressBar.visibility = View.VISIBLE

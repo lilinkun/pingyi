@@ -36,6 +36,7 @@ class AuthorizationInterceptor : Interceptor{
     private fun addTokenHeaders(builder: Request.Builder): Request {
         return builder.addHeader(
             "Authorization",
+//            "123"
             MMKVTool.getToken()
         ).build()
     }

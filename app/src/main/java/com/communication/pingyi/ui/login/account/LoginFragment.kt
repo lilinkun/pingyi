@@ -83,7 +83,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     override fun initView() {
 
-
         binding.let {
 
 //            showVcode()

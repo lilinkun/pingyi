@@ -3,6 +3,8 @@ package com.communication.pingyi.ui.me.me
 import androidx.lifecycle.MutableLiveData
 import com.communication.lib_core.tools.EVENTBUS_LOGOUT_SUCCESS
 import com.communication.lib_core.tools.EVENTBUS_TOAST_STRING
+import com.communication.lib_core.tools.EVENTBUS_TOKEN_INVALID
+import com.communication.lib_http.api.mBaseModel
 import com.communication.lib_http.base.NetResult
 import com.communication.lib_http.httpdata.me.PersonInfoBean
 import com.communication.pingyi.base.BaseViewModel
@@ -21,7 +23,7 @@ class MeViewModel(private val repo : MeRepository) : BaseViewModel(){
         launch {
 
             isLoading.postValue(true)
-            val result = repo.login()
+            val result = repo.logout()
             if (result is NetResult.Success){
                 LiveEventBus.get(EVENTBUS_LOGOUT_SUCCESS).post(true)
             }else if (result is NetResult.Error){
@@ -30,6 +32,11 @@ class MeViewModel(private val repo : MeRepository) : BaseViewModel(){
 
             isLoading.postValue(false)
 
+            mBaseModel?.let {
+                if (mBaseModel?.data == 401){
+                    LiveEventBus.get(EVENTBUS_TOKEN_INVALID).post(mBaseModel?.msg)
+                }
+            }
         }
     }
 
@@ -41,11 +48,17 @@ class MeViewModel(private val repo : MeRepository) : BaseViewModel(){
                 personInfo.postValue(result.data)
             }else if (result is NetResult.Error){
                 LiveEventBus.get(EVENTBUS_TOAST_STRING).post(result.exception.message)
+
             }
             isLoading.postValue(false)
 
         }
 
+        mBaseModel?.let {
+            if (mBaseModel?.data == 401){
+                LiveEventBus.get(EVENTBUS_TOKEN_INVALID).post(mBaseModel?.msg)
+            }
+        }
 
 
     }

@@ -41,9 +41,9 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
 
         LiveEventBus.get(
             EVENTBUS_TOKEN_INVALID,
-            Boolean::class.java).observe(this,{
+            String::class.java).observe(this,{
                 str->if (isActive()){
-            if (str) {
+                pyToast(str)
                 val name = MMKVTool.getUsername()
                 MMKVTool.clearAll()
                 val intent = Intent(activity, LoginActivity::class.java)
@@ -52,7 +52,6 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
                 startActivity(intent)
                 activity?.finish()
             }
-        }
         })
     }
 

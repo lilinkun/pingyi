@@ -1,5 +1,6 @@
 package com.communication.lib_http.base
 
+import android.util.Log
 import com.communication.lib_http.exception.DealException
 import com.communication.lib_http.exception.ResultException
 import kotlinx.coroutines.CoroutineScope
@@ -36,11 +37,12 @@ open class BaseRepository {
                 successBlock?.let { it() }
                 NetResult.Success(response.data)
             }else{
+
                 errorBlock?.let { it() }
                 NetResult.Error(
                     ResultException(
                         response.code,
-                        response.msg
+                        response.msg,
                     )
                 )
             }

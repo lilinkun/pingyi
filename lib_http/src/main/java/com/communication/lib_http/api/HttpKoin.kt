@@ -1,8 +1,11 @@
 package com.communication.lib_http.api
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import com.communication.lib_http.BuildConfig
+import com.communication.lib_http.base.BaseModel
 import com.communication.lib_http.interceptor.AuthorizationInterceptor
+import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -17,11 +20,11 @@ import java.util.concurrent.TimeUnit
  */
 
 //const val SERVER_BASE_URL = "http://192.168.1.240:9201"
-const val SERVER_BASE_URL = "http://192.168.40.94:8080"
+//const val SERVER_BASE_URL = "http://192.168.40.94:8080"
 //const val SERVER_BASE_URL = "http://192.168.40.92:8888"
 //const val SERVER_BASE_URL = "http://192.168.1.227:8080"
 //const val SERVER_BASE_URL = "http://192.168.1.227:9200"
-//const val SERVER_BASE_URL = "http://192.168.1.236:8098"
+const val SERVER_BASE_URL = "http://192.168.1.236:8080"
 
 //const val WEB_EVENT = "http://192.168.1.204:8088/#/event/overview"
 //const val WEB_RUNTIME = "http://192.168.1.204:8088/#/runtime/overview"
@@ -32,6 +35,8 @@ const val WEB_MESSAGE = "http://192.168.40.141:8200/#/event/detail?id="
 
 const val TIME_OUT = 15L
 
+var mBaseModel: BaseModel<Int>? = null
+
 
 val httpModule = module {
     single {
@@ -39,6 +44,12 @@ val httpModule = module {
             Log.w(
                 "httpLoggingInterceptor", message
             )
+            if(message.contains("\"data\":401")){
+                var g = Gson().fromJson(message,BaseModel::class.java)
+                mBaseModel = g as BaseModel<Int>
+            }else{
+                mBaseModel == null
+            }
         }
         httpLoggingInterceptor.level = if (BuildConfig.DEBUG) {
             HttpLoggingInterceptor.Level.BODY

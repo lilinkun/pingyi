@@ -1,6 +1,7 @@
 package com.communication.pingyi.tools
 
 import android.app.Activity
+import com.communication.lib_http.base.BaseModel
 import java.util.ArrayList
 
 /**
@@ -9,6 +10,8 @@ import java.util.ArrayList
  * Description：
  */
 object ActivityUtil {
+
+    lateinit var mBaseModel : BaseModel<Int>
 
     var activityList: MutableList<Activity> = ArrayList()
 

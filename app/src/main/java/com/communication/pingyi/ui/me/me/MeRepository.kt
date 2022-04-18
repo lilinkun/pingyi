@@ -12,7 +12,7 @@ import com.communication.lib_http.httpdata.me.PersonInfoBean
  */
 class MeRepository(private val meApi : MeApi) : BaseRepository() {
 
-    suspend fun login() : NetResult<String>{
+    suspend fun logout() : NetResult<String>{
         return callRequest { handleResponse(meApi.logout()) }
     }
 

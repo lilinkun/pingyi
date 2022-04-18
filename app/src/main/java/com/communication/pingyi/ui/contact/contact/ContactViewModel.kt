@@ -4,9 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import com.communication.lib_http.base.NetResult
 import com.communication.lib_http.httpdata.contact.ContactBean
 import com.communication.lib_http.httpdata.contact.ContactItem
-import com.communication.lib_http.httpdata.contact.ContactUserBean
 import com.communication.lib_http.httpdata.contact.SearchUserBean
 import com.communication.pingyi.base.BaseViewModel
+import com.communication.pingyi.ext.pyLog
 
 /**
  * Created by LG
@@ -31,6 +31,10 @@ class ContactViewModel(private val repos : ContactRepository) : BaseViewModel(){
                    org_list.postValue(it.trees)
                 }
             }else if(result is NetResult.Error){
+                result.exception?.let {
+                    pyLog(it.code.toString() + it.msg)
+                }
+            }else{
             }
 
             isLoading.postValue(false)

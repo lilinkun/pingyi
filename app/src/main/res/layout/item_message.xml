@@ -55,13 +55,16 @@
 
         <com.communication.lib_core.TextViewYH
             android:id="@+id/tv_stakeno"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="@+id/rl_message_type"
             app:layout_constraintStart_toEndOf="@+id/rl_message_type"
+            app:layout_constraintEnd_toStartOf="@+id/tv_createdate"
             android:layout_marginStart="@dimen/dp15"
             android:layout_marginTop="@dimen/dp5"
             android:textSize="@dimen/dp16"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:text="@{message.messageTitle}"
             android:textColor="@color/black_msg"
             />
