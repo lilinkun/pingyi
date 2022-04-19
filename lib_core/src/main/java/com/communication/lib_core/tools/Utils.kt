@@ -12,6 +12,7 @@ import androidx.core.app.ActivityCompat
 import java.util.*
 import java.lang.Exception
 import java.lang.StringBuilder
+import java.text.DecimalFormat
 
 
 object Utils {
@@ -112,6 +113,10 @@ object Utils {
 
     fun getDeviceId(context: Context): String {
         return Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID);
+    }
+
+    fun numberThousandseparator(num : Int) : String{
+        return DecimalFormat.getNumberInstance().format(num)
     }
 
 }

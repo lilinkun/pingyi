@@ -10,6 +10,7 @@ import com.communication.lib_http.httpdata.me.DeptBean
 data class ContactUserBean(
     val userName : String,
     val postJob : String,
+    val postDept : String,
     val phoneNumber : String,
     val dept : DeptBean
 )

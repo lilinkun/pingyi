@@ -43,7 +43,7 @@ class ContactSearchFragment : BaseFragment<FragmentSearchBinding>() {
 
             val username = it.addressUser.userName
             val phone = it.addressUser.phoneNumber
-            val dept = it.addressUser.dept.deptName
+            val dept = it.addressUser.postDept
             val role = it.addressUser.postJob
 
             val dir = ContactSearchFragmentDirections.actionContactSearchFragmentToContactDetailFragment(username,phone,role,dept)
