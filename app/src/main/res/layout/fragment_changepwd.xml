@@ -93,6 +93,7 @@
                 android:layout_marginStart="15dp"
                 android:gravity="center_vertical"
                 android:hint="@string/hint_input_psd_old"
+                android:digits="@string/digits"
                 android:background="@null"
                 android:inputType="textPassword"
                 />
@@ -137,6 +138,7 @@
                 android:hint="@string/hint_input_psd_new"
                 android:background="@null"
                 android:inputType="textPassword"
+                android:digits="@string/digits"
                 />
 
 
@@ -173,6 +175,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/view_psd_new_line"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tv_psd_sure_new"
+                android:digits="@string/digits"
                 android:layout_marginStart="15dp"
                 android:gravity="center_vertical"
                 android:hint="@string/hint_input_psd_sure_new"

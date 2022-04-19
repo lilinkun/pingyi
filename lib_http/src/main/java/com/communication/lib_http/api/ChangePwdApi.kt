@@ -13,7 +13,7 @@ import retrofit2.http.PUT
  */
 interface ChangePwdApi {
 
-    @PUT("$SERVER_BASE_URL/system/user/profile/appUpdatePwd")
+    @PUT("$SERVER_BASE_URL/system/app/updatePwd")
     suspend fun changePwd(
         @Body changePwdBean : ChangePwdBean
     ) : BaseModel<String>

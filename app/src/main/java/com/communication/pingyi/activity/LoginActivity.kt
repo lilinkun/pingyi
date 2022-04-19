@@ -1,9 +1,10 @@
 package com.communication.pingyi.activity
 
 import android.os.Bundle
+import androidx.navigation.Navigation
 import com.communication.pingyi.R
 import com.communication.pingyi.base.BaseActivity
-import com.jeremyliao.liveeventbus.LiveEventBus
+import com.communication.pingyi.ui.login.spalash.SpalashFragmentArgs
 
 /**
  * Created by LG
@@ -12,15 +13,24 @@ import com.jeremyliao.liveeventbus.LiveEventBus
  */
 class LoginActivity : BaseActivity() {
 
+    var relogin = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-        val name = intent.getStringExtra("name")
-        name?.let {
-
-            LiveEventBus.get("name").post(it)
-
+        intent.getStringExtra("name")?.let {
+            relogin = true
         }
+
+        setContentView(R.layout.activity_login)
+
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        val args = SpalashFragmentArgs(relogin = relogin)
+        val nav = Navigation.findNavController(this,R.id.nav_host)
+        nav.setGraph(R.navigation.nav_login,args.toBundle())
     }
 
     override fun onBackPressed() {

@@ -11,6 +11,12 @@
         android:label="SpalashFragment"
         >
 
+        <argument
+            android:defaultValue="false"
+            android:name="relogin"
+            app:argType="boolean"
+            />
+
         <action
             android:id="@+id/action_spalashFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment"

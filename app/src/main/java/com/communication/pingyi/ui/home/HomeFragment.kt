@@ -7,6 +7,7 @@ import com.communication.lib_core.tools.EVENTBUS_HOME_APPS_SUCCESS
 import com.communication.lib_core.tools.Utils
 import com.communication.lib_http.base.MMKVTool
 import com.communication.lib_http.httpdata.home.AppsItem
+import com.communication.lib_http.httpdata.home.HomeFlowBean
 import com.communication.lib_http.httpdata.version.VersionModel
 import com.communication.pingyi.R
 import com.communication.pingyi.adapter.HomeAppListAdapter
@@ -83,7 +84,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnRefreshListener {
             }
 
             homeFlow.observe(viewLifecycleOwner){
-                val homeFlowBean = homeFlow.value
+
+                val cumulativeTraffic = homeFlow.value?.cumulativeTraffic?.let { it1 ->
+                    Utils.numberThousandseparator(
+                        it1.toInt())
+                }
+
+                val historyLowestVehicle = homeFlow.value?.historyLowestVehicle?.let {
+                    Utils.numberThousandseparator(it.toInt())
+                }
+
+                val historyHighestVehicle = homeFlow.value?.historyHighestVehicle?.let {
+                    Utils.numberThousandseparator(it.toInt())
+                }
+
+                var homeFlowBean = HomeFlowBean(cumulativeTraffic = cumulativeTraffic,historyLowestVehicle = historyLowestVehicle,historyHighestVehicle = historyHighestVehicle)
                 binding.homeFlow = homeFlowBean
             }
 

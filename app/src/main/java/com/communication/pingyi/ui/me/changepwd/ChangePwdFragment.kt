@@ -3,6 +3,7 @@ package com.communication.pingyi.ui.me.changepwd
 import android.content.Intent
 import android.os.Bundle
 import android.util.Base64
+import androidx.core.text.isDigitsOnly
 import androidx.navigation.fragment.findNavController
 import com.communication.lib_core.checkDoubleClick
 import com.communication.lib_core.tools.EVENTBUS_CHANGE_PASSWORD_SUCCESS
@@ -17,6 +18,7 @@ import com.communication.pingyi.databinding.FragmentChangepwdBinding
 import com.communication.pingyi.tools.RSAUtils
 import com.jeremyliao.liveeventbus.LiveEventBus
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.regex.Pattern
 
 /**
  * Created by LG
@@ -62,10 +64,35 @@ class ChangePwdFragment : BaseFragment<FragmentChangepwdBinding>(){
                         LiveEventBus.get(EVENTBUS_TOAST_STRING).post("请输入旧密码")
                         return@setOnClickListener
                     }
+
+                    /*if(evPsdOldValue.text.length < 6 || evPsdOldValue.text.length > 20){
+                        LiveEventBus.get(EVENTBUS_TOAST_STRING).post("请输入6-20位的旧密码")
+                        return@setOnClickListener
+                    }*/
+
                     if (evPsdNewValue.text!!.isBlank()) {
                         LiveEventBus.get(EVENTBUS_TOAST_STRING).post("请输入新密码")
                         return@setOnClickListener
                     }
+
+                    if(evPsdNewValue.text.length < 6 || evPsdNewValue.text.length > 20){
+                        LiveEventBus.get(EVENTBUS_TOAST_STRING).post("请输入6-20位的新密码")
+                        return@setOnClickListener
+                    }
+
+                    val p = Pattern.compile("[0-9]*")
+                    val s = Pattern.compile("[a-zA-Z]*")
+
+                    if ( p.matcher(evPsdNewValue.text.toString()).matches()){
+                        LiveEventBus.get(EVENTBUS_TOAST_STRING).post("新密码不能全是数字")
+                        return@setOnClickListener
+                    }
+
+                    if ( s.matcher(evPsdNewValue.text.toString()).matches()){
+                        LiveEventBus.get(EVENTBUS_TOAST_STRING).post("新密码不能全是字母")
+                        return@setOnClickListener
+                    }
+
                     if (evPsdSureNewValue.text!!.isBlank()) {
                         LiveEventBus.get(EVENTBUS_TOAST_STRING).post("请确认新密码")
                         return@setOnClickListener

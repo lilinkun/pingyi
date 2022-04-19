@@ -6,7 +6,7 @@ package com.communication.lib_http.httpdata.home
  * Description：
  */
 data class HomeFlowBean(
-    val cumulativeTraffic : Int,
-    val historyLowestVehicle : Int,
-    val historyHighestVehicle : Int
+    val cumulativeTraffic : String?,
+    val historyLowestVehicle : String?,
+    val historyHighestVehicle : String?
 )

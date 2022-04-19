@@ -3,20 +3,20 @@ package com.communication.pingyi.ui.login.spalash
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.communication.pingyi.base.BaseFragment
-import com.communication.pingyi.ui.login.welcome.WelcomeFragmentDirections
-import com.jeremyliao.liveeventbus.LiveEventBus
+import androidx.navigation.fragment.navArgs
 
 class SpalashFragment : Fragment(){
 
     var isLogin = false
 
+    val args : SpalashFragmentArgs by navArgs()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-            LiveEventBus.get("name",String::class.java).observe(this,{
+            if(args.relogin){
                 isLogin = true
-            })
+            }
 
             if(isLogin){
                 navigateToLogin()
