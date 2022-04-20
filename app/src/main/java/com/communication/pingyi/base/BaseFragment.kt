@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import com.communication.lib_core.tools.EVENTBUS_TOAST_STRING
 import com.communication.lib_core.tools.EVENTBUS_TOKEN_INVALID
+import com.communication.lib_http.api.mBaseModel
 import com.communication.lib_http.base.MMKVTool
 import com.communication.pingyi.activity.LoginActivity
 import com.communication.pingyi.ext.pyToast
@@ -34,23 +35,27 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
             String::class.java).observe(this,{
                 str->if (isActive() && showSuccessToast){
                     str?.let {
-                        pyToast(it)
+                        if(!it.equals("解析错误")) {
+                            pyToast(it)
+                        }
                     }
         }
         })
 
         LiveEventBus.get(
             EVENTBUS_TOKEN_INVALID,
-            String::class.java).observe(this,{
+            String::class.java
+        ).observe(this,{
                 str->if (isActive()){
-                pyToast(str)
-                val name = MMKVTool.getUsername()
-                MMKVTool.clearAll()
-                val intent = Intent(activity, LoginActivity::class.java)
-                MMKVTool.saveUsername(name)
-                intent.putExtra("name",name)
-                startActivity(intent)
-                activity?.finish()
+                    mBaseModel == null
+                    pyToast(str)
+                    val name = MMKVTool.getUsername()
+                    MMKVTool.clearAll()
+                    val intent = Intent(activity, LoginActivity::class.java)
+                    MMKVTool.saveUsername(name)
+                    intent.putExtra("name",name)
+                    startActivity(intent)
+                    activity?.finish()
             }
         })
     }

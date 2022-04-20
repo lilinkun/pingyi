@@ -52,13 +52,13 @@ class MeViewModel(private val repo : MeRepository) : BaseViewModel(){
             }
             isLoading.postValue(false)
 
-        }
-
-        mBaseModel?.let {
-            if (mBaseModel?.data == 401){
-                LiveEventBus.get(EVENTBUS_TOKEN_INVALID).post(mBaseModel?.msg)
+            mBaseModel?.let {
+                if (mBaseModel?.data == 401){
+                    LiveEventBus.get(EVENTBUS_TOKEN_INVALID).post(mBaseModel?.msg)
+                }
             }
         }
+
 
 
     }

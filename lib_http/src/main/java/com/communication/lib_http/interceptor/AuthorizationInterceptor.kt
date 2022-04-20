@@ -20,7 +20,7 @@ class AuthorizationInterceptor : Interceptor{
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
-        if (request.url.toString().contains("/app/login") || request.url.toString().contains("/app/updateApp")) {
+        if (request.url.toString().contains("/app/login")) {
             return chain.proceed(request)
         }
         var response = chain.proceed(addTokenHeaders(request.newBuilder()))

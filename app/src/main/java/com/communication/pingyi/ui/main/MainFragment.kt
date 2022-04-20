@@ -2,6 +2,7 @@ package com.communication.pingyi.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import androidx.core.view.children
 import androidx.core.view.forEach
 import androidx.core.view.forEachIndexed
@@ -61,18 +62,17 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         })
 
 
+
     }
 
     override fun onStart() {
         super.onStart()
 
-        LiveEventBus.get("message",Boolean::class.java).observe(this,{
-            /*viewPager?.let {
-                it.currentItem = 2
-                binding.viewPager.currentItem = 1
-            }*/
 
-            binding.viewPager.currentItem = 1
+        LiveEventBus.get("message",Boolean::class.java).observe(this,{
+
+            jumpCurrent()
+
         })
     }
 
@@ -84,9 +84,16 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         viewPager.offscreenPageLimit = 4
         viewPager.isUserInputEnabled = false//禁止滑动
 
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                bottomNavBar.menu.getItem(position).isChecked = true
+            }
+        })
+
         bottomNavBar.itemIconTintList=null
         bottomNavBar.setOnNavigationItemSelectedListener {
-            var index = ITEM_HOME
+            var index = ITEM_MESSAGE
             index = when (it.itemId) {
                 R.id.nav_home -> ITEM_HOME
                 R.id.nav_contacts -> ITEM_CONTACTS
@@ -137,6 +144,11 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                 }
             }
         }
+    }
+
+    private fun jumpCurrent(){
+
+        viewPager.setCurrentItem(2, false)
     }
 
 
