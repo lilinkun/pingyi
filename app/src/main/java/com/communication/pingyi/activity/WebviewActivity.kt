@@ -12,6 +12,7 @@ import android.provider.Settings
 import android.view.View
 import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
+import android.webkit.WebSettings
 import android.webkit.WebSettings.LayoutAlgorithm.SINGLE_COLUMN
 import android.webkit.WebView
 import com.communication.lib_core.PyAppDialog
@@ -145,6 +146,7 @@ class WebviewActivity : BaseActivity() {
         settings.layoutAlgorithm = SINGLE_COLUMN
         settings.loadWithOverviewMode = true
         settings.domStorageEnabled = true
+        settings.cacheMode = WebSettings.LOAD_NO_CACHE
         settings.databaseEnabled = true
         settings.setSupportZoom(false)
         webView.addJavascriptInterface(AndroidJavascriptInterface(this), "Android")
