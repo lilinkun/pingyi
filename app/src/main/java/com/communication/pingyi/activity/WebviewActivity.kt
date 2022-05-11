@@ -24,9 +24,11 @@ import com.communication.pingyi.base.BaseActivity
 import com.communication.pingyi.ext.pyToastShort
 import com.communication.pingyi.tools.AndroidJavascriptInterface
 import com.communication.pingyi.tools.PhotoUtils
+import com.tencent.smtt.sdk.CacheManager
 import permissions.dispatcher.NeedsPermission
 import permissions.dispatcher.RuntimePermissions
 import java.io.File
+
 
 /**
  * Created by LG
@@ -226,6 +228,15 @@ class WebviewActivity : BaseActivity() {
             webView.clearView()
             webView.removeAllViews()
             webView.destroy()
+            val file = CacheManager.getCacheFileBaseDir()
+            if (file != null && file.exists() && file.isDirectory) {
+                for (item in file.listFiles()) {
+                    item.delete()
+                }
+                file.delete()
+            }
+            deleteDatabase("webview.db")
+            deleteDatabase("webviewCache.db")
         }
         super.onDestroy()
     }

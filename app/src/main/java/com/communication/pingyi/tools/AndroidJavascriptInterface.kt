@@ -64,6 +64,11 @@ class AndroidJavascriptInterface(webviewActivity: WebviewActivity) {
     }
 
     @JavascriptInterface
+    fun getUserName(): String {
+        return MMKVTool.getUsername()
+    }
+
+    @JavascriptInterface
     fun getLocal(): String {
         return webviewActivity.getLocationLL()
     }

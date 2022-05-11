@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.communication.lib_core.PyAppDialog
 import com.communication.lib_core.RecycleViewDivider
 import com.communication.lib_core.checkDoubleClick
-import com.communication.lib_core.tools.EVENTBUS_MESSAGE_CLICK
 import com.communication.lib_core.tools.EVENTBUS_MESSAGE_ITEM_CLICK
 import com.communication.lib_core.tools.EVENTBUS_UNREAD_MESSAGE
 import com.communication.lib_http.httpdata.message.MessageBean
@@ -14,10 +13,10 @@ import com.communication.pingyi.R
 import com.communication.pingyi.adapter.MessageAdapter
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentMessageBinding
-import com.communication.pingyi.ext.pyToast
 import com.communication.pingyi.ext.pyToastShort
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.scwang.smart.refresh.layout.api.RefreshLayout
+import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -26,7 +25,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  * on 2022/3/16  16:37
  * Description：
  */
-class MessageFragment : BaseFragment<FragmentMessageBinding>() , OnRefreshListener{
+class MessageFragment : BaseFragment<FragmentMessageBinding>() , OnRefreshListener,
+    OnLoadMoreListener {
 
     val mViewModel : MessageViewModel by viewModel<MessageViewModel>()
 
@@ -78,7 +78,9 @@ class MessageFragment : BaseFragment<FragmentMessageBinding>() , OnRefreshListen
         }
 
         binding.refreshLayout.setEnableRefresh(true)
+        binding.refreshLayout.setEnableLoadMore(true)
         binding.refreshLayout.setOnRefreshListener(this)
+        binding.refreshLayout.setOnLoadMoreListener(this)
     }
 
     override fun observeViewModels() {
@@ -86,7 +88,7 @@ class MessageFragment : BaseFragment<FragmentMessageBinding>() , OnRefreshListen
         with(mViewModel){
             messageList.observe(viewLifecycleOwner){
                 messageAdapter.submitList(it)
-                messageAdapter.notifyDataSetChanged()
+//                messageAdapter.notifyDataSetChanged()
 
                 it?.apply {
                     if (it.size > 0) {
@@ -124,6 +126,11 @@ class MessageFragment : BaseFragment<FragmentMessageBinding>() , OnRefreshListen
 
     override fun onRefresh(refreshLayout: RefreshLayout) {
         refreshLayout.finishRefresh(200)
+        mViewModel.getMessageList()
+    }
+
+    override fun onLoadMore(refreshLayout: RefreshLayout) {
+        refreshLayout.finishLoadMore(true)
         mViewModel.getMessageList()
     }
 

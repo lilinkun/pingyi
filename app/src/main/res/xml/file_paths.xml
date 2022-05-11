@@ -33,7 +33,7 @@
             name="camera_no_sdcard"
             path="" />
         <external-path
-            name="files_path"
+            name="external_path"
             path="pingyi/" />
         <external-path
             name="files_path"

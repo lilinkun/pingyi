@@ -3,10 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     >
-    <com.scwang.smart.refresh.layout.SmartRefreshLayout
-        android:id="@+id/refreshLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,6 +24,7 @@
             app:py_title_main_right_icon="@drawable/ic_message_main"
             />
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -38,18 +35,25 @@
             android:layout_marginBottom="@dimen/dp80"
             >
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_message"
+        <com.scwang.smart.refresh.layout.SmartRefreshLayout
+            android:id="@+id/refreshLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp20"
-            android:paddingStart="@dimen/dp16"
-            android:layout_marginStart="@dimen/dp16"
-            android:layout_marginEnd="@dimen/dp16"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_message"
-            android:background="@drawable/shape_circle"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:paddingStart="@dimen/dp16"
+                android:layout_marginStart="@dimen/dp16"
+                android:layout_marginEnd="@dimen/dp16"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_message"
+                android:background="@drawable/shape_circle"
             />
+
+        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
         </LinearLayout>
 
         <com.communication.lib_core.PyLoad
@@ -66,5 +70,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 </layout>

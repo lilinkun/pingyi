@@ -22,7 +22,7 @@ class MessageRepository(private val mApi : MessageApi) : BaseRepository() {
     }
 
 
-    suspend fun readAllMessage(userId : String) : NetResult<MessageBean>{
+    suspend fun readAllMessage(userId : String) : NetResult<String>{
         return callRequest { handleResponse(mApi.readAllMessage(userId)) }
     }
 

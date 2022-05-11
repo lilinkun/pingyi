@@ -18,7 +18,6 @@ import com.communication.lib_http.api.SERVER_BASE_URL
 import com.communication.lib_http.base.MMKVTool
 import com.communication.lib_http.httpdata.login.LoginInfo
 import com.communication.pingyi.R
-import com.communication.pingyi.activity.MainActivity
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentLoginBinding
 import com.communication.pingyi.ext.pyToast
@@ -75,9 +74,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     }
 
     private fun goToMainActivity() {
-        val intent = Intent(requireContext(),MainActivity::class.java)
+        val intent = Intent("com.communication.pingyi.main")
         startActivity(intent)
-        requireActivity().finish()
+        activity?.finish()
     }
 
 

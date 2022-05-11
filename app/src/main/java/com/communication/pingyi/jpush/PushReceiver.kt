@@ -9,9 +9,7 @@ import cn.jpush.android.api.CustomMessage
 import cn.jpush.android.api.JPushInterface
 import cn.jpush.android.api.NotificationMessage
 import cn.jpush.android.service.JPushMessageReceiver
-import com.communication.pingyi.activity.MainActivity
 import com.communication.pingyi.ext.pyToast
-import com.jeremyliao.liveeventbus.LiveEventBus
 
 /**
  * Created by LG
@@ -34,7 +32,8 @@ class PushReceiver : JPushMessageReceiver() {
             val msg = message.notificationExtras
 
             //打开自定义的Activity
-            val i = Intent(context, MainActivity::class.java)
+            val i = Intent("com.communication.pingyi.main")
+//            val i = Intent(context, MainActivity::class.java)
             val bundle = Bundle()
             bundle.putString("message","hello")
             i.putExtras(bundle)

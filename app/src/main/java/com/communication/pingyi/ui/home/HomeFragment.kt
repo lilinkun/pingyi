@@ -1,11 +1,11 @@
 package com.communication.pingyi.ui.home
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import com.communication.lib_core.tools.EVENTBUS_CHECK_UPDATE_VERSION
 import com.communication.lib_core.tools.EVENTBUS_HOME_APPS_SUCCESS
 import com.communication.lib_core.tools.Utils
-import com.communication.lib_http.base.MMKVTool
 import com.communication.lib_http.httpdata.home.AppsItem
 import com.communication.lib_http.httpdata.home.HomeFlowBean
 import com.communication.lib_http.httpdata.version.VersionModel
@@ -13,7 +13,6 @@ import com.communication.pingyi.R
 import com.communication.pingyi.adapter.HomeAppListAdapter
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentHomeBinding
-import com.communication.pingyi.ext.pyToast
 import com.communication.pingyi.tools.UpdateVersionTool
 import com.communication.pingyi.ui.update_version.UpdateVersionViewModel
 import com.jeremyliao.liveeventbus.LiveEventBus
@@ -69,6 +68,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnRefreshListener {
             lifecycleOwner = viewLifecycleOwner
             appList.adapter = mAppListAdapter
 
+
+           /* tvJumpThirdApp.setOnClickListener {
+                val url = "qhapp://com.qh.tesla.qh/MainActivity"
+                val intent = Intent(Intent.ACTION_VIEW,Uri.parse(url))
+                startActivity(intent)
+            }*/
+
         }
         binding.refreshLayout.setEnableRefresh(true)
         binding.refreshLayout.setOnRefreshListener(this)
@@ -80,7 +86,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnRefreshListener {
             appsLiveData.observe(viewLifecycleOwner){
                 val appsItem : MutableList<AppsItem>? = appsLiveData.value?.children
                 mAppListAdapter.submitList(appsItem)
-                mAppListAdapter.notifyDataSetChanged()
+//                mAppListAdapter.notifyDataSetChanged()
             }
 
             homeFlow.observe(viewLifecycleOwner){
@@ -98,7 +104,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnRefreshListener {
                     Utils.numberThousandseparator(it.toInt())
                 }
 
-                var homeFlowBean = HomeFlowBean(cumulativeTraffic = cumulativeTraffic,historyLowestVehicle = historyLowestVehicle,historyHighestVehicle = historyHighestVehicle)
+                val homeFlowBean = HomeFlowBean(cumulativeTraffic = cumulativeTraffic,historyLowestVehicle = historyLowestVehicle,historyHighestVehicle = historyHighestVehicle)
                 binding.homeFlow = homeFlowBean
             }
 
@@ -110,10 +116,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnRefreshListener {
                 }
             }
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
     }
 
 

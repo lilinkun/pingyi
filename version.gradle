@@ -63,7 +63,9 @@ ext{
             permkap               : "org.permissionsdispatcher:permissionsdispatcher-processor:4.3.0",
 
 
-            luban        : "top.zibin:Luban:1.1.8"
+            luban                 : "top.zibin:Luban:1.1.8",
+
+            leakcanary            : "com.squareup.leakcanary:leakcanary-android:2.2"
     ]
 
     androidx = [

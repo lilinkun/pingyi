@@ -1,21 +1,14 @@
 package com.communication.pingyi.ui.login.welcome
 
 import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import androidx.annotation.RequiresApi
-import androidx.core.animation.addListener
 import androidx.navigation.fragment.findNavController
 import com.communication.lib_http.base.MMKVTool
 import com.communication.pingyi.R
-import com.communication.pingyi.activity.MainActivity
 import com.communication.pingyi.base.BaseFragment
 import com.communication.pingyi.databinding.FragmentWelcomeBinding
-import com.jeremyliao.liveeventbus.LiveEventBus
 
 /**
  * Created by LG
@@ -76,7 +69,7 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(){
 
 
     private fun goToMainActivity() {
-        val intent = Intent(requireContext(), MainActivity::class.java)
+        val intent = Intent("com.communication.pingyi.main")
         requireContext().startActivity(intent)
         requireActivity().finish()
     }

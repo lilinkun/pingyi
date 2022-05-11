@@ -1,8 +1,8 @@
 package com.communication.pingyi.tools
 
-import android.os.Environment
 import androidx.fragment.app.FragmentActivity
 import com.communication.lib_core.PyUpdateDialog
+import com.communication.lib_core.R
 import com.communication.lib_core.tools.Constance.Companion.appFolderApkName
 import com.communication.lib_core.tools.Utils
 import com.communication.lib_http.httpdata.version.VersionModel
@@ -10,7 +10,6 @@ import listener.Md5CheckResultListener
 import listener.UpdateDownloadListener
 import model.UpdateConfig
 import update.UpdateAppUtils
-import com.communication.lib_core.R
 
 /**
  * Created by LG

@@ -136,12 +136,24 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/rl_home"
             android:layout_marginStart="@dimen/dp16"
-            android:layout_marginEnd="@dimen/dp16"
             android:layout_marginTop="@dimen/dp20"
+            android:layout_marginEnd="@dimen/dp16"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="3"
-            tools:listitem="@layout/item_home_apps"
-            />
+            tools:listitem="@layout/item_home_apps" />
+
+
+        <!--<com.communication.lib_core.TextViewYH
+            android:id="@+id/tv_jump_third_app"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/app_list"
+            android:text="跳到巧虎app"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp20"
+            />-->
+
 
 
         <com.communication.lib_core.PyLoad

@@ -117,8 +117,8 @@ class MeFragment : BaseFragment<FragmentMeBinding>(), OnRefreshListener {
                         if(it.roles.size > 0) {
                             includeInfo.infoJob.setContent(it.roles[0].roleName)
                         }
-                        tvUsername.setText(it.userName)
-                        tvPersonal.setText(it.userName.substring(0, 1))
+                        tvUsername.text = it.userName
+                        tvPersonal.text = it.userName.substring(0, 1)
                     }
                 }
             }
