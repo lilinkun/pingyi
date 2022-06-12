@@ -1,7 +1,6 @@
 package com.communication.lib_http.api
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import com.communication.lib_http.BuildConfig
 import com.communication.lib_http.base.BaseModel
 import com.communication.lib_http.interceptor.AuthorizationInterceptor
@@ -19,7 +18,9 @@ import java.util.concurrent.TimeUnit
  * Description：
  */
 
-const val SERVER_BASE_URL = "http://192.168.40.94:8080"
+const val SERVER_BASE_URL = "http://192.168.40.141:9001"
+//const val SERVER_BASE_URL = "http://36.158.43.42:20091"
+//const val SERVER_BASE_URL = "http://192.168.40.94:8080"
 //const val SERVER_BASE_URL = "http://192.168.40.92:8888"
 //const val SERVER_BASE_URL = "http://192.168.1.227:8080"
 //const val SERVER_BASE_URL = "http://192.168.1.227:9200"
@@ -47,12 +48,12 @@ val httpModule = module {
             Log.w(
                 "httpLoggingInterceptor", message
             )
-            if(message.contains("\"data\":401")){
+
+            if(message.contains("\"data\":401") && message.contains("\"code\":500")){
                 var g = Gson().fromJson(message,BaseModel::class.java)
                 mBaseModel = g as BaseModel<Int>
-            }else{
-                mBaseModel == null
             }
+
         }
         httpLoggingInterceptor.level = if (BuildConfig.DEBUG) {
             HttpLoggingInterceptor.Level.BODY
@@ -65,6 +66,7 @@ val httpModule = module {
     single {
 
         OkHttpClient.Builder()
+//            .addInterceptor(HandleLoginInterceptor())
             .addInterceptor(get<HttpLoggingInterceptor>())
             .addInterceptor(AuthorizationInterceptor())
             .connectTimeout(TIME_OUT, TimeUnit.SECONDS)

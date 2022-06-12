@@ -6,6 +6,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.communication.lib_core.RecycleViewDivider
 import com.communication.lib_core.tools.EVENTBUS_CONTACT_CLICK
+import com.communication.lib_core.tools.EVENTBUS_LOGIN_SUCCESS
 import com.communication.lib_http.httpdata.contact.ContactItem
 import com.communication.pingyi.R
 import com.communication.pingyi.adapter.ContactAdapter
@@ -44,6 +45,16 @@ class ContactFragment : BaseFragment<FragmentContactsBinding>(), OnRefreshListen
             if (isActive()) {
                 val dir = MainFragmentDirections.actionMainFragmentToOrgListFragment(it.id.toString(),it.label)
                 findNavController().navigate(dir)
+            }
+        })
+
+        LiveEventBus.get(
+            EVENTBUS_LOGIN_SUCCESS,
+            Boolean::class.java
+        ).observe(this,{
+
+            if(it) {
+                mViewModel.getContactList()
             }
         })
 

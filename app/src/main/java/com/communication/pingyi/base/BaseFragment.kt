@@ -35,29 +35,14 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
             String::class.java).observe(this,{
                 str->if (isActive() && showSuccessToast){
                     str?.let {
-                        if(!it.equals("解析错误")) {
+                        if(!it.contains("解析错误")) {
                             pyToast(it)
                         }
                     }
         }
         })
 
-        LiveEventBus.get(
-            EVENTBUS_TOKEN_INVALID,
-            String::class.java
-        ).observe(this,{
-                str->if (isActive()){
-                    mBaseModel == null
-                    pyToast(str)
-                    val name = MMKVTool.getUsername()
-                    MMKVTool.clearAll()
-                    val intent = Intent(activity, LoginActivity::class.java)
-                    MMKVTool.saveUsername(name)
-                    intent.putExtra("name",name)
-                    startActivity(intent)
-                    activity?.finish()
-            }
-        })
+
     }
 
     override fun onCreateView(

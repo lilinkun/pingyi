@@ -29,8 +29,7 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(){
             super.onStart()
             binding.apply {
                     alphaObjectAnimator = ObjectAnimator.ofFloat(rlWelcome, "alpha", 1f, 0.3f)
-                    alphaObjectAnimator.duration = 1000
-                    alphaObjectAnimator.repeatCount = 0
+                    alphaObjectAnimator.duration = 3000
                     alphaObjectAnimator.addListener(object : Animator.AnimatorListener {
                         override fun onAnimationStart(animation: Animator?) {
                         }
@@ -50,8 +49,11 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(){
 
                     alphaObjectAnimator.start()
 
+//                    invalidateAll()
 
             }
+
+
 
 
     }

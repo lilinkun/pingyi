@@ -22,6 +22,10 @@ object MMKVTool {
     private val inspection_hy = "inspection_hy"
     private val sysCacheMap = "sysCacheMap"
 
+    private val brand = "brand"
+    private val deviceId = "deviceId"
+    private val reconnect = "reconnect"
+
     fun initializeMMKV(context: Context) {
         MMKV.initialize(context)
     }
@@ -32,6 +36,7 @@ object MMKVTool {
         savePassword("")
         saveNickName("")
         saveIconUrl("")
+        saveReconnect(false)
     }
 
     fun saveToken(token: String) {
@@ -117,5 +122,30 @@ object MMKVTool {
     fun saveSysCacheMap(str : String){
         MMKV.defaultMMKV().encode(sysCacheMap,str)
     }
+
+    fun saveReconnect(isConnect : Boolean){
+        MMKV.defaultMMKV().encode(reconnect,isConnect)
+    }
+
+    fun getReconnect() : Boolean{
+        return MMKV.defaultMMKV().decodeBool(reconnect,false)
+    }
+
+    fun saveBrand(str: String){
+        MMKV.defaultMMKV().encode(brand,str)
+    }
+
+    fun getBrand() : String{
+        return MMKV.defaultMMKV().decodeString(brand)
+    }
+
+    fun saveDeviceId(str : String){
+        MMKV.defaultMMKV().encode(deviceId,str)
+    }
+
+    fun getDeviceId() : String{
+        return MMKV.defaultMMKV().decodeString(deviceId)
+    }
+
 
 }

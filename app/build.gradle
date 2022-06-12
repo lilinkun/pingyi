@@ -115,7 +115,7 @@ dependencies {
     implementation rootProject.libs.perm
     kapt rootProject.libs.permkap
 
-    debugImplementation rootProject.libs.leakcanary
+//    debugImplementation rootProject.libs.leakcanary
 
 
     implementation project(":lib_http")

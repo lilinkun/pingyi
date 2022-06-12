@@ -7,6 +7,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.communication.lib_core.PyAppDialog
 import com.communication.lib_core.checkDoubleClick
+import com.communication.lib_core.tools.EVENTBUS_LOGIN_SUCCESS
 import com.communication.lib_core.tools.EVENTBUS_LOGOUT_SUCCESS
 import com.communication.lib_http.base.MMKVTool
 import com.communication.pingyi.R
@@ -41,6 +42,17 @@ class MeFragment : BaseFragment<FragmentMeBinding>(), OnRefreshListener {
                 if (it){
                     logoutConfirm()
                 }
+            }
+        })
+
+
+        LiveEventBus.get(
+            EVENTBUS_LOGIN_SUCCESS,
+            Boolean::class.java
+        ).observe(this,{
+
+            if(it) {
+                meViewModel.getInfo()
             }
         })
 

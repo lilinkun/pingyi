@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.communication.lib_http.base.NetResult
 import com.communication.lib_http.httpdata.message.MessageBean
 import com.communication.pingyi.base.BaseViewModel
+import com.communication.pingyi.ext.pyToast
 
 /**
  * Created by LG
@@ -30,7 +31,9 @@ class MessageViewModel(private val repo : MessageRepository) : BaseViewModel() {
 
             }else if (result is NetResult.Error){
                 result.exception?.let {
-                    messageError.postValue(it.msg)
+                    if(!it.msg.contains("解析错误")) {
+                        messageError.postValue(it.msg)
+                    }
                 }
             }
             isLoading.postValue(false)

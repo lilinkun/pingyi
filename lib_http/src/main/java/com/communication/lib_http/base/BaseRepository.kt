@@ -37,7 +37,6 @@ open class BaseRepository {
                 successBlock?.let { it() }
                 NetResult.Success(response.data)
             }else{
-
                 errorBlock?.let { it() }
                 NetResult.Error(
                     ResultException(

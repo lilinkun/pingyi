@@ -2,10 +2,12 @@ package com.communication.pingyi.ui.message
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.communication.lib_core.PyAppDialog
 import com.communication.lib_core.RecycleViewDivider
 import com.communication.lib_core.checkDoubleClick
+import com.communication.lib_core.tools.EVENTBUS_LOGIN_SUCCESS
 import com.communication.lib_core.tools.EVENTBUS_MESSAGE_ITEM_CLICK
 import com.communication.lib_core.tools.EVENTBUS_UNREAD_MESSAGE
 import com.communication.lib_http.httpdata.message.MessageBean
@@ -47,6 +49,17 @@ class MessageFragment : BaseFragment<FragmentMessageBinding>() , OnRefreshListen
             String::class.java
         ).observe(this,{
             mViewModel.readOnlyMessage(it)
+        })
+
+
+        LiveEventBus.get(
+            EVENTBUS_LOGIN_SUCCESS,
+            Boolean::class.java
+        ).observe(this,{
+
+                if(it) {
+                    mViewModel.getMessageList()
+                }
         })
 
     }
@@ -120,6 +133,7 @@ class MessageFragment : BaseFragment<FragmentMessageBinding>() , OnRefreshListen
                     binding.progressBar.visibility = View.GONE
                 }
             }
+            
         }
 
     }

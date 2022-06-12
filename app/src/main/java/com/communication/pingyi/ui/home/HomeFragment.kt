@@ -3,8 +3,10 @@ package com.communication.pingyi.ui.home
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.Lifecycle
 import com.communication.lib_core.tools.EVENTBUS_CHECK_UPDATE_VERSION
 import com.communication.lib_core.tools.EVENTBUS_HOME_APPS_SUCCESS
+import com.communication.lib_core.tools.EVENTBUS_LOGIN_SUCCESS
 import com.communication.lib_core.tools.Utils
 import com.communication.lib_http.httpdata.home.AppsItem
 import com.communication.lib_http.httpdata.home.HomeFlowBean
@@ -58,6 +60,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnRefreshListener {
         ).observe(this,{
             if (isActive()) {
                 updateVersion(it)
+            }
+        })
+
+        LiveEventBus.get(
+            EVENTBUS_LOGIN_SUCCESS,
+            Boolean::class.java
+        ).observe(this,{
+
+            if (lifecycle.currentState == Lifecycle.State.RESUMED) {
+                if(it) {
+                    mViewModel.getHomeFlow()
+                    mViewModel.getHomeAppsList()
+                }
             }
         })
 

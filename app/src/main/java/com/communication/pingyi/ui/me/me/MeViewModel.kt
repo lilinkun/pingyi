@@ -52,11 +52,11 @@ class MeViewModel(private val repo : MeRepository) : BaseViewModel(){
             }
             isLoading.postValue(false)
 
-            mBaseModel?.let {
+            /*mBaseModel?.let {
                 if (mBaseModel?.data == 401){
                     LiveEventBus.get(EVENTBUS_TOKEN_INVALID).post(mBaseModel?.msg)
                 }
-            }
+            }*/
         }
 
 
